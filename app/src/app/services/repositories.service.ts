@@ -9,7 +9,7 @@ import { ApiError } from '../interfaces/api-error';
   providedIn: 'root',
 })
 export class RepositoriesService {
-  private baseUrl = `${environment.api}/repositories`;
+  private baseUrl = `${environment.apiUrl}/repositories`;
   constructor(private readonly http: HttpClient) {}
 
   // ------------------- GET METHODS -------------------

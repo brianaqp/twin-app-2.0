@@ -1,13 +1,10 @@
-@use "../../../utilities/variables.scss";
-// importar funciones, mixins yvariables de bootstrap
-@import '../../../../node_modules/bootstrap/scss/functions';
-@import '../../../../node_modules/bootstrap/scss/variables';
-@import '../../../../node_modules/bootstrap/scss/mixins';
+// @use "../../../utilities/variables.scss";
 
 
-@include media-breakpoint-down(md) {
-    a {
-        font-size: 1.1em !important;
-        padding: 0.9em;
-    }
-}
+// [ ] Change it for not using this elements
+// @include media-breakpoint-down(md) {
+//     a {
+//         font-size: 1.1em !important;
+//         padding: 0.9em;
+//     }
+// }

@@ -1,7 +1,7 @@
-@import "../../utilities/variables.scss";
+@use "../../utilities/variables";
 
 nav {
-    background-color: $soft;
+    background-color: white; // soft
     min-height: 64px;
 }
 
@@ -14,6 +14,6 @@ nav {
 }
 
 .bi-three-dots-vertical {
-    color: $stronger;
+    color: green; // stronger
     font-size: 1.2em;
 }

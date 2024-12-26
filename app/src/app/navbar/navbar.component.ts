@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { NavbarService } from '../services/navbar.service';
 import { Subscription } from 'rxjs';
 import { environment } from '../environments/environment';
@@ -14,11 +14,13 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  isNavCollapsed: boolean = true; // Variable para controlar el estado del menu colapsable de navegación
-  sideMenuAllowed: boolean = false;
+  isNavCollapsed = true; // Variable para controlar el estado del menu colapsable de navegación
+  sideMenuAllowed = false;
   subscription!: Subscription;
-  logoutDomain: string = `${environment.domain}/logout`;
-  constructor(private navbarService: NavbarService) {}
+  logoutDomain = `/logout`;
+
+  // Services
+  private navbarService = inject(NavbarService);
 
   ngOnInit() {
     // Subscripción al observable que contiene la información si el usuario está en la sección de operaciones

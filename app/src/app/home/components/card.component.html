@@ -1,0 +1,40 @@
+<div class="input-group mt-3" ngbDropdown>
+  <button
+    class="btn btn-outline-secondary dropdown-toggle"
+    type="button"
+    ngbDropdownToggle>
+    Search by {{ searchType }}
+  </button>
+  <div class="dropdown-menu" ngbDropdownMenu>
+    <button
+      class="dropdown-item"
+      ngbDropdownItem
+      (click)="onSearchTypeChange('id')">
+      ID
+    </button>
+    <button
+      class="dropdown-item"
+      ngbDropdownItem
+      (click)="onSearchTypeChange('name')">
+      Name
+    </button>
+  </div>
+  <input
+    type="text border-radius-2"
+    class="form-control"
+    [(ngModel)]="busqueda"
+    #input
+    (keydown.enter)="input.blur()" />
+</div>
+<hr />
+<div class="card border border-0">
+  <ul class="list-group">
+    <a
+      class="list-group-item list-group-item-action fs-6"
+      [routerLink]="'/repositorio'"
+      [state]="{ id: item.id, type: collection }"
+      *ngFor="let item of filtrarLista()">
+      {{ item.id }} | {{ item.name }}
+    </a>
+  </ul>
+</div>

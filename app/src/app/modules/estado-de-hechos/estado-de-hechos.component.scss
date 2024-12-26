@@ -1,0 +1,87 @@
+@import "../../../utilities/variables.scss";
+// importar funciones, mixins yvariables de bootstrap
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
+
+// table border for copy-paste
+
+$max-width: 215mm;
+
+.container {
+    margin-left: 20%;
+}
+
+
+.box-input {
+    border: 0;
+    border-bottom: 1px solid #484848;
+    height: 25px;
+} 
+
+.box-input-header {
+    @extend .box-input;
+    background-color: $middle;
+    color: white;
+}
+
+.box-input-footer {
+    @extend .box-input;
+    background-color: $softer;
+    color: black;
+}
+
+footer {
+    height: 25px;
+}
+
+.print-preview {
+    .container {
+        margin: 0;
+    }
+    .d-print-none {
+        display: none !important;
+    }
+
+    .d-print-inline-block {
+        display: inline-block !important;
+    }
+}
+
+// ONly when printing
+@media print {
+
+    @page {
+        size: letter;
+        margin: 10mm;
+    }
+
+    .container {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        margin: 0%;
+    }
+
+    .table-times {
+        page-break-after: always;
+        tr {
+            page-break-inside: avoid !important;
+        }
+    }
+
+    .table-receivers-cargos {
+        page-break-inside: avoid !important;
+    }
+
+    .sign-box {
+        page-break-inside: avoid !important;
+    }
+
+    .remarks {
+        page-break-inside: avoid !important;
+    }
+
+    #main-nav {
+        display: none !important;
+    }
+}

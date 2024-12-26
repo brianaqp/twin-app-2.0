@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <span class="display-5">Utilidades</span>
+  </div>
+  <div class="row mt-2">
+    <span class="fs-4 fw-light">Agregar pie de pagina</span>
+  </div>
+  <hr />
+  <div class="row mt-2">
+    <div class="input-group">
+      <label class="input-group-text">Nombre del archivo</label>
+      <input type="text" class="form-control" [(ngModel)]="filename" >
+    </div>
+  </div>
+  <div class="mt-1" id="help-text">
+    <i class="bi bi-question-circle-fill"></i>
+    <span class="fs-6">&nbsp;Para mantener el nombre de origen, favor de deja el campo vacio.</span>
+  </div>
+  <div class="row d-flex justify-content-center mt-2">
+    <div class="col-12 col-md-10 mt-2">
+      <div class="drop-zone"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)"
+        (drop)="onDrop($event)">
+          <p>Arrastra y suelta tus archivos aquí</p>
+          <input type="file" (change)="onFileSelected($event)" hidden #fileInput>
+          <button type="button" class="btn btn-primary" (click)="fileInput.click()">Seleccionar archivo</button>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <span class="fs-4 fw-light">Descargar archivos</span>
+  </div>
+  <div class="row">
+    <div class="row mt-1">
+      <span class="text-body-secondary fs-6">
+        <i class="bi bi-question-circle"></i>
+         Datos del 2024 en adelante</span>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-auto">
+      <div class="input-group">
+        <label class="input-group-text">Lista de barcos atendidos</label>
+        <input type="text" class="form-control" [(ngModel)]="year">
+        <button class="btn btn-outline-secondary">
+          <i class="bi bi-download" (click)="onDocumentDownload()"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,380 @@
+<div class="container mt-2" style="font-size: 10px; font-family: Tahoma, sans-serif;">
+  <p style="font-size: 24px; font-weight: 500">Arrival Report</p>
+  <table
+    class="destinatarios-table"
+    width="720"
+    style="border-collapse: collapse">
+    <tbody>
+      <tr
+        style="display: flex; flex-direction: column nowrap; margin-top: 5px"
+        *ngFor="let row of this.destinatariosRows"
+        scope="row">
+        <td
+          *ngFor="let item of row"
+          style="
+            width: 50%;
+            padding-right: 10px;
+            border: 0;
+            border-bottom: 1px solid #328a92;
+          ">
+          <!-- Header -->
+          <div style="width: 100%; top: 0">
+            <p
+              style="
+                margin: 0;
+                font-size: 16px;
+                font-weight: 600;
+                color: #185477;
+              ">
+              {{ item.companie }}
+            </p>
+          </div>
+          <!-- Body -->
+          <p>
+            {{ item.names }}
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <tr>
+    &nbsp;
+  </tr>
+
+  <!-- Estilos generales -->
+  <table style="border-collapse: collapse">
+    <thead>
+      <tr>
+        <th
+          colspan="2"
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          {{ vessel.shipParticulars.name }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th
+          width="180"
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          Loading port
+        </th>
+        <td width="180" style="border: 1px solid #185477; padding-left: 5px">
+          {{ register?.loadingPort }}
+        </td>
+      </tr>
+      <tr>
+        <th
+          width="180"
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          Total shipment
+        </th>
+        <td width="180" style="border: 1px solid #185477; padding-left: 5px">
+          {{ register?.totalShipment | tonFormat }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <tr>
+    &nbsp;
+  </tr>
+
+  <table style="border-collapse: collapse">
+    <thead>
+      <tr>
+        <th
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          Port
+        </th>
+        <th
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          Total Shipment
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of register.portCalls">
+        <th
+          width="180"
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          {{ data.port }}
+        </th>
+        <td width="180" style="border: 1px solid #185477; padding-left: 5px">
+          {{ data.cantidad }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <tr>
+    &nbsp;
+  </tr>
+
+  <h3 style="font-size: 16px; margin: 0px">Arrival draft</h3>
+  <table style="border-collapse: collapse">
+    <thead>
+      <tr>
+        <th
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          Port
+        </th>
+        <th
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          FWD / AFT
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of register.calados">
+        <th
+          width="180"
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          {{ data.port }}
+        </th>
+        <td width="180" style="border: 1px solid #185477; padding-left: 5px">
+          {{ data.foreward }} / {{ data.afterward }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <tr>
+    &nbsp;
+  </tr>
+
+  <h3 style="font-size: 16px; margin: 0px">Main details of the vessel</h3>
+  <table style="border-collapse: collapse">
+    <tbody>
+      <tr>
+        <th
+          width="180"
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          Name
+        </th>
+        <th width="180" style="border: 1px solid #185477; padding-left: 5px">
+          {{ vessel.shipParticulars.name }}
+        </th>
+      </tr>
+      <tr>
+        <th
+          width="180"
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          LOA
+        </th>
+        <th width="180" style="border: 1px solid #185477; padding-left: 5px">
+          {{ vessel.shipParticulars.loa }}
+        </th>
+      </tr>
+      <tr>
+        <th
+          width="180"
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          CRANES
+        </th>
+        <th width="180" style="border: 1px solid #185477; padding-left: 5px">
+          {{ vessel.shipParticulars.cranes }}
+        </th>
+      </tr>
+      <tr>
+        <th
+          width="180"
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          H/H
+        </th>
+        <th width="180" style="border: 1px solid #185477; padding-left: 5px">
+          {{ vessel.shipParticulars.hH }}
+        </th>
+      </tr>
+    </tbody>
+  </table>
+
+  <tr>
+    &nbsp;
+  </tr>
+
+  <h3 style="font-size: 16px; margin: 0px">Stowage plan</h3>
+  <table style="border-collapse: collapse">
+    <thead>
+      <tr>
+        <th
+          width="50"
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          Hold
+        </th>
+        <th
+          width="180"
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          Cargo
+        </th>
+        <!-- Primero los puertos, luegi ek geberak -->
+        <ng-container *ngFor="let port of register.workingPorts">
+          <th
+            width="130"
+            style="
+              border: 1px solid #185477;
+              background-color: #328a92;
+              color: white;
+              padding-left: 5px;
+            ">
+            {{ port }}
+          </th>
+        </ng-container>
+        <th
+          width="130"
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          General
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of register.stowagePlan.data">
+        <th
+          width="50"
+          style="
+            border: 1px solid #185477;
+            background-color: #328a92;
+            color: white;
+            padding-left: 5px;
+          ">
+          {{ data.hold }}
+        </th>
+        <td width="180" style="border: 1px solid #185477; padding-left: 5px">
+          {{ data.cargo }}
+        </td>
+        <!-- ngfor ciclyng -->
+        <ng-container *ngFor="let port of register.workingPorts">
+          <td width="130" style="border: 1px solid #185477; padding-left: 5px">
+            {{ data[port] | tonFormat }}
+          </td>
+        </ng-container>
+        <!--  -->
+        <td width="130" style="border: 1px solid #185477; padding-left: 5px">
+          {{ data.general | tonFormat }}
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th
+          width="230"
+          colspan="2"
+          style="
+            border: 1px solid #185477;
+            background-color: #e8f2f3;
+            padding-right: 8px;
+            text-align: end;
+          ">
+          Totals
+        </th>
+        <ng-container *ngFor="let port of register.workingPorts">
+          <td
+            width="130"
+            style="
+              border: 1px solid #185477;
+              padding-left: 5px;
+              background-color: #e8f2f3;
+            ">
+            {{ register.stowagePlan.totales[port] | tonFormat }}
+          </td>
+        </ng-container>
+        <td
+          width="130"
+          style="
+            border: 1px solid #185477;
+            padding-left: 5px;
+            background-color: #e8f2f3;
+          ">
+          {{ register.stowagePlan.totales.general | tonFormat }}
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <tr>
+    &nbsp;
+  </tr>
+
+  <footer style="height: 10px"></footer>
+</div>

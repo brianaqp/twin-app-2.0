@@ -1,0 +1,8 @@
+<section class="main" *ngIf="isDataLoaded">
+  <app-repo-register
+    *ngIf="type === 'Registers'"
+    [register]="data"></app-repo-register>
+  <app-repo-vessel
+    *ngIf="type === 'Vessels'"
+    [vesselData]="data"></app-repo-vessel>
+</section>

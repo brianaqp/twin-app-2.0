@@ -1,0 +1,23 @@
+<div class="container">
+  <p class="display-6">Vessel: {{ this.vesselData.shipParticulars.name }}</p>
+  <div class="row">
+    <hr />
+  </div>
+  <div class="row justify-content-center mb-2">
+    <div class="col-8 col-md-5 mb-2">
+      <button
+        routerLink="/alta-barco"
+        [state]="{ id: vesselData.id, editMode: true }"
+        class="btn btn-success w-100">
+        Editar Vessel
+      </button>
+    </div>
+  </div>
+  <div class="row justify-content-center mb-2">
+    <div class="col-8 col-md-5 mb-2">
+      <button (click)="onDeleteVessel()" class="btn btn-danger w-100">
+        Borrar Vessel
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container-fluid">
+    <button
+      *ngIf="sideMenuAllowed"
+      (click)="toggleSideMenu()"
+      id="side-menu-toggler"
+      class="d-inline btn"
+      type="button">
+      <i class="bi bi-three-dots-vertical"></i>
+    </button>
+    <!-- Primera seccion -->
+    <div class="d-flex justify-content-center justify-content-md-start">
+      <a class="navbar-brand" routerLink="" (click)="toggleNavCollapse()">
+        <img
+          class="d-none d-lg-inline"
+          src="assets/logo.png"
+          alt="logo"
+          width="30"
+          height="24" />
+        Twin Marine
+      </a>
+    </div>
+    <button
+      (click)="isNavCollapsed = !isNavCollapsed"
+      class="navbar-toggler"
+      type="button">
+      <i class="bi bi-list"></i>
+    </button>
+    <!-- Collapsed items -->
+    <div
+      [ngbCollapse]="isNavCollapsed"
+      class="collapse navbar-collapse justify-content-between">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" (click)="toggleNavCollapse()" routerLink="/"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/nuevo-registro"
+            (click)="toggleNavCollapse()"
+            [state]="{ editMode: false, registerId: undefined }"
+            >Nuevo registro</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/alta-barco"
+            (click)="toggleNavCollapse()"
+            [state]="{ editMode: false }"
+            >Alta barco</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/kpi" (click)="toggleNavCollapse()"
+            >KPI</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/utilities" (click)="toggleNavCollapse()"
+          >Utilidades</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [href]="logoutDomain"
+            (click)="toggleNavCollapse()"
+            >Cerrar Sesion</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="spacer"></div>

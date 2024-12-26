@@ -1,0 +1,211 @@
+<section class="container">
+  <h1 class="display-5 mt-2">Galeria de fotos</h1>
+  <p class="fs-4">Register ID: {{ registerId }}</p>
+  <p class="fs-4">Seleccione las fotos que desee subir</p>
+  <div class="input-group mb-3">
+    <input
+      type="file"
+      class="form-control"
+      accept="image/*"
+      (change)="onFileUpload($event)"
+      multiple />
+  </div>
+  <!-- TODO: Implementacion de tratamiento de imagenes -->
+  <!-- <div class="form-check">
+    <input class="form-check-input" id="checkbox" type="checkbox" [(ngModel)]="checkbox">
+    <label class="form-check-label" for="checkbox">Añadir marca de agua</label>
+  </div> -->
+  <div class="input-group">
+    <span class="input-group-text">Puerto</span>
+    <select class="form-control" [(ngModel)]="portSelected">
+      <option *ngFor="let port of availablePorts" value="{{ port }}">
+        {{ port }}
+      </option>
+    </select>
+  </div>
+  <div
+    class="d-flex flex-row flex-wrap justify-content-base pre-uploaded-images">
+    <div class="card mt-2" *ngFor="let file of preUploadFiles">
+      <div class="card-header d-flex justify-content-end">
+        <button
+          class="btn btn-close"
+          aria-label="close"
+          (click)="deleteSelectedFile(file, preUploadFiles)"></button>
+      </div>
+      <img [src]="file.base64url" class="card-img-top" />
+      <div class="card-body">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Pie de pagina"
+            [(ngModel)]="file.caption" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="file-section">
+    <div class="row">
+      <div class="col-12 col-sm-3">
+        <button
+          [disabled]="uploadButton"
+          class="btn btn-primary btn-save w-100 mt-2"
+          (click)="saveImage()">
+          Guardar imagen
+        </button>
+      </div>
+      <div *ngIf="saveAlertMessage" class="col-12 col-sm-6 mt-2">
+        <ngb-alert
+          *ngIf="saveAlertMessage"
+          #saveAlert
+          [type]="saveAlertType"
+          (closed)="onSaveAlertClose()"
+          >{{ saveAlertMessage }}</ngb-alert
+        >
+      </div>
+    </div>
+    <p class="fs-4 mt-3">Acceso a las imagenes</p>
+    <div class="input-group mb-3 col">
+      <button
+        type="button"
+        class="btn btn-outline-primary col-12 col-sm-3"
+        ngbPopover
+        placement="bottom"
+        #copy_popover="ngbPopover"
+        triggers="manual"
+        (click)="copyLink()">
+        Copy Link
+      </button>
+      <input
+        type="text"
+        value="{{ publicLink }}"
+        class="form-control d-none d-sm-block"
+        aria-label="Text input with segmented dropdown button" />
+    </div>
+  </div>
+  <hr />
+  <p class="fs-3 mt-2">Imagenes actuales</p>
+  <ng-container *ngFor="let section of availablePorts">
+    <!-- For every port -->
+    <ng-container *ngIf="checkIfSectionShow(section)">
+      <!-- Check if at least have one img in that port -->
+      <p class="fs-3 mt-2">{{ section }}</p>
+      <div class="d-flex flex-row flex-wrap justify-content-base mt-2">
+        <div
+          class="card"
+          *ngFor="let file of getFilesByCategory(section)"
+          (click)="onImgModalOpen(file, 'local')">
+          <div class="card-img-top">
+            <img class="card-img-top" [src]="file.base64url" />
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{ file.caption }}</p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+  <footer class="w-100 mt-5" style="height: 15px;"></footer>
+</section>
+
+<!-- Modales -->
+
+<ng-template #img_modal let-onClose="close" let-onDismiss="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Image View</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="onDismiss('X')"></button>
+  </div>
+  <div class="modal-body d-flex justify-content-center">
+    <img [src]="fileSelected.base64url" class="img-fluid" />
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-lg btn-outline-secondary"
+      (click)="onClose('cancel')">
+      Close
+    </button>
+    <button
+      type="button"
+      class="btn btn-lg btn-outline-danger"
+      (click)="onDeleteModalOpen()">
+      Delete
+    </button>
+    <button 
+    type="button"
+    class="btn btn-lg btn-outline-success"
+    (click)="onEditImg()">
+    Edit</button>
+  </div>
+</ng-template>
+
+<ng-template #delete_modal let-onClose="close" let-onDismiss="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Delete Image</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="onDismiss('X')"></button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete this image?</p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-lg btn-outline-secondary"
+      (click)="onClose('cancel')">
+      Cancel
+    </button>
+    <button
+      type="button"
+      class="btn btn-lg btn-outline-danger"
+      (click)="onClose('confirm')">
+      Confirm
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #edit_modal let-onClose="close" let-onDismiss="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Edit properties</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="onDismiss('X')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="mt-2">
+      <label class="form-label">Pie de página</label>
+      <input type="text" class="form-control"[(ngModel)]="fileSelected.caption">
+    </div>
+    <div class="mt-2">
+      <label class="form-label">Puerto</label>
+    <select id="" class="form-select" [(ngModel)]="fileSelected.port">
+      @for (item of availablePorts; track $index) {
+        <option [value]="item">{{ item }}</option>
+      }
+    </select>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-lg btn-outline-secondary"
+      (click)="onClose('cancel')">
+      Cancel
+    </button>
+    <button
+      type="button"
+      class="btn btn-lg btn-outline-success"
+      (click)="onClose('confirm')">
+      Save changes
+    </button>
+  </div>
+</ng-template>

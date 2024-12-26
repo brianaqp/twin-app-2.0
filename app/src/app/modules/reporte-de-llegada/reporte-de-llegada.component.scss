@@ -1,0 +1,20 @@
+@import "../../../utilities/variables";
+
+@media print {
+    @page {
+        size: letter;
+    }
+
+    .container {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        width: 8.2677in; // Exact A4 print width in inches
+        margin: 0%;
+    }
+
+    table{ 
+        tr {
+            page-break-inside: avoid;
+        }
+    }
+}

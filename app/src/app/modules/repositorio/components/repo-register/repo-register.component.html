@@ -1,0 +1,89 @@
+<div class="container" *ngIf="isDataLoaded">
+  <div class="row">
+    <p class="display-6">Registro del barco</p>
+    <p class="fs-5">
+      {{ vessel.shipParticulars.name }}, from:
+      {{ register.id.split('-').slice(0, 2).join('-') }}
+    </p>
+    <hr />
+  </div>
+  <div class="row justify-content-center mb-2">
+    <div class="col-8 col-md-5 mb-2">
+      <button
+        routerLink="/reporte-de-llegada"
+        [state]="{ data: register, vesselData: vessel }"
+        class="btn btn-outline-dark btn-outline-secondary w-100">
+        Reporte de llegada
+      </button>
+    </div>
+  </div>
+  <div class="row justify-content-center mb-2">
+    <div class="col-8 col-md-5 mb-2">
+      <button
+        routerLink="/nuevo-registro"
+        [state]="{ editMode: true, registerId: register.id }"
+        class="btn btn-outline-dark btn-outline-secondary w-100">
+        Editar registro
+      </button>
+    </div>
+  </div>
+  <p class="fs-5">Captura de reportes</p>
+  <hr />
+  <div
+    class="row justify-content-center mb-2"
+    *ngFor="let port of register.workingPorts">
+    <div class="col-8 col-md-5 mb-2">
+      <button
+        class="btn btn-outline-dark w-100"
+        [ngStyle]="{ 'background-color': getPortColor(port) }"
+        routerLink="/reporte-de-operaciones"
+        [state]="{ registerId: register.id, workingPort: port }">
+        {{ port }}
+      </button>
+    </div>
+  </div>
+  <p class="fs-5">Documentos exportables</p>
+  <hr />
+  <div class="row justify-content-center mb-2">
+    <div class="col-8 col-md-5">
+      <button
+        class="btn btn-outline-dark btn-outline-secondary w-100 mb-2"
+        routerLink="/distribucion-embarque"
+        [state]="{ registerId: register.id }">
+        Distribución de Embarque
+      </button>
+    </div>
+  </div>
+  <div class="row justify-content-center mb-2">
+    <div class="col-8 col-md-5">
+      <button
+        class="btn btn-outline-dark btn-outline-secondary w-100 mb-2"
+        routerLink="/nominacion-interna"
+        [state]="{ registerId: register.id, vesselId: vessel.id }">
+        Nominación interna
+      </button>
+    </div>
+  </div>
+  <p class="fs-5">Secciones adicionales</p>
+  <hr />
+  <div class="row justify-content-center mb-2">
+    <div class="col-8 col-md-5">
+      <button
+        class="btn btn-outline-dark btn-outline-secondary w-100"
+        routerLink="/galeria"
+        [state]="{ registerId: register.id }">
+        Galeria de imagenes
+      </button>
+    </div>
+  </div>
+  <p class="fs-5">Danger zone</p>
+  <hr />
+  <div class="row justify-content-center mb-2">
+    <div class="col-8 col-md-5">
+      <button (click)="onDeleteRegister()" class="btn btn-outline-danger w-100">
+        Borrar Registro
+      </button>
+    </div>
+  </div>
+</div>
+<div class="footer"></div>

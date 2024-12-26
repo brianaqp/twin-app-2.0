@@ -1,0 +1,17 @@
+<div class="container mt-2">
+  <p class="h2 text-center">Comparativa de registros desde el 2021</p>
+  <div class="bar-container">
+    <canvas id="myChart">{{ barChart }}</canvas>
+  </div>
+  <div class="row">
+    <button
+      class="btn btn-outline-secondary d-print-none col-auto"
+      (click)="print()">
+      Print PDF
+    </button>
+    <p class="lead d-print-none fs-5">
+      Nota: Componente en desarrollo. La informacion esta actualizada, pero
+      puede haber errores y la informacion puede imprimirse en mal estado.
+    </p>
+  </div>
+</div>

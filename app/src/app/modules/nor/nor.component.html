@@ -1,0 +1,97 @@
+<section *ngIf="isDataLoaded" style="
+font-family: Tahoma, sans-serif;
+font-size: 13px;
+">
+  <div class="row d-print-none user-box">
+    <p class="h3 d-print-none">Vista previa</p>
+    <div class="col-8 col-md-6 mb-4">
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        [(ngModel)]="receiverIdSelected"
+        (change)="receiverSelectedChange()">
+        <option value="default">Seleccione el recibidor para el nor</option>
+        <ng-container *ngFor="let item of receivers">
+          <option value="{{ item.id }}">
+            {{ item.name }}
+          </option>
+        </ng-container>
+      </select>
+    </div>
+    <div class="col-4">
+      <button
+        class="btn btn-outline-secondary d-print-none"
+        (click)="printPDF()">
+        Visualizar PDF
+      </button>
+    </div>
+  </div>
+  <div class="page-border d-flex flex-column flex-nowrap">
+    <div class="row">
+      <div class="col-6">
+        <a class="img-container">
+          <img src="assets/logo_with_name.jpeg" alt="" />
+        </a>
+      </div>
+      <div
+        class="col-6 d-flex align-items-center justify-content-center border-success">
+        <p class="h3 text-uppercase">Notice of Readiness</p>
+      </div>
+    </div>
+    <p class="mt-3"></p>
+    <p class="mb-0">Messrs:</p>
+    <p class="mt-0 mb-0">{{ agenteAduanal }}</p>
+    <p class="mt-0 mb-0">ON BEHALF OF</p>
+    <p class="mt-0 mb-0">{{ razonSocial }}</p>
+    <p class="mt-0 mb-0">RECEIVERS REPRESENTATIVES</p>
+    <div class="mt-3"></div>
+    <p class="mt-4">
+      This is to notify you that the
+      <strong
+        ><u>{{ vessel.shipParticulars.flag }}</u></strong
+      >
+      flag m/v
+      <strong
+        ><u>{{ vessel.shipParticulars.name }}</u></strong
+      >
+      under my command arrived at this port of {{ workingPort }}, Mexico on
+      <strong
+        ><u>{{ norDateTendered }}</u></strong
+      >
+      and from that date and time she is ready in every respect to
+      <strong
+        ><u>{{ chargeOrDischarge() }}</u></strong
+      >
+      a total cargo of about
+      <strong
+        ><u>{{ getCargoAndProducts() }}</u></strong
+      >
+      in accordance to all terms, conditions and exceptions of the Governing
+      Charter Party.
+    </p>
+    <p>
+      Notice of Readiness Tendered on <strong>{{ norDateTendered }}</strong>
+    </p>
+    <p>
+      Notice of Readiness Presented on <strong>{{ norDatePresented }}</strong>
+    </p>
+    <div>
+      <span>Accepted, subject to all terms,</span>
+      <span> conditions and exceptions of the</span>
+      <span> Governing Charter Party.</span>
+    </div>
+    <div class="mt-4 mb-4"></div>
+    <div class="sign-box mb-4" *ngFor="let string of ['Date', 'Time', 'Hours']">
+      <input readonly class="signature" type="text" />
+      <p>{{ string }}</p>
+    </div>
+    <div class="mt-4"></div>
+    <div class="mt-3"></div>
+    <div class="goodbye-box align-self-end">
+      <p class="text-end mb-2 align-self-end">For and of behalf a Master</p>
+      <input readonly class="signature" type="text" />
+      <p class="text-end mt-3">Twin Marine de Mexico S.A. de C.V</p>
+    </div>
+  </div>
+</section>
+<div class="mt-3">&nbsp;</div>

@@ -1,0 +1,16 @@
+@import '../../../../../../node_modules/bootstrap/scss/functions';
+@import '../../../../../../node_modules/bootstrap/scss/variables';
+@import '../../../../../../node_modules/bootstrap/scss/mixins';
+// Variables
+@import '../../../../../utilities/variables';
+
+@include media-breakpoint-up(lg) {
+  .container {
+    padding-left: 15%;
+    padding-right: 15%;
+
+    .row {
+        justify-content: left !important;
+      }
+  }
+}

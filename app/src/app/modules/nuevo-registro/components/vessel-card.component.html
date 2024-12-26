@@ -1,0 +1,24 @@
+<div class="form-group row mt-2">
+  <label for="" ngClass="form-label">Búsqueda por nombre</label>
+  <div ngClass="col">
+    <input [(ngModel)]="busqueda" type="text" class="form-control" />
+  </div>
+</div>
+<div class="mt-2">
+  <p>Máximo 3 resultados</p>
+</div>
+<hr />
+<div>
+  <ul class="list-group">
+    <button
+      (click)="onClick(vessel)"
+      class="list-group-item list-group-item-action"
+      [disabled]="editMode"
+      [ngClass]="{
+        active: selection === vessel
+      }"
+      *ngFor="let vessel of filtrarLista()">
+      {{ vessel.shipParticulars.name }}, ID: {{ vessel.id }}
+    </button>
+  </ul>
+</div>

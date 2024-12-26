@@ -1,0 +1,79 @@
+<div class="container" *ngIf="isDataLoaded" style="
+font-family: Tahoma, sans-serif;
+">
+  <h3 [ngStyle]="st.title">Distribución de embarque</h3>
+  <table [style]="tableStyles" border="1">
+    <tbody class="thead">
+      <tr style="background-color: #328a92; color: white">
+        <th [style]="cellStyles" [ngStyle]="{ 'width': '20%'}">{{ flowType }}</th>
+        <th [style]="cellStyles" [ngStyle]="{ 'width': '20%'}">A.A</th>
+        <th [style]="cellStyles" [ngStyle]="{ 'width': '20%'}">Cargo</th>
+        <th [style]="cellStyles" [ngStyle]="{ 'width': '5%'}">BL</th>
+        <th [style]="cellStyles" [ngStyle]="{ 'width': '20%'}">Puerto/Terminal</th>
+        <th [style]="cellStyles" [ngStyle]="{ 'width': '15%'}">Tonelaje</th>
+      </tr>
+    </tbody>
+    <tbody *ngFor="let por of data.workingPorts">
+      <tr class="port-header"
+        style="background-color: #328a92; color: white; text-align: center">
+        <th
+          colspan="6"
+          style="border: 1px solid black; padding-left: 8px">
+          {{ por.toUpperCase() }}
+          {{ data.reports[por].data.receiversData.total }} TONELADAS
+        </th>
+      </tr>
+      <tr
+        class="rec-row"
+        *ngFor="let rec of data.reports[por].data.receiversData.receivers">
+        <td [style]="cellStyles">{{ rec.name }}</td>
+        <td [style]="cellStyles">{{ rec.agenteAduanal }}</td>
+        <td [style]="cellStyles">{{ rec.producto }}</td>
+        <td [style]="cellStyles">{{ getBlData(rec.id, 'bl', por) }}</td>
+        <td [style]="cellStyles">{{ rec.terminal }}</td>
+        <td [style]="cellStyles">{{ rec.tonelaje | tonFormat }}</td>
+      </tr>
+      <tr
+        class="subtotal-row"
+        style="background-color: #ceeaed; font-weight: 500;">
+        <td
+          colspan="5"
+          style="
+            text-align: end;
+            border: 1px solid black;
+            padding-right: 8px;
+          ">
+          Total in Port
+        </td>
+        <td [style]="cellStyles">
+          <span>{{ data.reports[por].data.receiversData.total }}</span>
+        </td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr
+        class="total-row"
+        style="background-color: #e8f2f3; font-weight: bold;">
+        <td
+          colspan="5"
+          style="
+            text-align: end;
+            border: 1px solid black;
+            padding-right: 8px;
+          ">
+          Total in General
+        </td>
+        <td [style]="cellStyles">
+          <span>{{ tonelajeTotal }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <button
+      class="btn btn-outline-secondary d-print-none mt-2"
+      (click)="print()">
+      Visualizar PDF
+    </button>
+  </div>
+</div>

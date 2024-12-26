@@ -1,0 +1,48 @@
+// importar las biobletas de bootsrtap
+@import '../../../../node_modules/bootstrap/scss/functions';
+@import '../../../../node_modules/bootstrap/scss/variables';
+@import '../../../../node_modules/bootstrap/scss/mixins';
+
+.port-item {
+    background-color: transparent;
+    transition: 0.5s ease-in-out;
+    &:hover {
+        background-color: rgb(237, 237, 247);
+        color: rgb(0, 0, 0);
+    }
+}
+
+.selected {
+  background-color: rgb(237, 237, 247); /* Change this to the color you want */
+}
+
+.general-table {
+    .small-col {
+        width: 60px !important;
+        min-width: 60px !important;
+    }
+
+  .middle-col {
+      width: 120px !important;
+      min-width: 120px !important;
+      text-align: center;
+  }
+
+  .bigger-col {
+      width: 250px !important;
+      min-width: 250px !important;
+  }
+
+  input, select {
+    width: 100%
+  }
+
+}
+
+// media up md
+@include media-breakpoint-up(md) {
+    .container {
+      padding-left: 10%;
+      padding-right: 10%;
+    }
+  }

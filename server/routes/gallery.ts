@@ -2,7 +2,7 @@ import { Router } from "express";
 import { GridFSBucket, ObjectId } from "mongodb";
 import multer from "multer";
 import { Readable } from "stream";
-import { gallery as db } from "../db/conn.js";
+import { gallery as db } from "../db/conn";
 
 const galleryRouter = Router();
 const storage = multer.memoryStorage();
@@ -171,7 +171,7 @@ galleryRouter.post("/gallery/editProperties/:registerId", async (req, res) => {
             caption: body.caption,
           },
         },
-      },
+      }
     );
     res.send(result).status(200);
   } catch (error) {

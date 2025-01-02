@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { GridFSBucket, ObjectId } from "mongodb";
-import { gallery as db } from "../db/conn.js";
+import { gallery as db } from "../db/conn";
 
 const publicRouter = Router();
 

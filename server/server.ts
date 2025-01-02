@@ -3,14 +3,14 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 // routes
-import mgRouter from "./routes/mongo.js";
-import galleryRouter from "./routes/gallery.js";
+import mgRouter from "./routes/mongo";
+import galleryRouter from "./routes/gallery";
 // middlewares
 import bodyParser from "body-parser";
-import publicRouter from "./routes/public.js";
-import statisticsRouter from "./routes/statistics.js";
-import adminRouter from "./routes/admin.js";
-import filesRouter from "./routes/files.js";
+import publicRouter from "./routes/public";
+import statisticsRouter from "./routes/statistics";
+import adminRouter from "./routes/admin";
+import filesRouter from "./routes/files";
 
 const app = express();
 const PORT = 3200;

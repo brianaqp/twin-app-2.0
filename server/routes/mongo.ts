@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { db } from "../db/conn.js"; // change if production
+import { db } from "../db/conn"; // change if production
 
 const mgRouter = Router();
 
@@ -30,6 +30,7 @@ mgRouter.get("/repositories/:collection", async (req, res) => {
     .find({}, { projection })
     .hint({ $natural: -1 })
     .toArray();
+
   res.json(data);
 });
 
@@ -42,11 +43,11 @@ mgRouter.get(
       {
         sort: { registerCount: -1 },
         // projection: { _id: 0, registerCount: 1 }
-      },
+      }
     );
     console.log(data);
     res.json(data);
-  },
+  }
 );
 
 // FindOne
@@ -82,7 +83,7 @@ mgRouter.get(
         .status(500)
         .json({ message: "Error counting docs by year", error: err });
     }
-  },
+  }
 );
 
 // Metodo que devuelve un arreglo de strings de un campo en particular
@@ -191,7 +192,7 @@ mgRouter.put("/repositories/:collection/updateTimes/:id", async (req, res) => {
         },
         distribucionEmbarque: body.distribucionEmbarque,
       },
-    },
+    }
   );
   console.log(result);
   res.send(result).status(204);

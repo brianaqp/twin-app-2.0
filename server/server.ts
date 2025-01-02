@@ -1,34 +1,41 @@
+// imports
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-// Routes
-import statisticsRouter from "./routes/private/statistics.js";
-import filesRouter from "./routes/private/files.js";
-import configRouter from "./routes/private/charts.js";
-import usersRouter from "./routes/private/users.js";
-// Public routes
-import { publicChartsRouter } from "./routes/public/public_charts.js";
-import { verifyKey } from "./middlewares/verifyKey.js";
+// routes
+import mgRouter from "./routes/mongo.js";
+import galleryRouter from "./routes/gallery.js";
+// middlewares
+import bodyParser from "body-parser";
+import publicRouter from "./routes/public.js";
+import statisticsRouter from "./routes/statistics.js";
+import adminRouter from "./routes/admin.js";
+import filesRouter from "./routes/files.js";
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = 3200;
 
+// middlewares
 app.use(cors());
 app.use(morgan("dev"));
-app.use(express.json());
+app.use(express.json({ limit: "100mb" }));
+app.use(bodyParser.raw({ type: "application/octet-stream" }));
 
-// Private routes
-app.use(statisticsRouter);
-app.use(usersRouter);
-app.use(configRouter);
-app.use(filesRouter);
-// Public routes
-app.use(publicChartsRouter);
-
-app.use("/", (req, res) => {
-  res.send({ message: 404 });
+app.get("/", (req, res) => {
+  res.send("Server running...");
 });
 
-app.listen(PORT, () => {
-  console.log("Server running at port", PORT);
+// routes
+app.use(publicRouter);
+app.use(mgRouter);
+app.use(galleryRouter);
+app.use(statisticsRouter);
+app.use(filesRouter);
+app.use(adminRouter);
+
+//settings
+app.set("port", process.env.PORT || PORT);
+
+app.listen(app.get("port"), () => {
+  console.log(`App serving on port: ${app.get("port")}`);
 });

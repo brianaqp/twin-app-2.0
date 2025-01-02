@@ -1,20 +1,25 @@
 import { MongoClient } from "mongodb";
-import dotenv from "dotenv";
 
-// Import Env variables
-dotenv.config();
+// 1. Variables
+const conectionString =
+  "mongodb+srv://brianqp:123@cluster0.bcftyys.mongodb.net/test";
 
-let uri = process.env.MONGO_URI;
+// 2. Client
+const client =
+  new MongoClient(conectionString, {
+    useUnifiedTopology: true,
+  }) || null;
 
-let client = new MongoClient(uri);
-let statistics, charts;
-
+// 2. Functiones principales
+let conection;
 try {
-  await client.connect();
-  statistics = client.db("statistics");
-  charts = client.db("charts");
+  conection = await client.connect();
 } catch (e) {
-  console.error(`Error al conectar con mongoDB: \nError: ${e}`);
+  console.error(e);
 }
 
-export { statistics, charts };
+// 4. Exportaciones
+export const gallery = conection.db("gallery");
+export const statistics = conection.db("statistics");
+export const test = conection.db("test");
+export const db = conection.db("twin-db");

@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { statistics as db } from "../../db/connection.js";
-import { createAHashMap, createAMonthHashMap } from "../../functions/fn.js";
-import { ObjectId } from "mongodb";
-import { verifyKey } from "../../middlewares/verifyKey.js";
+import { MongoAPIError, ObjectId } from "mongodb";
+import { statistics as db } from "../db/conn.js";
+import { DateTime } from "luxon";
+// Import functions
+import { getWeekly, getUpcoming } from "../functions/statistics.js";
 
 /**
  * Funcion que elimina una colección si no tiene documentos
@@ -29,6 +30,7 @@ const statisticsRouter = Router();
  * Metodo que termina por procesar el objeto recorriendo sus propiedades y hace dos cosas.
  * - Aplica un trim.
  * - Convierte a mayúsculas.
+ * - Agrega un timestamp
  * @param {} data Objeo de tipo estadisticas
  * @returns Objeto de tipo estadisticas con los espacios en blanco eliminados.
  */
@@ -41,11 +43,9 @@ function preprocessingData(data) {
     }
     return;
   });
+  trimmedData.timestamp = DateTime.now().toISO();
   return trimmedData;
 }
-
-// Middleware
-statisticsRouter.use("/statistics", verifyKey);
 
 // --- GET METHODS
 // Metodo que retorna los años de las colecciones,
@@ -59,6 +59,24 @@ statisticsRouter.get("/statistics/years", async (req, res) => {
     res
       .status(500)
       .json({ message: "Error al recuperar los datos", error: error.message });
+  }
+});
+
+statisticsRouter.get("/statistics/weekly", async (req, res) => {
+  try {
+    let result = await getWeekly();
+    res.send({ data: result, message: "", log: null });
+  } catch (e) {
+    res.status(404).send({ message: e });
+  }
+});
+
+statisticsRouter.get("/statistics/upcoming", async (req, res) => {
+  try {
+    let result = await getUpcoming();
+    res.send({ data: result, message: "", log: null });
+  } catch (e) {
+    res.status(404).send({ message: e });
   }
 });
 
@@ -88,7 +106,7 @@ statisticsRouter.get("/statistics/distinct/:property", async (req, res) => {
   }
 });
 
-// --- GET METHODS
+
 statisticsRouter.get("/statistics/:year", async (req, res) => {
   try {
     const year = req.params.year;
@@ -100,6 +118,7 @@ statisticsRouter.get("/statistics/:year", async (req, res) => {
       .json({ message: "Error al recuperar los datos", error: error.message });
   }
 });
+
 
 // --- POST METHODS
 // Insert a new item to db
@@ -117,12 +136,10 @@ statisticsRouter.post("/statistics/:year", async (req, res) => {
       .send({ message: "Documento creado con éxito.", data: _id, log: result });
   } catch (error) {
     console.log(error);
-    res
-      .status(500)
-      .send({
-        message: "Error al insertar el documento en la base de datos.",
-        error: error.message,
-      });
+    res.status(500).send({
+      message: "Error al insertar el documento en la base de datos.",
+      error: error.message,
+    });
   }
 });
 
@@ -143,12 +160,10 @@ statisticsRouter.delete("/statistics/:year/:id", async (req, res) => {
     // Logica para eliminar la coleccion si no hay documentos
     checkAndDropCollection(year);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Error al eliminar el documento",
-        error: error.message,
-      });
+    res.status(500).json({
+      message: "Error al eliminar el documento",
+      error: error.message,
+    });
   }
 });
 
@@ -181,7 +196,7 @@ statisticsRouter.put("/statistics/:year/:id", async (req, res) => {
       // Si no se insert el documento en la nueva colección, se debe regresar un error
       if (!insertResult.insertedId) {
         throw new Error(
-          "Error al mover el documento a la colección correspondiente. 01"
+          "Error al mover el documento a la colección correspondiente. 01",
         );
       }
 
@@ -192,7 +207,7 @@ statisticsRouter.put("/statistics/:year/:id", async (req, res) => {
       // Si no se elimino el documento de la colección original, se debe regresar un error
       if (!deleteResult.deletedCount) {
         throw new Error(
-          "Error al mover el documento a la colección correspondiente. 02"
+          "Error al mover el documento a la colección correspondiente. 02",
         );
       }
 
@@ -220,12 +235,10 @@ statisticsRouter.put("/statistics/:year/:id", async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res
-      .status(500)
-      .send({
-        message: "Error al actualizar el documento",
-        error: error.message,
-      });
+    res.status(500).send({
+      message: "Error al actualizar el documento",
+      error: error.message,
+    });
   }
 });
 

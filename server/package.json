@@ -1,0 +1,17 @@
+{
+  "name": "twin-server",
+  "version": "0.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "tsc": "^2.0.4",
+    "tsx": "^4.19.2"
+  }
+}

@@ -29,12 +29,14 @@
 <hr />
 <div class="card border border-0">
   <ul class="list-group">
-    <a
+    @for (item of list['registers']; track $index)
+    {
+      <a
       class="list-group-item list-group-item-action fs-6"
       [routerLink]="'/repositorio'"
-      [state]="{ id: item.id, type: collection }"
-      *ngFor="let item of filtrarLista()">
+      [state]="{ id: item.id, type: collection }">
       {{ item.id }} | {{ item.name }}
     </a>
+    }
   </ul>
 </div>

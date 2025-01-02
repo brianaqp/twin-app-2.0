@@ -4,30 +4,39 @@ import {
   ElementRef,
   Input,
   OnChanges,
+  OnInit,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, NgbDropdownModule],
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
 })
-export class RegisterCardComponent implements OnChanges {
+export class RegisterCardComponent implements OnChanges, OnInit {
   @ViewChild('input') input!: ElementRef<HTMLInputElement>;
   @Input() collection!: any;
-  @Input() list!: object[];
+  @Input() list!: {
+    registers: Array<any>;
+    vessels: Array<any>;
+  };
   searchType = 'name';
   selection = '';
   busqueda: string = '';
 
+  ngOnInit(): void {
+    console.log('card init');
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['collection'] && this.collection != undefined) {
-      console.log('///');
+      console.log('/// change in values');
     }
   }
 
@@ -35,20 +44,5 @@ export class RegisterCardComponent implements OnChanges {
   onSearchTypeChange(newType: string): void {
     if (this.searchType !== newType) this.searchType = newType;
     this.input.nativeElement.focus();
-  }
-
-  filtrarLista(): Array<any> {
-    if (this.busqueda === '') {
-      return [];
-    } else {
-      // Revisar todo!
-      return this.list;
-      // return this.list[this.collection.toLowerCase()].filter((item: any) => {
-      //   return item[this.searchType]
-      //     .trim()
-      //     .toLowerCase()
-      //     .includes(this.busqueda.trim().toLowerCase());
-      // });
-    }
   }
 }

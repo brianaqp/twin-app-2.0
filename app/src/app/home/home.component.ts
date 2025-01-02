@@ -39,6 +39,7 @@ export class HomeComponent implements OnInit {
         'shipParticulars.name': 1,
       },
     };
+
     this.data = {
       registers: await firstValueFrom(
         this.repoSvc.find('registers', projection['registers'])

@@ -12,7 +12,8 @@ import { RegisterCardComponent } from './components/card.component';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  selection = 'Registers';
+  selection: 'registers' | 'vessels' = 'registers';
+  selectionOptions: ['registers', 'vessels'] = ['registers', 'vessels'];
   data!: object;
   registerList: object[] = [];
   vesselList: object[] = [];
@@ -21,7 +22,6 @@ export class HomeComponent implements OnInit {
   constructor(private readonly repoSvc: RepositoriesService) {}
 
   ngOnInit(): void {
-    console.log('On Init');
     this.pullData().then(() => {
       this.initVariables();
       this.isDataLoaded = true;
@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
     };
   }
 
-  onListChanged(collection: string): void {
+  onListChanged(collection: 'registers' | 'vessels'): void {
     if (this.selection !== collection) {
       this.selection = collection;
     }

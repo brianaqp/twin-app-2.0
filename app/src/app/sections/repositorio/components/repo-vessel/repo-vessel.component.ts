@@ -1,10 +1,12 @@
-import { Location } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule, Location } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { Vessel } from '../../../../interfaces/vessel';
 import { RepositoriesService } from '../../../../services/repositories.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-repo-vessel',
+  imports: [CommonModule, RouterModule],
   templateUrl: './repo-vessel.component.html',
   styleUrls: ['./repo-vessel.component.scss'],
 })

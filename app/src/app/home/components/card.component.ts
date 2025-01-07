@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
+  computed,
   ElementRef,
-  Input,
+  input,
   OnChanges,
   OnInit,
+  Signal,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -21,22 +23,32 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class RegisterCardComponent implements OnChanges, OnInit {
   @ViewChild('input') input!: ElementRef<HTMLInputElement>;
-  @Input() collection!: any;
-  @Input() list!: {
+  // Signals
+  collection: Signal<'registers' | 'vessels'> = input('registers');
+  list = input<{
     registers: Array<any>;
     vessels: Array<any>;
-  };
+  }>({
+    registers: [],
+    vessels: [],
+  });
   searchType = 'name';
   selection = '';
   busqueda: string = '';
 
+  // Computed properties
+  displayedList = computed(() => {
+    const list = this.list();
+    const collection = this.collection();
+    return list[collection];
+  });
+
   ngOnInit(): void {
-    console.log('card init');
+    console.log('card init', this.list());
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['collection'] && this.collection != undefined) {
-      console.log('/// change in values');
     }
   }
 

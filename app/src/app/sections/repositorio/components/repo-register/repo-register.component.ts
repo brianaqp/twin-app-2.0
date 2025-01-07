@@ -1,13 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Register } from '../../../../interfaces/register';
 import { Vessel } from '../../../../interfaces/vessel';
 import { PortColors } from '../../../../environments/globals';
 import { RepositoriesService } from '../../../../services/repositories.service';
 import { MongoBucketService } from '../../../../services/mongo-bucket.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-repo-register',
+  imports: [RouterModule, CommonModule],
   templateUrl: './repo-register.component.html',
   styleUrls: ['./repo-register.component.scss'],
 })

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class MongoBucketService {
-  api = environment.api + '/gallery';
+  api = environment.apiUrl + '/gallery';
   registerId = 'id';
   constructor(private readonly http: HttpClient) {}
 

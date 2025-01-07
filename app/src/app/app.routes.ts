@@ -1,11 +1,20 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { RepositorioComponent } from './sections/repositorio/repositorio.component';
 
 export const routes: Routes = [
+  // Fully working path
+  // Testing paths
   {
     path: '',
     component: HomeComponent,
   },
+  {
+    path: 'repositorio',
+    component: RepositorioComponent,
+  },
+  // Not implemented paths
+  // 1. Repositorios
   // {
   //   path: 'alta-barco',
   //   loadChildren: () =>
@@ -18,13 +27,6 @@ export const routes: Routes = [
   //   loadChildren: () =>
   //     import('./modules/nuevo-registro/nuevo-registro.module').then(
   //       (m) => m.NuevoRegistroModule
-  //     ),
-  // },
-  // {
-  //   path: 'repositorio',
-  //   loadChildren: () =>
-  //     import('./modules/repositorio/repositorio.module').then(
-  //       (m) => m.RepositorioModule
   //     ),
   // },
   // {

@@ -1,10 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RepositoriesService } from '../../services/repositories.service';
+import { RepoRegisterComponent } from './components/repo-register/repo-register.component';
+import { RepoVesselComponent } from './components/repo-vessel/repo-vessel.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-repositorio',
-  templateUrl: './repositorio.component.html',
+  imports: [RepoRegisterComponent, RepoVesselComponent, CommonModule],
+  template: `
+    <section class="main" *ngIf="isDataLoaded">
+      @if (type === "Registers") {
+      <app-repo-register
+        *ngIf="type === 'Registers'"
+        [register]="data"
+      ></app-repo-register>
+      } @else {
+      <app-repo-vessel
+        *ngIf="type === 'Vessels'"
+        [vesselData]="data"
+      ></app-repo-vessel>
+      }
+    </section>
+  `,
   styleUrls: ['./repositorio.component.scss'],
 })
 export class RepositorioComponent implements OnInit {

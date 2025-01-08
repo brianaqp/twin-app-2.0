@@ -1,16 +1,22 @@
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  Input,
-  AfterViewInit,
-} from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
-import { firstValueFrom, tap } from 'rxjs';
+  FormBuilder,
+  FormGroup,
+  FormArray,
+  FormControl,
+  ReactiveFormsModule,
+  FormsModule,
+} from '@angular/forms';
+import { firstValueFrom } from 'rxjs';
 import { VesselCardComponent } from './components/vessel-card.component';
 import { Router } from '@angular/router';
-import { NgbAlert, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+import { DateTime } from 'luxon';
+import {
+  NgbAlert,
+  NgbAlertModule,
+  NgbDropdown,
+  NgbDropdownModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { InsertOneResult, UpdateResult } from 'mongodb';
 import { Ports } from '../../environments/globals';
 import { Register } from '../../interfaces/register';
@@ -18,9 +24,20 @@ import { RepositoriesService } from '../../services/repositories.service';
 import { CommonFunctionsService } from '../../services/common-functions.service';
 import { ApiError } from '../../interfaces/api-error';
 import { Vessel } from '../../interfaces/vessel';
+import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-nuevo-registro',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgbAlertModule,
+    NgbDropdownModule,
+    DatePipe,
+    VesselCardComponent,
+  ],
   templateUrl: './nuevo-registro.component.html',
   styleUrls: ['./nuevo-registro.component.scss'],
 })

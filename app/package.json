@@ -38,6 +38,7 @@
     "@angular/compiler-cli": "^19.0.0",
     "@angular/localize": "^19.0.0",
     "@types/jasmine": "~5.1.0",
+    "@types/luxon": "^3.4.2",
     "angular-eslint": "19.0.2",
     "eslint": "^9.16.0",
     "jasmine-core": "~5.4.0",

@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RepositorioComponent } from './sections/repositorio/repositorio.component';
 import ReporteDeLlegadaComponent from './sections/reporte-de-llegada/reporte-de-llegada.component';
+import { NuevoRegistroComponent } from './sections/nuevo-registro/nuevo-registro.component';
 
 export const routes: Routes = [
   // Fully working path
@@ -9,15 +10,20 @@ export const routes: Routes = [
     path: '',
     component: HomeComponent,
   },
+  {
+    path: 'reporte-de-llegada',
+    component: ReporteDeLlegadaComponent,
+  },
   // Testing paths
   {
     path: 'repositorio',
     component: RepositorioComponent,
   },
   {
-    path: 'reporte-de-llegada',
-    component: ReporteDeLlegadaComponent,
+    path: 'nuevo-registro',
+    component: NuevoRegistroComponent,
   },
+
   // Not implemented paths
   // 1. Repositorios
   // {
@@ -25,13 +31,6 @@ export const routes: Routes = [
   //   loadChildren: () =>
   //     import('./modules/alta-barco/alta-barco.module').then(
   //       (m) => m.AltaBarcoModule
-  //     ),
-  // },
-  // {
-  //   path: 'nuevo-registro',
-  //   loadChildren: () =>
-  //     import('./modules/nuevo-registro/nuevo-registro.module').then(
-  //       (m) => m.NuevoRegistroModule
   //     ),
   // },
   // {

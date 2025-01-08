@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Vessel } from 'src/app/interfaces/vessel';
 
 @Component({
   selector: 'app-vessel-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './vessel-card.component.html',
   styleUrls: ['./vessel-card.component.scss'],
 })

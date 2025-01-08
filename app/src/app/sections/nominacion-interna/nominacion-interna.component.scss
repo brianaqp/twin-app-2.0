@@ -1,0 +1,82 @@
+// @import 'node_modules/bootstrap/scss/functions';
+// @import 'node_modules/bootstrap/scss/variables';
+// @import 'node_modules/bootstrap/scss/mixins';
+
+section {
+    max-width: 8.2677in;
+}
+
+.page-border {
+    border: 1px dotted black;
+    padding: 2em;
+    border-radius: 10px;
+}
+
+
+footer {
+    height: 60px;
+}
+
+// preview
+.preview-styles {
+    .page-border {
+        border: none !important;
+        padding: 0em !important;
+    }
+
+    .col-print {
+        display: inline-block;
+        width: 50%;
+    }
+
+    .d-print-none {
+        display: none !important;
+    }
+
+    .d-print-inline {
+        display: inline-block !important;
+    }
+}
+
+@media print {
+    @page {
+        size: Letter;
+    }
+
+    section {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        width: 8.2677in; // Exact A4 print width in inches
+        margin: 0%;
+    }
+
+    .page-border {
+        border: none !important;
+        padding: 0em !important;
+        margin-top: 0 !important ;
+    }
+
+    .col-print {
+        display: inline-block;
+        width: 50%;
+    }
+
+    #main-nav {
+        display: none;
+    }
+}
+
+// [ ] Correct sass
+// @include media-breakpoint-up(lg) {
+//     section {
+//         margin: auto;
+//     }
+// }
+
+// @include media-breakpoint-down(md) {
+//     table {
+//         th {
+//             width: 100px;
+//         }
+//     }
+// }

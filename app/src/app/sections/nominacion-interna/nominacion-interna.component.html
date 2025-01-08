@@ -1,0 +1,188 @@
+<section [ngClass]="{ 'preview-styles': showPreview }">
+  <p class="h3 d-print-none">Vista previa</p>
+  <div class="row" id="main-nav">
+    <div class="col-8 col-md-4">
+      <button class="btn btn-outline-success w-100" (click)="onSubmit()">
+        Guardar
+      </button>
+    </div>
+    <div class="col-8 col-md-4">
+      <button class="btn btn-outline-secondary w-100" (click)="print()">
+        Visualizar en PDF
+      </button>
+    </div>
+    <div class="col-8 col-md-4">
+      <button
+        class="btn btn-outline-secondary w-100"
+        (click)="changePreviewState()">
+        Visualizar formato {{ showPreview ? 'formulario' : 'copy-paste' }}
+      </button>
+    </div>
+    <div *ngIf="saveAlertMessage" class="col-12 mt-2">
+      <ngb-alert
+        *ngIf="saveAlertMessage"
+        #saveAlert
+        [type]="saveAlertType"
+        (closed)="onSaveAlertClose()"
+        >{{ saveAlertMessage }}</ngb-alert
+      >
+    </div>
+  </div>
+  <div
+    class="page-border d-flex flex-column flex-nowrap mt-5"
+    *ngIf="isDataLoaded"
+    [formGroup]="form">
+    <!-- Header section -->
+    <!-- 2 tables inside td tags -->
+    <table style="margin: 0">
+      <tr>
+        <td>
+          <table style="margin: 0">
+            <a
+              class="img-container"
+              style="display: inline-block; width: 250px">
+              <img src="assets/logo_with_name.jpeg" alt="logo" width="100%" />
+            </a>
+          </table>
+        </td>
+        <td>
+          <table style="margin: 0">
+            <tr>
+              <td class="h4 text-end" style="text-transform: uppercase">
+                Nominacion Interna
+              </td>
+            </tr>
+            <tr>
+              <td class="h5 text-end">
+                {{ vesselData.shipParticulars.name }} /
+                {{ registerData.stowagePlan.totales['general'] }} MT
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+
+    <tr></tr>
+
+    <!-- Destinatarios section -->
+    <p style="margin: 0; padding: 0; margin-top: 20px">
+      TWIN MARINE DE MÉXICO S.A DE C.V
+    </p>
+    <!--  Edit mode -->
+    <div class="row d-print-none">
+      <p for="" class="col-form-label col-2 col-sm-1">ATTN:</p>
+      <div class="col-10 col-sm-5">
+        <input formControlName="attn" type="text" class="form-control" />
+      </div>
+    </div>
+    <!-- End of edit rows-->
+    <p class="d-none d-print-inline" style="margin: 0; padding: 0">
+      ATTN: {{ form.value.attn }}
+    </p>
+    <p style="margin: 0; padding: 0">{{ vesselData.shipParticulars.name }}</p>
+
+    <p style="margin: 0; padding: 0; margin-top: 20px">
+      Hemos sido nominados por los Sres.
+      <strong>{{ form.value.cliente }}</strong> como agentes de puerto del buque
+      <strong>{{ vesselData.shipParticulars.name }}</strong> de referencia para
+      {{ flowName }} un total de
+      <strong>{{ registerData.stowagePlan.totales['general'] }}</strong> MT de
+      <input
+        type="text"
+        placeholder="Cargo"
+        formControlName="cargo"
+        style="display: inline-block; width: 150px; margin-left: 5px; margin-right: 3px;"
+        class="form-control d-print-none" />
+      <strong class="d-none d-print-inline">{{ form.value.cargo }}</strong
+      >.
+    </p>
+    <p class="fst-italic mt-4">Los gastos portuarios se facturarán a:</p>
+
+    <table style="border-collapse: collapse" [style]="tableStyles">
+      <tbody>
+        <tr>
+          <th [style]="cellStyles">CLIENTE:</th>
+          <td [style]="cellStyles">
+            <p class="d-none d-print-inline">{{ form.value.cliente }}</p>
+            <input
+              formControlName="cliente"
+              placeholder="Cliente"
+              type="text"
+              class="form-control d-print-none" />
+          </td>
+        </tr>
+        <tr>
+          <th [style]="cellStyles">DIRECCIÓN:</th>
+          <td [style]="cellStyles">
+            <p class="d-none d-print-inline">{{ form.value.direccion }}</p>
+            <input
+              formControlName="direccion"
+              placeholder="Direccion"
+              type="text"
+              class="form-control d-print-none" />
+          </td>
+        </tr>
+        <tr>
+          <th [style]="cellStyles">CUENTA:</th>
+          <td [style]="cellStyles">
+            <p class="d-none d-print-inline">
+              {{ form.value.direccionCuenta }}
+            </p>
+            <input
+              formControlName="direccionCuenta"
+              placeholder="Direccion Cuenta"
+              type="text"
+              class="form-control d-print-none" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="mt-4 fst-italic">Características del buque</p>
+    <table style="border-collapse: collapse" [style]="tableStyles">
+      <tbody>
+        <tr>
+          <th [style]="cellStyles">NAME</th>
+          <td [style]="cellStyles">{{ vesselData.shipParticulars.name }}</td>
+        </tr>
+        <tr>
+          <th [style]="cellStyles">LOA</th>
+          <td [style]="cellStyles">{{ vesselData.shipParticulars.loa }}</td>
+        </tr>
+        <tr>
+          <th [style]="cellStyles">FLAG</th>
+          <td [style]="cellStyles">{{ vesselData.shipParticulars.flag }}</td>
+        </tr>
+        <tr>
+          <th [style]="cellStyles">GT</th>
+          <td [style]="cellStyles">{{ vesselData.shipParticulars.grt }}</td>
+        </tr>
+        <tr>
+          <th [style]="cellStyles">NT</th>
+          <td [style]="cellStyles">{{ vesselData.shipParticulars.nrt }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="mt-1">&nbsp;</div>
+    <p class="h4">Instrucciones Especiales</p>
+    <div class="d-print-none">
+      <textarea
+        type="text"
+        class="form-control"
+        formControlName="instruccionesEspeciales"
+        style="height: 6em"></textarea>
+    </div>
+    <div class="col-3 mt-2 d-print-none">
+      <button
+        class="btn btn-outline-secondary"
+        (click)="resetInstructionsMessage()">
+        Reset Message
+      </button>
+    </div>
+    <p class="d-none d-print-inline">
+      {{ form.value.instruccionesEspeciales }}
+    </p>
+  </div>
+  <footer class="d-print-none"></footer>
+</section>

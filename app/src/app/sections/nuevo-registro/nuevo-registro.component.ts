@@ -35,7 +35,6 @@ import { CommonModule, DatePipe } from '@angular/common';
     FormsModule,
     NgbAlertModule,
     NgbDropdownModule,
-    DatePipe,
     VesselCardComponent,
   ],
   templateUrl: './nuevo-registro.component.html',

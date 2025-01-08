@@ -3,6 +3,10 @@ import { HomeComponent } from './home/home.component';
 import { RepositorioComponent } from './sections/repositorio/repositorio.component';
 import ReporteDeLlegadaComponent from './sections/reporte-de-llegada/reporte-de-llegada.component';
 import { NuevoRegistroComponent } from './sections/nuevo-registro/nuevo-registro.component';
+import { AltaBarcoComponent } from './sections/alta-barco/alta-barco.component';
+import { LiquidacionEmbarqueComponent } from './sections/liquidacion-embarque/liquidacion-embarque.component';
+import { DistribucionEmbarqueComponent } from './sections/distribucion-embarque/distribucion-embarque.component';
+import { NominacionInternaComponent } from './sections/nominacion-interna/nominacion-interna.component';
 
 export const routes: Routes = [
   // Fully working path
@@ -14,7 +18,10 @@ export const routes: Routes = [
     path: 'reporte-de-llegada',
     component: ReporteDeLlegadaComponent,
   },
-  // Testing paths
+  {
+    path: 'alta-barco',
+    component: AltaBarcoComponent
+  },
   {
     path: 'repositorio',
     component: RepositorioComponent,
@@ -23,16 +30,22 @@ export const routes: Routes = [
     path: 'nuevo-registro',
     component: NuevoRegistroComponent,
   },
-
+  // Documents inside RepoVessel
+  {
+    path: 'distribucion-embarque',
+    component: DistribucionEmbarqueComponent
+  },
+  {
+    path: 'nominacion-interna',
+    component: NominacionInternaComponent
+  },
+  {
+    path: 'liquidacion-embarque',
+    component: LiquidacionEmbarqueComponent
+  },
+  
   // Not implemented paths
   // 1. Repositorios
-  // {
-  //   path: 'alta-barco',
-  //   loadChildren: () =>
-  //     import('./modules/alta-barco/alta-barco.module').then(
-  //       (m) => m.AltaBarcoModule
-  //     ),
-  // },
   // {
   //   path: 'reporte-de-operaciones',
   //   loadChildren: () =>
@@ -51,27 +64,6 @@ export const routes: Routes = [
   //   path: 'nor',
   //   loadChildren: () =>
   //     import('./modules/nor/nor.module').then((m) => m.NorModule),
-  // },
-  // {
-  //   path: 'nominacion-interna',
-  //   loadChildren: () =>
-  //     import('./modules/nominacion-interna/nominacion-interna.module').then(
-  //       (m) => m.NominacionInternaModule
-  //     ),
-  // },
-  // {
-  //   path: 'liquidacion-embarque',
-  //   loadChildren: () =>
-  //     import('./modules/liquidacion-embarque/liquidacion-embarque.module').then(
-  //       (m) => m.LiquidacionEmbarqueModule
-  //     ),
-  // },
-  // {
-  //   path: 'distribucion-embarque',
-  //   loadChildren: () =>
-  //     import(
-  //       './modules/distribucion-embarque/distribucion-embarque.module'
-  //     ).then((m) => m.DistribucionEmbarqueModule),
   // },
   // {
   //   path: 'reporte-por-horas',

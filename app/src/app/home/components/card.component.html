@@ -37,6 +37,11 @@
       [state]="{ id: item.id, type: collection() }">
       {{ item.id }} | {{ item.name }}
     </a>
+    } @empty {
+      <a
+        class="list-group-item list-group-item-action fs-6"
+        >No hay datos que mostrar
+      </a>
     }
   </ul>
 </div>

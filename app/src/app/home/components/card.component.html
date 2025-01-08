@@ -22,8 +22,8 @@
   <input
     type="text border-radius-2"
     class="form-control"
-    [(ngModel)]="busqueda"
     #input
+    (input)="onSearch($event)"
     (keydown.enter)="input.blur()" />
 </div>
 <hr />

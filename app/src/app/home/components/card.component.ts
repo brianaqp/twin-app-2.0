@@ -6,6 +6,7 @@ import {
   input,
   OnChanges,
   OnInit,
+  signal,
   Signal,
   SimpleChanges,
   ViewChild,
@@ -21,7 +22,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
 })
-export class RegisterCardComponent implements OnChanges, OnInit {
+export class RegisterCardComponent {
   @ViewChild('input') input!: ElementRef<HTMLInputElement>;
   // Signals
   collection: Signal<'registers' | 'vessels'> = input('registers');
@@ -34,22 +35,30 @@ export class RegisterCardComponent implements OnChanges, OnInit {
   });
   searchType = 'name';
   selection = '';
-  busqueda: string = '';
+  busqueda = signal('');
 
   // Computed properties
   displayedList = computed(() => {
+    // Current signals
     const list = this.list();
     const collection = this.collection();
-    return list[collection];
+
+    const values = list[collection];
+
+    if (this.busqueda() === '') {
+      return values;
+    } else {
+      return values.filter((item) => {
+        return item[this.searchType]
+          .trim()
+          .toLowerCase()
+          .includes(this.busqueda().trim().toLowerCase());
+      });
+    }
   });
 
-  ngOnInit(): void {
-    console.log('card init', this.list());
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['collection'] && this.collection != undefined) {
-    }
+  onSearch(event: any) {
+    this.busqueda.set(event.target.value);
   }
 
   // Metodo que se ejecuta cuando se selecciona un elemento del dropdown, y cambiar el tipo de busqueda

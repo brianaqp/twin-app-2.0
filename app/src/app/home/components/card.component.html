@@ -34,7 +34,7 @@
       <a
       class="list-group-item list-group-item-action fs-6"
       [routerLink]="'/repositorio'"
-      [state]="{ id: item.id, type: collection }">
+      [state]="{ id: item.id, type: collection() }">
       {{ item.id }} | {{ item.name }}
     </a>
     }

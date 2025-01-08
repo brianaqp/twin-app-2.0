@@ -1,17 +1,22 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RepositorioComponent } from './sections/repositorio/repositorio.component';
+import ReporteDeLlegadaComponent from './sections/reporte-de-llegada/reporte-de-llegada.component';
 
 export const routes: Routes = [
   // Fully working path
-  // Testing paths
   {
     path: '',
     component: HomeComponent,
   },
+  // Testing paths
   {
     path: 'repositorio',
     component: RepositorioComponent,
+  },
+  {
+    path: 'reporte-de-llegada',
+    component: ReporteDeLlegadaComponent,
   },
   // Not implemented paths
   // 1. Repositorios
@@ -27,13 +32,6 @@ export const routes: Routes = [
   //   loadChildren: () =>
   //     import('./modules/nuevo-registro/nuevo-registro.module').then(
   //       (m) => m.NuevoRegistroModule
-  //     ),
-  // },
-  // {
-  //   path: 'reporte-de-llegada',
-  //   loadChildren: () =>
-  //     import('./modules/reporte-de-llegada/reporte-de-llegada.module').then(
-  //       (m) => m.ReporteDeLlegadaModule
   //     ),
   // },
   // {

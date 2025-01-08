@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Vessel } from 'src/app/interfaces/vessel';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { TonFormatPipe } from 'src/app/pipes/ton-format.pipe';
 
 @Component({
   selector: 'app-reporte-de-llegada',
+  standalone: true,
+  imports: [CommonModule, TonFormatPipe],
   templateUrl: './reporte-de-llegada.component.html',
   styleUrls: ['./reporte-de-llegada.component.scss'],
 })

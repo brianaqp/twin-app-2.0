@@ -10,16 +10,10 @@ import { CommonModule } from '@angular/common';
   imports: [RepoRegisterComponent, RepoVesselComponent, CommonModule],
   template: `
     <section class="main" *ngIf="isDataLoaded">
-      @if (type === "Registers") {
-      <app-repo-register
-        *ngIf="type === 'Registers'"
-        [register]="data"
-      ></app-repo-register>
+      @if (type === "registers") {
+      <app-repo-register [register]="data"></app-repo-register>
       } @else {
-      <app-repo-vessel
-        *ngIf="type === 'Vessels'"
-        [vesselData]="data"
-      ></app-repo-vessel>
+      <app-repo-vessel [vesselData]="data"></app-repo-vessel>
       }
     </section>
   `,

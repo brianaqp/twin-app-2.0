@@ -1,16 +1,17 @@
 import { MongoClient } from "mongodb";
+import "dotenv/config";
 
 // 1. Variables
-const conectionString =
-  "mongodb+srv://brianqp:123@cluster0.bcftyys.mongodb.net/test";
+const conectionString = process.env.DB_CONNECTION;
+
+if (!conectionString) {
+  throw 'Error trying to connect to MongoDb. ConnectionString must be provided';
+}
 
 // 2. Client
-const client =
-  new MongoClient(conectionString, {
-    useUnifiedTopology: true,
-  }) || null;
+const client = new MongoClient(conectionString)
 
-// 2. Functiones principales
+// 3. Connection
 let conection;
 try {
   conection = await client.connect();

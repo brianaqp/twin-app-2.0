@@ -1,0 +1,7 @@
+<section class="main">
+  <div class="gallery">
+    <a *ngFor="let file of localFiles" class="img-container">
+      <img [src]="file.base64url" />
+    </a>
+  </div>
+</section>

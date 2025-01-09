@@ -1,0 +1,12 @@
+.gallery {
+    flex-flow: column nowrap;
+}
+
+.img-container {
+    display: block;
+    width: 100%;
+
+    img {
+        width: 100%;
+    }
+}

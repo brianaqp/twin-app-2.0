@@ -10,6 +10,10 @@ import { NominacionInternaComponent } from './sections/nominacion-interna/nomina
 import { GaleriaComponent } from './sections/galeria/galeria.component';
 import { KpiComponent } from './sections/kpi/kpi.component';
 import { UtilitiesComponent } from './sections/utilities/utilities.component';
+import { OperacionesComponent } from './sections/operaciones/operaciones.component';
+import { EstadoDeHechosComponent } from './sections/estado-de-hechos/estado-de-hechos.component';
+import { NorComponent } from './sections/nor/nor.component';
+import { ReportePorHorasComponent } from './sections/reporte-por-horas/reporte-por-horas.component';
 
 export const routes: Routes = [
   // Fully working path
@@ -58,32 +62,20 @@ export const routes: Routes = [
     path: 'utilities',
     component: UtilitiesComponent,
   },
-  // Not implemented paths
-  // 1. Repositorios
-  // {
-  //   path: 'reporte-de-operaciones',
-  //   loadChildren: () =>
-  //     import('./modules/operaciones/operaciones.module').then(
-  //       (m) => m.ReporteDeOperacionesModule
-  //     ),
-  // },
-  // {
-  //   path: 'estado-de-hechos',
-  //   loadChildren: () =>
-  //     import('./modules/estado-de-hechos/estado-de-hechos.module').then(
-  //       (m) => m.EstadoDeHechosModule
-  //     ),
-  // },
-  // {
-  //   path: 'nor',
-  //   loadChildren: () =>
-  //     import('./modules/nor/nor.module').then((m) => m.NorModule),
-  // },
-  // {
-  //   path: 'reporte-por-horas',
-  //   loadChildren: () =>
-  //     import('./modules/reporte-por-horas/reporte-por-horas.module').then(
-  //       (m) => m.ReportePorHorasModule
-  //     ),
-  // },
+  {
+    path: 'reporte-de-operaciones',
+    component: OperacionesComponent
+  },
+  {
+    path: 'estado-de-hechos',
+    component: EstadoDeHechosComponent
+  },
+  {
+    path: 'nor',
+    component: NorComponent,
+  },
+  {
+    path: 'reporte-por-horas',
+    component: ReportePorHorasComponent
+  },
 ];

@@ -1,0 +1,31 @@
+@import '../../../../../utilities/variables';
+
+table {
+    border-color: black;
+
+    input {
+        width: 120px;
+    }
+    
+    thead {
+        th {
+            background-color: $middle;
+            color: white;
+            text-transform: capitalize;
+        }
+    }
+
+    tbody {
+        th {
+            background-color: $middle;
+            color: white;
+        }
+    }
+
+    tfoot {
+        th, td {
+            background-color: $softer;
+            font-weight: 600;
+        }
+    }
+}

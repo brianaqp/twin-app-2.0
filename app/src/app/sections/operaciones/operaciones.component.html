@@ -1,0 +1,589 @@
+<ng-template #sidemenu let-offcanvas>
+  <div class="offcanvas-header">
+    <p class="fs-4 offcanvas-title" id="offcanvas-basic-title">Secciones</p>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="offcanvas.dismiss('Cross click')"></button>
+  </div>
+  <hr />
+  <div class="offcanvas-body">
+    <div class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          (click)="offcanvas.close('navigation-out')"
+          routerLink="/nor"
+          [state]="{
+            vesselId: vesselData.id,
+            registerId: registerData.id,
+            workingPort: workingPort
+          }">
+          Nor</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          (click)="offcanvas.close('navigation-out')"
+          routerLink="/reporte-por-horas"
+          [state]="{ registerId: registerId, port: workingPort, date: date }">
+          Reporte por horas</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/estado-de-hechos"
+          (click)="offcanvas.close('navigation-out')"
+          [state]="{ registerId: registerData.id, workingPort: workingPort }">
+          Estado de hechos</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          (click)="offcanvas.close('navigation-out')"
+          routerLink="/liquidacion-embarque"
+          [state]="{ registerId: registerId, port: workingPort }">
+          Liquidacion de Embarque</a
+        >
+      </li>
+    </div>
+    <hr />
+    <p class="fs-5">Tiempos</p>
+    <p>Fecha actual seleccionada: {{ date | date: 'dd/MM' }}</p>
+    <div class="row flex-wrap">
+      <div class="col-4 mb-3" *ngFor="let localDate of filterDates()">
+        <button
+          (click)="onDateChanged(localDate)"
+          [ngClass]="{ 'btn-success': localDate === date }"
+          class="btn btn-outline-success w-100">
+          {{ localDate | date: 'dd/MM' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="container" *ngIf="isDataLoaded">
+  <div class="row">
+    <div class="col-12">
+      <p class="h2 mt-2">{{ workingPort }}</p>
+      <p class="h4 fw-semibold">
+        Vessel: {{ vesselData.shipParticulars.name }}
+      </p>
+      <span class="special-text"
+        >Esta página cuenta con guardado automático.</span
+      >
+      <div class="row d-none d-lg-flex flex-row flex-wrap mt-2">
+        <hr />
+        <p class="h4">Secciones adicionales</p>
+        <div class="col-3 mb-2">
+          <button
+            class="btn btn-outline-secondary w-100"
+            routerLink="/nor"
+            [state]="{
+              vesselId: vesselData.id,
+              registerId: registerData.id,
+              workingPort: workingPort
+            }">
+            Nor
+          </button>
+        </div>
+        <div class="col-3 mb-2">
+          <button
+            class="btn btn-outline-secondary w-100"
+            routerLink="/reporte-por-horas"
+            [state]="{ registerId: registerId, port: workingPort, date: date }">
+            Reporte por horas
+          </button>
+        </div>
+        <div class="col-3 mb-2">
+          <button
+            routerLink="/estado-de-hechos"
+            [state]="{ registerId: registerData.id, workingPort: workingPort }"
+            class="btn btn-outline-secondary w-100">
+            Estado de hechos
+          </button>
+        </div>
+        <div class="col-3 mb-2">
+          <button
+            class="btn btn-outline-secondary w-100"
+            routerLink="/liquidacion-embarque"
+            [state]="{ registerId: registerId, port: workingPort }">
+            Liquidacion de embarque
+          </button>
+        </div>
+      </div>
+      <hr />
+
+      <p class="h4 mt-4">Productos</p>
+      <div class="form-group" [formGroup]="productForm">
+        <div class="row">
+          <div class="col-8 col-md-6 col-lg-3">
+            <input
+              class="form-control"
+              type="text"
+              [(ngModel)]="productInput"
+              [ngModelOptions]="{ standalone: true }"
+              placeholder="Ejemplo: UREA" />
+          </div>
+          <div class="col-4 col-md-2 col-lg-2">
+            <button
+              class="btn btn-outline-primary w-100"
+              (click)="addProduct()">
+              Añadir
+            </button>
+          </div>
+        </div>
+        <hr />
+        <ng-container formArrayName="products">
+          <div
+            class="row mt-2"
+            *ngFor="let product of productsControls.controls; let i = index">
+            <div class="col-8 col-md-6 col-lg-3">
+              <input
+                readonly
+                class="form-control"
+                type="text"
+                formControlName="{{ i }}" />
+            </div>
+            <div class="col-3 col-md-2">
+              <button
+                class="btn btn-outline-danger w-100"
+                (click)="deleteProduct(i)">
+                X
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <p class="h4 mt-4">Recibidores, cargas y valores</p>
+      <div class="form-group" [formGroup]="receiversForm">
+        <div class="row flex-wrap flex-xl-nowrap">
+          <div class="col-8 col-sm-6 col-md-4 col-lg-2 mt-2">
+            <div class="input-group" ngbDropdown>
+              <input
+                class="form-control"
+                [(ngModel)]="recName"
+                [ngModelOptions]="{ standalone: true }"
+                type="text"
+                placeholder="Name" />
+              <!-- <button
+                class="btn btn-outline-secondary dropdown-toggle"
+                ngbDropdownAnchor></button>
+              <ul ngbDropdownMenu>
+                <li *ngFor="let items of getDropdownItems('name')"></li>
+                <li><a ngbDropdownItem href="#">Action</a></li>
+                <li><a ngbDropdownItem href="#">Another action</a></li>
+                <li><a ngbDropdownItem href="#">Something else here</a></li>
+              </ul> -->
+            </div>
+          </div>
+          <div class="col-8 col-sm-6 col-md-4 col-lg-2 mt-2 gx-1">
+            <div class="input-group" ngbDropdown #receiversDropdown="ngbDropdown">
+              <input
+              class="form-control"
+              [(ngModel)]="recRazonSocial"
+              [ngModelOptions]="{ standalone: true }"
+              type="text"
+              placeholder="Razon Social" 
+              ngbDropdownAnchor
+              (input)="receiversDropdownHandler($event)"/>
+              <div ngbDropdownMenu>
+                <button
+                  *ngFor="let item of autoCompleteDataFiltered"
+                  ngbDropdownItem
+                  (click)="recRazonSocial = item">
+                  {{ item }}
+                </button>
+              </div>
+          </div>
+            </div>
+          <div class="col-8 col-sm-6 col-md-4 col-lg-2 mt-2 gx-1">
+            <input
+              class="form-control"
+              [(ngModel)]="recAa"
+              [ngModelOptions]="{ standalone: true }"
+              type="text"
+              placeholder="Agente Aduanal" />
+          </div>
+          <div class="col-8 col-sm-6 col-md-4 col-lg-2 mt-2 gx-1">
+            <input
+              class="form-control"
+              [(ngModel)]="recTonelaje"
+              [ngModelOptions]="{ standalone: true }"
+              type="text"
+              placeholder="Tonelaje" />
+          </div>
+          <div class="col-8 col-sm-6 col-md-4 col-lg-2 mt-2 gx-1">
+            <input
+              class="form-control"
+              [(ngModel)]="recTerminal"
+              [ngModelOptions]="{ standalone: true }"
+              type="text"
+              placeholder="Terminal" />
+          </div>
+          <div class="mt-2 col-8 col-sm-6 col-md-4 col-lg-2 gx-1">
+            <select
+              [(ngModel)]="recProducto"
+              class="form-select"
+              [ngModelOptions]="{ standalone: true }">
+              <option value="0" selected>Producto</option>
+              <option
+                *ngFor="let product of productsControls.controls"
+                value="{{ product.value }}">
+                {{ product.value }}
+              </option>
+            </select>
+          </div>
+          <div class="w-100 d-none d-sm-block d-lg-none"></div>
+          <div class="mt-2 col-4 col-sm-2">
+            <button
+              class="btn btn-outline-primary w-100"
+              (click)="addReceiver()">
+              Añadir
+            </button>
+          </div>
+        </div>
+        <hr />
+        <ng-container formArrayName="receivers">
+          <div
+            class="form-group row flex-wrap flex-xl-nowrap mt-2"
+            *ngFor="let control of receiversControls.controls; let i = index"
+            [formGroupName]="i">
+            <p class="fs-4 d-lg-none lead mt-2">{{ i + 1 }} receiver</p>
+            <hr class="d-lg-none" />
+            <div class="col-8 mt-2 col-sm-6 col-md-4 col-lg-2 gx-1">
+              <label class="form-label d-lg-none">Name</label>
+              <input
+                readonly
+                class="form-control disabled-input"
+                type="text"
+                formControlName="name" />
+            </div>
+            <div class="col-8 mt-2 col-sm-6 col-md-4 col-lg-2 gx-1">
+              <label class="form-label d-lg-none">Razon Social</label>
+              <input
+                class="form-control"
+                type="text"
+                formControlName="razonSocial" />
+            </div>
+            <div class="col-8 mt-2 col-sm-6 col-md-4 col-lg-2 gx-1">
+              <label class="form-label d-lg-none">Razon Social</label>
+              <input
+                class="form-control"
+                type="text"
+                formControlName="agenteAduanal" />
+            </div>
+            <div class="col-8 mt-2 col-sm-6 col-md-4 col-lg-2 gx-1">
+              <label class="form-label d-lg-none">Tonelaje</label>
+              <input
+                class="form-control"
+                type="text"
+                formControlName="tonelaje"
+                (input)="recTonInputHandler(control)" />
+            </div>
+            <div class="col-8 mt-2 col-sm-6 col-md-4 col-lg-2 gx-1">
+              <label class="form-label d-lg-none">Terminal</label>
+              <input
+                class="form-control"
+                type="text"
+                formControlName="terminal" />
+            </div>
+            <div class="col-8 mt-2 col-sm-6 col-md-4 col-lg-2 gx-1">
+              <label class="form-label d-lg-none">Producto</label>
+              <select
+                class="form-select"
+                aria-label="form-select custom-select"
+                formControlName="producto"
+                (change)="onReceiverProductChange()">
+                <option value="0" selected>Producto</option>
+                <option
+                  *ngFor="let product of productsControls.controls"
+                  value="{{ product.value }}">
+                  {{ product.value }}
+                </option>
+              </select>
+            </div>
+            <div class="w-100 d-none d-sm-block d-lg-none"></div>
+            <div
+              class="col-4 col-sm-2 mt-2 col-lg-1 d-flex align-items-end d-sm-block">
+              <button
+                class="btn btn-outline-danger w-100"
+                (click)="deleteReceiver(control)">
+                X
+              </button>
+            </div>
+          </div>
+        </ng-container>
+        <hr />
+        <div class="row mt-2">
+          <div class="col-6 col-md-4 col-lg-2">
+            <label class="form-label">Total</label>
+            <input
+              readonly
+              class="form-control total-input"
+              type="text"
+              formControlName="total" />
+          </div>
+        </div>
+      </div>
+
+      <p class="h2 mt-4">Captura de la llegada del barco</p>
+      <div class="row">
+        <p>Example: Jun 16 2020 at 00:00 hrs</p>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4">
+          <label class="form-label">Nor Tendered</label>
+          <input
+            [(ngModel)]="norTendered"
+            [ngModelOptions]="{ standalone: true }"
+            type="text"
+            class="form-control"
+            (input)="autoSavingFunc('norTendered-input')" />
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-12 col-md-6 col-lg-4">
+          <label class="form-label">Nor Presented</label>
+          <input
+            [(ngModel)]="norPresented"
+            [ngModelOptions]="{ standalone: true }"
+            type="text"
+            class="form-control"
+            (input)="autoSavingFunc('norPresented-input')" />
+        </div>
+      </div>
+
+      <p class="h4 mt-4">Tabla de BLS y recibidores</p>
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-3">
+          <select
+            class="form-select"
+            [(ngModel)]="showTable"
+            (change)="autoSavingFunc('showTable-change')"
+            [ngModelOptions]="{ standalone: true }">
+            <option [ngValue]="true">Mostrar Tabla</option>
+            <option [ngValue]="false">No Mostrar</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-12 table-responsive-lg">
+          <table
+            class="table table-bordered bl-table border-secondary"
+            [formGroup]="blForm">
+            <thead>
+              <tr>
+                <th colspan="7" class="title">Cargo, BLS y recibidores</th>
+              </tr>
+              <tr>
+                <th>
+                  {{
+                    registerData.flow === 'Importacion'
+                      ? 'Receivers'
+                      : 'Shippers'
+                  }}
+                </th>
+                <th>Cargo</th>
+                <th>BL</th>
+                <th>Bl Weight</th>
+                <th class="text-nowrap">S.SCALE WEIGHT</th>
+                <th>DIFF</th>
+              </tr>
+            </thead>
+            <tbody formGroupName="data">
+              <tr
+                *ngFor="let rec of receiversControls.controls; let i = index"
+                [formArrayName]="i">
+                <td>{{ rec.value.name }}</td>
+                <td>{{ rec.value.producto }}</td>
+                <td><input type="text" formControlName="bl" /></td>
+                <td>
+                  <input
+                    type="text"
+                    readonly
+                    (change)="onBlChange('weight')"
+                    formControlName="weight" />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="scale-input"
+                    (input)="onBlChange('scale')"
+                    formControlName="scale" />
+                </td>
+                <td><input type="text" formControlName="diff" readonly /></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>{{ blForm.get('ttl')?.value.weight }}</th>
+                <th>{{ blForm.get('ttl')?.value.scale }}</th>
+                <th>{{ blForm.get('ttl')?.value.diff }}</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <hr />
+      <p class="h4">Sección de tiempos</p>
+      <div class="row">
+        <div class="col-12 col-sm-4 col-lg-3">
+          <div class="input-group">
+            <input
+              [(ngModel)]="date"
+              [ngModelOptions]="{ standalone: true }"
+              type="date"
+              class="form-control" />
+          </div>
+          <!-- <input
+        class="form-control"
+        placeholder="dd/mm/yyyy"
+        ngbDatepicker
+        [(ngModel)]="date"
+        #d="ngbDatepicker" /> -->
+          <!-- <button
+        class="btn btn-outline-secondary bi bi-calendar-3"
+        (click)="d.toggle()"
+        type="button"></button> -->
+        </div>
+      </div>
+
+      <div class="row mt-2">
+        <div class="col-3">
+          <button class="btn btn-outline-primary w-100" (click)="addDate()">
+            Añadir
+          </button>
+        </div>
+        <div class="col-3">
+          <button class="btn btn-outline-danger w-100" (click)="deleteDate()">
+            X
+          </button>
+        </div>
+      </div>
+      <hr class="mt-4" />
+      <p class="fs-5">Fechas</p>
+      <p>Actual seleccionada: {{ date | date: 'dd/MM' }}</p>
+      <div class="row mt-2">
+        <div
+          class="col-4 col-md-3 mt-2"
+          *ngFor="let localDate of filterDates()">
+          <button
+            (click)="onDateChanged(localDate)"
+            [ngClass]="{ 'btn-success': localDate === date }"
+            class="btn btn-outline-success w-100">
+            {{ localDate | date: 'dd/MM' }}
+          </button>
+        </div>
+      </div>
+
+      <hr class="mt-4" />
+      <section class="times">
+        <div class="row">
+          <app-times-cmp
+            #arrival
+            title="Arrival"
+            class="mt-2"
+            [date]="date"
+            [color]="'#d5dfe5'"
+            [workingDates]="workingDates"
+            (timeChangeEvent)="saveDate($event)"
+            [localTimes]="localTimes"
+            [isDataLoaded]="isDataLoaded"
+            category="arrivalTimes"></app-times-cmp>
+        </div>
+        <div class="row mt-3">
+          <app-times-cmp
+            #operational
+            title="Operational"
+            class="mt-2"
+            [date]="date"
+            [color]="'#247ba0'"
+            [workingDates]="workingDates"
+            (timeChangeEvent)="saveDate($event)"
+            [localTimes]="localTimes"
+            [isDataLoaded]="isDataLoaded"
+            category="operationalTimes"></app-times-cmp>
+        </div>
+        <div class="row mt-3">
+          <app-times-cmp
+            #stop
+            title="Stop/Idle"
+            class="mt-2"
+            [date]="date"
+            [color]="'#F6BD60'"
+            [workingDates]="workingDates"
+            (timeChangeEvent)="saveDate($event)"
+            [localTimes]="localTimes"
+            [isDataLoaded]="isDataLoaded"
+            category="stopTimes"></app-times-cmp>
+        </div>
+        <div class="row mt-3">
+          <app-times-cmp
+            #sailing
+            title="Sailing"
+            class="mt-2"
+            [date]="date"
+            [color]="'#d5dfe5'"
+            [workingDates]="workingDates"
+            (timeChangeEvent)="saveDate($event)"
+            [localTimes]="localTimes"
+            [isDataLoaded]="isDataLoaded"
+            category="sailingTimes"></app-times-cmp>
+        </div>
+      </section>
+      <hr />
+
+      <app-operaciones-cantidades 
+        #quantitiesCmp
+        [date]="date"  
+        [flow]="registerData.flow" 
+        [receiversForm]="receiversForm" 
+        [stowagePlan]="registerData.stowagePlan"
+        [workingPort]="workingPort"
+        [workingDates]="workingDates"
+        [quantities]="registerData.reports[workingPort].quantities"
+        [showQttTables]="showQttTables"
+        [manualTable]="registerData.reports[workingPort].data.manualTable"
+        [holdCargos]="registerData.reports[workingPort].holdCargos"
+        (quantitieChangeEvent)="onQttEvent($event)"></app-operaciones-cantidades>
+
+      <p class="h4">Remarcas</p>
+      <form>
+        <div class="form-group row">
+          <label class="col-form-label col-sm-2">Master remarks</label>
+          <div class="col-12">
+            <textarea
+              class="form-control"
+              rows="10"
+              [(ngModel)]="masterRemarks"
+              [ngModelOptions]="{ standalone: true }"
+              (input)="autoSavingFunc('masterRemarks-input')"></textarea>
+          </div>
+        </div>
+        <div class="form-group row mt-3">
+          <label class="col-form-label col-sm-2">General remarks</label>
+          <div class="col-12">
+            <textarea
+              class="form-control"
+              rows="10"
+              [(ngModel)]="generalRemarks"
+              [ngModelOptions]="{ standalone: true }"
+              (input)="autoSavingFunc('generalRemarks-input')"></textarea>
+          </div>
+        </div>
+      </form>
+      <footer></footer>
+    </div>
+  </div>
+</div>

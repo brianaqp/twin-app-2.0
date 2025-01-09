@@ -1,0 +1,69 @@
+// [ ] Correct SASS
+// @import 'node_modules/bootstrap/scss/functions';
+// @import 'node_modules/bootstrap/scss/variables';
+// @import 'node_modules/bootstrap/scss/mixins';
+
+section {
+    max-width: 8.2677in;
+    margin-left: 5%;
+    margin-right: 5%;
+
+    .page-border {
+        border: 1px dotted black;
+        padding: 2em;
+        border-radius: 10px;
+    }
+
+    .img-container {
+        display: inline-block;
+        width: 250px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+
+    .sign-box {
+        width: 200px;
+    }
+
+    .signature {
+        border: 0;
+        border-bottom: 1px solid #000;
+        width: 100%;
+    }
+
+    .goodbye-box {
+        width: 300px !important;
+    }
+
+    .footer {
+        height: 60px;
+    }
+
+}
+
+@media print {
+    @page {
+        size: letter;
+    }
+
+    section {
+        -webkit-print-color-adjust: exact;
+        width: 8.2677in; // Exact A4 print width in inches
+        margin: 0%;
+    }
+
+    .page-border {
+        border: none !important;
+        padding: 1em !important;
+    }
+
+}
+
+// @include media-breakpoint-up(lg) {
+//     section {
+//         margin: auto;
+//     }
+// }

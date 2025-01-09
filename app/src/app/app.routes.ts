@@ -7,6 +7,9 @@ import { AltaBarcoComponent } from './sections/alta-barco/alta-barco.component';
 import { LiquidacionEmbarqueComponent } from './sections/liquidacion-embarque/liquidacion-embarque.component';
 import { DistribucionEmbarqueComponent } from './sections/distribucion-embarque/distribucion-embarque.component';
 import { NominacionInternaComponent } from './sections/nominacion-interna/nominacion-interna.component';
+import { GaleriaComponent } from './sections/galeria/galeria.component';
+import { KpiComponent } from './sections/kpi/kpi.component';
+import { UtilitiesComponent } from './sections/utilities/utilities.component';
 
 export const routes: Routes = [
   // Fully working path
@@ -43,7 +46,18 @@ export const routes: Routes = [
     path: 'liquidacion-embarque',
     component: LiquidacionEmbarqueComponent
   },
-  
+  {
+    path: 'galeria',
+    component: GaleriaComponent
+  },
+  {
+    path: 'kpi',
+    component: KpiComponent,
+  },
+  {
+    path: 'utilities',
+    component: UtilitiesComponent,
+  },
   // Not implemented paths
   // 1. Repositorios
   // {
@@ -70,23 +84,6 @@ export const routes: Routes = [
   //   loadChildren: () =>
   //     import('./modules/reporte-por-horas/reporte-por-horas.module').then(
   //       (m) => m.ReportePorHorasModule
-  //     ),
-  // },
-  // {
-  //   path: 'galeria',
-  //   loadChildren: () =>
-  //     import('./modules/galeria/galeria.module').then((m) => m.GaleriaModule),
-  // },
-  // {
-  //   path: 'kpi',
-  //   loadChildren: () =>
-  //     import('./modules/kpi/kpi.module').then((m) => m.KpiModule),
-  // },
-  // {
-  //   path: 'utilities',
-  //   loadChildren: () =>
-  //     import('./modules/utilities/utilities.module').then(
-  //       (m) => m.UtilitiesModule
   //     ),
   // },
 ];

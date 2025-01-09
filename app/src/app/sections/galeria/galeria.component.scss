@@ -1,0 +1,26 @@
+// IMG global styles
+img {
+    cursor: pointer;
+}
+
+.img-fluid {
+    object-fit: contain;
+}
+
+// preuploaded files
+.card {
+    width: 18rem !important;
+}
+
+.card-img-top  {
+    height: 15rem;
+    object-fit: cover;
+    padding: 0.6em;
+    border-radius: 15px;
+}
+
+// Files from DB
+.file-section {
+    display: flex;
+    flex-flow: column nowrap;
+}

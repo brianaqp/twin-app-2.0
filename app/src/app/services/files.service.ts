@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FilesService {
     private readonly http = inject(HttpClient)
-    readonly api = environment.api;
+    readonly api = environment.apiUrl;
 
     // Returns excel file
     getVesselsServed(year: string) {

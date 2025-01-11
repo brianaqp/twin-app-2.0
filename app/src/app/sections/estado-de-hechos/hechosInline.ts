@@ -1,4 +1,4 @@
-import { LocalColors } from '../../../utilities/variables';
+import { LocalColors } from "src/app/utils/variables";
 
 export class HechosInlineStyles {
   colorStyles = LocalColors;

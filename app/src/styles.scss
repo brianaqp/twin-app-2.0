@@ -1,8 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@use "../node_modules/bootstrap/scss/bootstrap.scss" as *;
 
-/* Importing Bootstrap SCSS file. */
-@use '../node_modules/bootstrap/scss/bootstrap' as *;
-
-/* Importing Bootstrap SCSS file. */
-@use'../node_modules/bootstrap/scss/bootstrap' as *;
-
+// My own styles
+:root {
+    --custom-stronger:#185477;
+    --custom-middle: #328A92;
+    --custom-middle-more: #71c4cc;
+    --custom-soft: #CEEAED;
+    --custom-softer: #e8f2f3;
+    --custom-blue-one: #2298D2;
+}

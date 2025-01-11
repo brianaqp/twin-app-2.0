@@ -1,10 +1,9 @@
-// @use "../../../utilities/variables.scss";
+$md: 768px;
 
-
-// [ ] Change it for not using this elements
-// @include media-breakpoint-down(md) {
-//     a {
-//         font-size: 1.1em !important;
-//         padding: 0.9em;
-//     }
-// }
+@media (max-width: 768px) {
+    a {
+        font-size: 3.1em !important; // 1
+        padding: 0.9em;
+        color: var(--custom-stronger); // del
+    }
+}

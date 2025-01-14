@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,10 +17,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isNavCollapsed = true; // Variable para controlar el estado del menu colapsable de navegación
   sideMenuAllowed = false;
   subscription!: Subscription;
-  logoutDomain = `/logout`;
 
   // Services
   private navbarService = inject(NavbarService);
+  private authService = inject(AuthService);
 
   ngOnInit() {
     // Subscripción al observable que contiene la información si el usuario está en la sección de operaciones
@@ -54,6 +55,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   toggleSideMenu() {
     // Método para abrir y cerrar el menú lateral
     this.navbarService.toggleSMCollapseState();
+  }
+
+  logout() {
+    // Método para cerrar la sesión del usuario
+    this.authService.logout();
   }
 
   ngOnDestroy() {

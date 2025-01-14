@@ -14,68 +14,83 @@ import { OperacionesComponent } from './sections/operaciones/operaciones.compone
 import { EstadoDeHechosComponent } from './sections/estado-de-hechos/estado-de-hechos.component';
 import { NorComponent } from './sections/nor/nor.component';
 import { ReportePorHorasComponent } from './sections/reporte-por-horas/reporte-por-horas.component';
+import { LoginComponent } from './sections/login/login.component';
+import { authGuardFunction } from './auth-guard.guard';
+import { BaseComponent } from './sections/base.component';
 
 export const routes: Routes = [
-  // Fully working path
+  // Auth routes
   {
-    path: '',
-    component: HomeComponent,
+    path: "login",
+    component: LoginComponent
   },
   {
-    path: 'reporte-de-llegada',
-    component: ReporteDeLlegadaComponent,
-  },
-  {
-    path: 'alta-barco',
-    component: AltaBarcoComponent
-  },
-  {
-    path: 'repositorio',
-    component: RepositorioComponent,
-  },
-  {
-    path: 'nuevo-registro',
-    component: NuevoRegistroComponent,
-  },
-  // Documents inside RepoVessel
-  {
-    path: 'distribucion-embarque',
-    component: DistribucionEmbarqueComponent
-  },
-  {
-    path: 'nominacion-interna',
-    component: NominacionInternaComponent
-  },
-  {
-    path: 'liquidacion-embarque',
-    component: LiquidacionEmbarqueComponent
-  },
-  {
-    path: 'galeria',
-    component: GaleriaComponent
-  },
-  {
-    path: 'kpi',
-    component: KpiComponent,
-  },
-  {
-    path: 'utilities',
-    component: UtilitiesComponent,
-  },
-  {
-    path: 'reporte-de-operaciones',
-    component: OperacionesComponent
-  },
-  {
-    path: 'estado-de-hechos',
-    component: EstadoDeHechosComponent
-  },
-  {
-    path: 'nor',
-    component: NorComponent,
-  },
-  {
-    path: 'reporte-por-horas',
-    component: ReportePorHorasComponent
+    path: "",
+    component: BaseComponent,
+    title: "Home",
+    canActivate: [authGuardFunction],
+    children: [
+      {
+        path: "",
+        component: HomeComponent,
+      },
+      {
+        path: "repositorio",
+        component: RepositorioComponent
+      },
+      {
+        path: 'reporte-de-llegada',
+        component: ReporteDeLlegadaComponent,
+      },
+      {
+        path: 'alta-barco',
+        component: AltaBarcoComponent,
+      },
+      {
+        path: 'nuevo-registro',
+        component: NuevoRegistroComponent,
+      },
+      // Documents inside RepoVessel
+      {
+        path: 'distribucion-embarque',
+        component: DistribucionEmbarqueComponent,
+      },
+      {
+        path: 'nominacion-interna',
+        component: NominacionInternaComponent,
+      },
+      {
+        path: 'liquidacion-embarque',
+        component: LiquidacionEmbarqueComponent,
+      },
+      {
+        path: 'galeria',
+        component: GaleriaComponent,
+      },
+      {
+        path: 'kpi',
+        component: KpiComponent,
+      },
+      {
+        path: 'utilities',
+        component: UtilitiesComponent,
+      },
+      {
+        path: 'reporte-de-operaciones',
+        component: OperacionesComponent,
+      },
+      {
+        path: 'estado-de-hechos',
+        component: EstadoDeHechosComponent,
+      },
+      {
+        path: 'nor',
+        component: NorComponent,
+      },
+      {
+        path: 'reporte-por-horas',
+        component: ReportePorHorasComponent,
+      },
+    ]
   },
 ];

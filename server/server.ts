@@ -42,12 +42,6 @@ app.get("/", (req, res) => {
   res.send("Server running...");
 });
 
-// Middleware of securiy
-app.use((req, res, next) => {
-  // Use firebase auth to verify the token
-  
-
-})
 
 // routes
 app.use(publicRouter);

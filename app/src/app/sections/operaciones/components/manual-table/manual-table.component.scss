@@ -1,12 +1,10 @@
-@import '../../../../../utilities/variables.scss';
-
 table {
     border-color: black;
     width: 250px;
     
     thead {
         th {
-            background-color: $middle;
+            background-color: var(--custom-middle);
             color: white;
             text-transform: capitalize;
         }
@@ -26,7 +24,7 @@ table {
           }
 
         th {
-            background-color: $soft;
+            background-color: var(--custom-soft);
             color: #000;
             font-size: 13px;
             width: 125px;

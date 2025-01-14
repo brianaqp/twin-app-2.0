@@ -7,8 +7,7 @@ import { Vessel } from 'src/app/interfaces/vessel';
   selector: 'app-vessel-card',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './vessel-card.component.html',
-  styleUrls: ['./vessel-card.component.scss'],
+  templateUrl: './vessel-card.component.html'
 })
 export class VesselCardComponent {
   @Input() vesselList!: Vessel[];

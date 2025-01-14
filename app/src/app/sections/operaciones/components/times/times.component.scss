@@ -1,14 +1,10 @@
-// [ ] Correct with SASS
-// @import 'node_modules/bootstrap/scss/functions';
-// @import 'node_modules/bootstrap/scss/variables';
-// @import 'node_modules/bootstrap/scss/mixins';
+.w-150 {
+    width: 150% !important;
+}
 
-// .w-150 {
-//     width: 150% !important;
-// }
-
-// @include media-breakpoint-down(md) {
-//     .overflow {
-//         overflow: auto;
-//     }
-// }
+$md: 768px;
+@media (max-width: $md) {
+    .overflow {
+        overflow: auto;
+    }
+}

@@ -1,5 +1,5 @@
 nav {
-    background-color: white; // soft
+    background-color: var(--custom-soft); // soft
     min-height: 64px;
 }
 
@@ -12,6 +12,6 @@ nav {
 }
 
 .bi-three-dots-vertical {
-    color: green; // stronger
+    color: var(--custom-stronger); 
     font-size: 1.2em;
 }

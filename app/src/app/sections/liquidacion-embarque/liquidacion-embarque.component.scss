@@ -1,5 +1,3 @@
-@import "../../../utilities/variables";
-
 section {    
     margin-left: 1em;
     max-width: 8.2677in;    
@@ -16,18 +14,18 @@ section {
         }
         
         th {
-            background-color: $middle;
+            background-color: var(--custom-middle);
             font-weight:lighter;
             color: white;
             font-weight:normal;
         }
 
         .empty-cell {
-            background-color: $middle;
+            background-color: var(--custom-middle);
         }
 
         .total-cell {
-            background-color: $soft;
+            background-color: var(--custom-soft);
             font-weight: bold;
         }
     }

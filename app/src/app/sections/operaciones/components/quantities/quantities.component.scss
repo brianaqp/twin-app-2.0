@@ -8,7 +8,7 @@ table {
     
     thead {
         th {
-            background-color: $middle;
+            background-color: var(--custom-middle);
             color: white;
             text-transform: capitalize;
         }
@@ -16,14 +16,14 @@ table {
 
     tbody {
         th {
-            background-color: $middle;
+            background-color: var(--custom-middle);
             color: white;
         }
     }
 
     tfoot {
         th, td {
-            background-color: $softer;
+            background-color: var(--custom-softer);
             font-weight: 600;
         }
     }

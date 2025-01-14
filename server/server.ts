@@ -11,9 +11,26 @@ import publicRouter from "./routes/public";
 import statisticsRouter from "./routes/statistics";
 import adminRouter from "./routes/admin";
 import filesRouter from "./routes/files";
+// Auth
+import { initializeApp } from "firebase-admin/app"
+import { getAuth } from "firebase-admin/auth"
 
 const app = express();
 const PORT = 3200;
+
+// Security
+const firebaseConfig = {
+  apiKey: "AIzaSyA6Y44g84TqfI7i17U4tcDSjOS9rgtJiF4",
+  authDomain: "twin-47464.firebaseapp.com",
+  projectId: "twin-47464",
+  storageBucket: "twin-47464.firebasestorage.app",
+  messagingSenderId: "883986157924",
+  appId: "1:883986157924:web:a8d142792e6b68028e2a71",
+  measurementId: "G-5HMN9EPHW7"
+};
+
+const firebaseClient = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseClient);
 
 // middlewares
 app.use(cors());
@@ -24,6 +41,13 @@ app.use(bodyParser.raw({ type: "application/octet-stream" }));
 app.get("/", (req, res) => {
   res.send("Server running...");
 });
+
+// Middleware of securiy
+app.use((req, res, next) => {
+  // Use firebase auth to verify the token
+  
+
+})
 
 // routes
 app.use(publicRouter);

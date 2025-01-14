@@ -1,15 +1,8 @@
-@import "../../../utilities/variables.scss";
-// importar funciones, mixins yvariables de bootstrap
-// @import 'node_modules/bootstrap/scss/functions';
-// @import 'node_modules/bootstrap/scss/variables';
-// @import 'node_modules/bootstrap/scss/mixins';
-
-// [ ] Correct styles
-// @include media-breakpoint-up(md) {
-//     .container {
-//         margin-left: 25%;
-//     }
-// }
+@media (min-width: 576px) {
+    .container {
+        margin-left: 25%;
+    }
+}
 
 @media print {
     @page {

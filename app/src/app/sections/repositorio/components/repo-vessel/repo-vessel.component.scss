@@ -1,10 +1,6 @@
-@import '../../../../../../node_modules/bootstrap/scss/functions';
-@import '../../../../../../node_modules/bootstrap/scss/variables';
-@import '../../../../../../node_modules/bootstrap/scss/mixins';
-// Variables
-@import '../../../../../utilities/variables';
 
-@include media-breakpoint-up(lg) {
+$lg: 992px;
+@media (min-width: $lg) {
   .container {
     padding-left: 15%;
     padding-right: 15%;

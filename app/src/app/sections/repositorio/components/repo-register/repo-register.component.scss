@@ -1,19 +1,16 @@
-@import '../../../../../../node_modules/bootstrap/scss/functions';
-@import '../../../../../../node_modules/bootstrap/scss/variables';
-@import '../../../../../../node_modules/bootstrap/scss/mixins';
-
 .footer {
     width: 100%;
     height: 50px;
 }
 
-@include media-breakpoint-up(lg) {
-  .container {
-    padding-left: 15%;
-    padding-right: 15%;
+$lg: 992px;
+@media (min-width: $lg) {
+    .container {
+        padding-left: 15%;
+        padding-right: 15%;
 
-    .row {
-        justify-content: left !important;
-      }
-  }
+        .row {
+            justify-content: left !important;
+        }
+    }
 }

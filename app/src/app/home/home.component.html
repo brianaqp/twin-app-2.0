@@ -11,7 +11,8 @@
         *ngFor="let collection of selectionOptions"
         class="btn btn-outline-success"
         [ngClass]="{ active: selection === collection }"
-        (click)="onListChanged(collection)">
+        (click)="onListChanged(collection)"
+      >
         {{ collection }}
       </button>
     </div>

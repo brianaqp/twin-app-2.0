@@ -8,7 +8,8 @@
       class="form-control"
       accept="image/*"
       (change)="onFileUpload($event)"
-      multiple />
+      multiple
+    />
   </div>
   <!-- TODO: Implementacion de tratamiento de imagenes -->
   <!-- <div class="form-check">
@@ -24,13 +25,15 @@
     </select>
   </div>
   <div
-    class="d-flex flex-row flex-wrap justify-content-base pre-uploaded-images">
+    class="d-flex flex-row flex-wrap justify-content-base pre-uploaded-images"
+  >
     <div class="card mt-2" *ngFor="let file of preUploadFiles">
       <div class="card-header d-flex justify-content-end">
         <button
           class="btn btn-close"
           aria-label="close"
-          (click)="deleteSelectedFile(file, preUploadFiles)"></button>
+          (click)="deleteSelectedFile(file, preUploadFiles)"
+        ></button>
       </div>
       <img [src]="file.base64url" class="card-img-top" />
       <div class="card-body">
@@ -39,7 +42,8 @@
             type="text"
             class="form-control"
             placeholder="Pie de pagina"
-            [(ngModel)]="file.caption" />
+            [(ngModel)]="file.caption"
+          />
         </div>
       </div>
     </div>
@@ -50,7 +54,8 @@
         <button
           [disabled]="uploadButton"
           class="btn btn-primary btn-save w-100 mt-2"
-          (click)="saveImage()">
+          (click)="saveImage()"
+        >
           Guardar imagen
         </button>
       </div>
@@ -73,14 +78,16 @@
         placement="bottom"
         #copy_popover="ngbPopover"
         triggers="manual"
-        (click)="copyLink()">
+        (click)="copyLink()"
+      >
         Copy Link
       </button>
       <input
         type="text"
         value="{{ publicLink }}"
         class="form-control d-none d-sm-block"
-        aria-label="Text input with segmented dropdown button" />
+        aria-label="Text input with segmented dropdown button"
+      />
     </div>
   </div>
   <hr />
@@ -94,7 +101,8 @@
         <div
           class="card"
           *ngFor="let file of getFilesByCategory(section)"
-          (click)="onImgModalOpen(file, 'local')">
+          (click)="onImgModalOpen(file, 'local')"
+        >
           <div class="card-img-top">
             <img class="card-img-top" [src]="file.base64url" />
           </div>
@@ -105,7 +113,7 @@
       </div>
     </ng-container>
   </ng-container>
-  <footer class="w-100 mt-5" style="height: 15px;"></footer>
+  <footer class="w-100 mt-5" style="height: 15px"></footer>
 </section>
 
 <!-- Modales -->
@@ -117,7 +125,8 @@
       type="button"
       class="btn-close"
       aria-label="Close"
-      (click)="onDismiss('X')"></button>
+      (click)="onDismiss('X')"
+    ></button>
   </div>
   <div class="modal-body d-flex justify-content-center">
     <img [src]="fileSelected.base64url" class="img-fluid" />
@@ -126,20 +135,24 @@
     <button
       type="button"
       class="btn btn-lg btn-outline-secondary"
-      (click)="onClose('cancel')">
+      (click)="onClose('cancel')"
+    >
       Close
     </button>
     <button
       type="button"
       class="btn btn-lg btn-outline-danger"
-      (click)="onDeleteModalOpen()">
+      (click)="onDeleteModalOpen()"
+    >
       Delete
     </button>
-    <button 
-    type="button"
-    class="btn btn-lg btn-outline-success"
-    (click)="onEditImg()">
-    Edit</button>
+    <button
+      type="button"
+      class="btn btn-lg btn-outline-success"
+      (click)="onEditImg()"
+    >
+      Edit
+    </button>
   </div>
 </ng-template>
 
@@ -150,7 +163,8 @@
       type="button"
       class="btn-close"
       aria-label="Close"
-      (click)="onDismiss('X')"></button>
+      (click)="onDismiss('X')"
+    ></button>
   </div>
   <div class="modal-body">
     <p>Are you sure you want to delete this image?</p>
@@ -159,13 +173,15 @@
     <button
       type="button"
       class="btn btn-lg btn-outline-secondary"
-      (click)="onClose('cancel')">
+      (click)="onClose('cancel')"
+    >
       Cancel
     </button>
     <button
       type="button"
       class="btn btn-lg btn-outline-danger"
-      (click)="onClose('confirm')">
+      (click)="onClose('confirm')"
+    >
       Confirm
     </button>
   </div>
@@ -178,33 +194,40 @@
       type="button"
       class="btn-close"
       aria-label="Close"
-      (click)="onDismiss('X')"></button>
+      (click)="onDismiss('X')"
+    ></button>
   </div>
   <div class="modal-body">
     <div class="mt-2">
       <label class="form-label">Pie de página</label>
-      <input type="text" class="form-control"[(ngModel)]="fileSelected.caption">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="fileSelected.caption"
+      />
     </div>
     <div class="mt-2">
       <label class="form-label">Puerto</label>
-    <select id="" class="form-select" [(ngModel)]="fileSelected.port">
-      @for (item of availablePorts; track $index) {
-        <option [value]="item">{{ item }}</option>
-      }
-    </select>
+      <select id="" class="form-select" [(ngModel)]="fileSelected.port">
+        @for (item of availablePorts; track $index) {
+          <option [value]="item">{{ item }}</option>
+        }
+      </select>
     </div>
   </div>
   <div class="modal-footer">
     <button
       type="button"
       class="btn btn-lg btn-outline-secondary"
-      (click)="onClose('cancel')">
+      (click)="onClose('cancel')"
+    >
       Cancel
     </button>
     <button
       type="button"
       class="btn btn-lg btn-outline-success"
-      (click)="onClose('confirm')">
+      (click)="onClose('confirm')"
+    >
       Save changes
     </button>
   </div>

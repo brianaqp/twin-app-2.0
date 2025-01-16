@@ -42,10 +42,10 @@ export class HomeComponent implements OnInit {
 
     this.data = {
       registers: await firstValueFrom(
-        this.repoSvc.find('registers', projection['registers'])
+        this.repoSvc.find('registers', projection['registers']),
       ),
       vessels: await firstValueFrom(
-        this.repoSvc.find('vessels', projection['vessels'])
+        this.repoSvc.find('vessels', projection['vessels']),
       ),
     };
   }
@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
   initVariables(): void {
     this.data['registers'].forEach((register) => {
       const vesselLinked = this.data['vessels'].find(
-        (item) => item.id == register.vesselId
+        (item) => item.id == register.vesselId,
       );
       //
       this.registerList.push({

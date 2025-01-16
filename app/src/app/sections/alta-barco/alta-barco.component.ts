@@ -41,7 +41,7 @@ export class AltaBarcoComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly repoSvc: RepositoriesService,
-    private router: Router
+    private router: Router,
   ) {
     this.routerData = this.router.getCurrentNavigation()?.extras.state;
   }
@@ -72,7 +72,7 @@ export class AltaBarcoComponent implements OnInit {
 
   async pullData(): Promise<void> {
     this.vesselData = await firstValueFrom(
-      this.repoSvc.findOne('vessels', this.vesselId)
+      this.repoSvc.findOne('vessels', this.vesselId),
     );
   }
 
@@ -114,7 +114,7 @@ export class AltaBarcoComponent implements OnInit {
 
   generateVesselId(): string {
     const initials = this.getInitials(
-      this.altaBarcoForm.value.shipParticulars.name
+      this.altaBarcoForm.value.shipParticulars.name,
     );
     const date = new Date();
     const day = date.getDate();
@@ -166,7 +166,7 @@ export class AltaBarcoComponent implements OnInit {
   validateFormControl(name: string): boolean {
     // Metodo que valida si un form control es valido
     const formControl = this.altaBarcoForm.get(
-      `shipParticulars.${name}`
+      `shipParticulars.${name}`,
     ) as FormControl;
     return formControl.invalid && formControl.touched;
   }
@@ -174,7 +174,7 @@ export class AltaBarcoComponent implements OnInit {
   // Metodo que activa las alertas de validacion de los form controls
   activateValidateAlerts() {
     const shipParticulars = this.altaBarcoForm.get(
-      'shipParticulars'
+      'shipParticulars',
     ) as FormGroup;
     const controls = shipParticulars.controls;
     for (const name in controls) {
@@ -186,7 +186,7 @@ export class AltaBarcoComponent implements OnInit {
   // Metodo que marca como untouched un form control, y cierra el alert
   onValidAlertClose(name: string) {
     const formControl = this.altaBarcoForm.get(
-      `shipParticulars.${name}`
+      `shipParticulars.${name}`,
     ) as FormControl;
     formControl.markAsUntouched();
   }
@@ -223,7 +223,7 @@ export class AltaBarcoComponent implements OnInit {
       setTimeout(() => {
         callback();
         resolve();
-      }, ms)
+      }, ms),
     );
   }
 }

@@ -5,7 +5,8 @@
       class="form-select"
       [(ngModel)]="showQttTables.showGeneralQtt"
       (change)="onShowTableChange()"
-      [ngModelOptions]="{ standalone: true }">
+      [ngModelOptions]="{ standalone: true }"
+    >
       <option [ngValue]="true">Mostrar Tabla</option>
       <option [ngValue]="false">No Mostrar</option>
     </select>
@@ -22,19 +23,25 @@
       <tbody>
         <tr>
           <th>Total Parcel to {{ flowName }}</th>
-          <td><input
-            type="text"
-            class="form-control"
-            [(ngModel)]="manualTable.initialTon"
-            (input)="manualTableInputHandler()"/></td> 
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="manualTable.initialTon"
+              (input)="manualTableInputHandler()"
+            />
+          </td>
         </tr>
         <tr>
           <th>Previous {{ flowName }}</th>
-          <td>  <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="manualTable.previous"
-            (input)="manualTableInputHandler()"/></td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="manualTable.previous"
+              (input)="manualTableInputHandler()"
+            />
+          </td>
         </tr>
         <tr>
           <th>{{ flowName }} Today</th>
@@ -43,16 +50,17 @@
               type="text"
               class="form-control"
               [(ngModel)]="manualTable.perDay"
-              (input)="manualTableInputHandler()"/>
+              (input)="manualTableInputHandler()"
+            />
           </td>
         </tr>
         <tr>
           <th>Total {{ flowName }}</th>
-          <td>{{ manualTable.ttl }} </td>
+          <td>{{ manualTable.ttl }}</td>
         </tr>
         <tr>
           <th>To be {{ flowName }}</th>
-          <td> {{ manualTable.toBeDischarge }}</td>
+          <td>{{ manualTable.toBeDischarge }}</td>
         </tr>
       </tbody>
     </table>
@@ -66,7 +74,8 @@
       class="form-select"
       [(ngModel)]="showQttTables.showReceiversQtt"
       (change)="onShowTableChange()"
-      [ngModelOptions]="{ standalone: true }">
+      [ngModelOptions]="{ standalone: true }"
+    >
       <option [ngValue]="true">Mostrar Tabla</option>
       <option [ngValue]="false">No Mostrar</option>
     </select>
@@ -90,17 +99,20 @@
           </tr>
         </thead>
         @if (quantities[date]) {
-        <tbody>
-            @for (item of quantities[date]['receivers'].data; track $index) {
+          <tbody>
+            @for (item of quantities[date]["receivers"].data; track $index) {
               <tr>
-                <th>{{ item['name'] }}</th>
+                <th>{{ item["name"] }}</th>
                 <td>{{ item.initialTon }}</td>
                 <td>{{ item.previous }}</td>
                 <td>
                   <input
                     type="text"
-                    [(ngModel)]="quantities[date]['receivers'].data[$index].perDay"
-                    (input)="receiversQttInputHandler()" />
+                    [(ngModel)]="
+                      quantities[date]['receivers'].data[$index].perDay
+                    "
+                    (input)="receiversQttInputHandler()"
+                  />
                 </td>
                 <td>{{ item.ttl }}</td>
                 <td>{{ item.toBeDischarge }}</td>
@@ -111,14 +123,14 @@
               </tr>
             }
           </tbody>
-          <tfoot >
+          <tfoot>
             <tr>
               <th>Totales</th>
-              <td>{{ quantities[date]['receivers'].ttl.initialTon }}</td>
-              <td>{{ quantities[date]['receivers'].ttl.previous }}</td>
-              <td>{{ quantities[date]['receivers'].ttl.perDay }}</td>
-              <td>{{ quantities[date]['receivers'].ttl.ttl }}</td>
-              <td>{{ quantities[date]['receivers'].ttl.toBeDischarge }}</td>
+              <td>{{ quantities[date]["receivers"].ttl.initialTon }}</td>
+              <td>{{ quantities[date]["receivers"].ttl.previous }}</td>
+              <td>{{ quantities[date]["receivers"].ttl.perDay }}</td>
+              <td>{{ quantities[date]["receivers"].ttl.ttl }}</td>
+              <td>{{ quantities[date]["receivers"].ttl.toBeDischarge }}</td>
             </tr>
           </tfoot>
         }
@@ -134,7 +146,8 @@
       class="form-select"
       [(ngModel)]="showQttTables.showProductsQtt"
       (change)="onShowTableChange()"
-      [ngModelOptions]="{ standalone: true }">
+      [ngModelOptions]="{ standalone: true }"
+    >
       <option [ngValue]="true">Mostrar Tabla</option>
       <option [ngValue]="false">No Mostrar</option>
     </select>
@@ -159,16 +172,19 @@
         </thead>
         @if (quantities[date]) {
           <tbody>
-            @for (item of quantities[date]['products'].data; track $index) {
+            @for (item of quantities[date]["products"].data; track $index) {
               <tr>
-                <th>{{ item['name'] }}</th>
+                <th>{{ item["name"] }}</th>
                 <td>{{ item.initialTon }}</td>
                 <td>{{ item.previous }}</td>
                 <td>
                   <input
                     type="text"
-                    [(ngModel)]="quantities[date]['products'].data[$index].perDay"
-                    (input)="productsQttInputHandler()" />
+                    [(ngModel)]="
+                      quantities[date]['products'].data[$index].perDay
+                    "
+                    (input)="productsQttInputHandler()"
+                  />
                 </td>
                 <td>{{ item.ttl }}</td>
                 <td>{{ item.toBeDischarge }}</td>
@@ -182,11 +198,11 @@
           <tfoot>
             <tr>
               <th>Totales</th>
-              <td>{{ quantities[date]['products'].ttl.initialTon }}</td>
-              <td>{{ quantities[date]['products'].ttl.previous }}</td>
-              <td>{{ quantities[date]['products'].ttl.perDay }}</td>
-              <td>{{ quantities[date]['products'].ttl.ttl }}</td>
-              <td>{{ quantities[date]['products'].ttl.toBeDischarge }}</td>
+              <td>{{ quantities[date]["products"].ttl.initialTon }}</td>
+              <td>{{ quantities[date]["products"].ttl.previous }}</td>
+              <td>{{ quantities[date]["products"].ttl.perDay }}</td>
+              <td>{{ quantities[date]["products"].ttl.ttl }}</td>
+              <td>{{ quantities[date]["products"].ttl.toBeDischarge }}</td>
             </tr>
           </tfoot>
         }
@@ -202,7 +218,8 @@
       class="form-select"
       [(ngModel)]="showQttTables.showHoldsQtt"
       (change)="onShowTableChange()"
-      [ngModelOptions]="{ standalone: true }">
+      [ngModelOptions]="{ standalone: true }"
+    >
       <option [ngValue]="true">Mostrar Tabla</option>
       <option [ngValue]="false">No Mostrar</option>
     </select>
@@ -228,17 +245,18 @@
         </thead>
         @if (quantities[date]) {
           <tbody>
-            @for (item of quantities[date]['holds'].data; track $index) {
+            @for (item of quantities[date]["holds"].data; track $index) {
               <tr>
-                <th>{{ item['name'] }}</th>
+                <th>{{ item["name"] }}</th>
                 <td>
                   @if (holdCargos[$index] !== undefined) {
                     <input
-                    type="text"
-                    [(ngModel)]="holdCargos[$index].cargo"
-                    (input)="holdsQttInputHandler()" />
+                      type="text"
+                      [(ngModel)]="holdCargos[$index].cargo"
+                      (input)="holdsQttInputHandler()"
+                    />
                   } @else {
-                    {{ '' }}
+                    {{ "" }}
                   }
                 </td>
                 <td>{{ item.initialTon }}</td>
@@ -247,7 +265,8 @@
                   <input
                     type="text"
                     [(ngModel)]="quantities[date]['holds'].data[$index].perDay"
-                    (input)="holdsQttInputHandler()" />
+                    (input)="holdsQttInputHandler()"
+                  />
                 </td>
                 <td>{{ item.ttl }}</td>
                 <td>{{ item.toBeDischarge }}</td>
@@ -262,11 +281,11 @@
             <tr>
               <th>Totales</th>
               <th></th>
-              <td>{{ quantities[date]['holds'].ttl.initialTon }}</td>
-              <td>{{ quantities[date]['holds'].ttl.previous }}</td>
-              <td>{{ quantities[date]['holds'].ttl.perDay }}</td>
-              <td>{{ quantities[date]['holds'].ttl.ttl }}</td>
-              <td>{{ quantities[date]['holds'].ttl.toBeDischarge }}</td>
+              <td>{{ quantities[date]["holds"].ttl.initialTon }}</td>
+              <td>{{ quantities[date]["holds"].ttl.previous }}</td>
+              <td>{{ quantities[date]["holds"].ttl.perDay }}</td>
+              <td>{{ quantities[date]["holds"].ttl.ttl }}</td>
+              <td>{{ quantities[date]["holds"].ttl.toBeDischarge }}</td>
             </tr>
           </tfoot>
         }

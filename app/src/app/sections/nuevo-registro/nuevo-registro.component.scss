@@ -1,10 +1,10 @@
 .port-item {
-    background-color: transparent;
-    transition: 0.5s ease-in-out;
-    &:hover {
-        background-color: rgb(237, 237, 247);
-        color: rgb(0, 0, 0);
-    }
+  background-color: transparent;
+  transition: 0.5s ease-in-out;
+  &:hover {
+    background-color: rgb(237, 237, 247);
+    color: rgb(0, 0, 0);
+  }
 }
 
 .selected {
@@ -12,32 +12,32 @@
 }
 
 .general-table {
-    .small-col {
-        width: 60px !important;
-        min-width: 60px !important;
-    }
+  .small-col {
+    width: 60px !important;
+    min-width: 60px !important;
+  }
 
   .middle-col {
-      width: 120px !important;
-      min-width: 120px !important;
-      text-align: center;
+    width: 120px !important;
+    min-width: 120px !important;
+    text-align: center;
   }
 
   .bigger-col {
-      width: 250px !important;
-      min-width: 250px !important;
+    width: 250px !important;
+    min-width: 250px !important;
   }
 
-  input, select {
-    width: 100%
+  input,
+  select {
+    width: 100%;
   }
-
 }
 
 $md: 768px;
 @media (min-width: $md) {
-    .container {
-        padding-left: 10%;
-        padding-right: 10%;
-    }
+  .container {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
 }

@@ -55,7 +55,7 @@ import { NavbarService } from '../../services/navbar.service';
 @Component({
   selector: 'app-reporte-de-operaciones',
   standalone: true,
-  imports: [    
+  imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -65,13 +65,12 @@ import { NavbarService } from '../../services/navbar.service';
     RouterModule,
     QuantitiesComponent,
     TimesComponent,
-    DatePipe
+    DatePipe,
   ],
   templateUrl: './operaciones.component.html',
   styleUrls: ['./operaciones.component.scss'],
 })
-export class OperacionesComponent 
- {
+export class OperacionesComponent {
   date!: string;
   workingPort!: string; // !!! posible error
   registerId!: string;
@@ -144,7 +143,7 @@ export class OperacionesComponent
     private readonly fb: FormBuilder,
     private cmnSvc: CommonFunctionsService,
     private navbarService: NavbarService,
-    private offCvService: NgbOffcanvas
+    private offCvService: NgbOffcanvas,
   ) {
     const routerData: any = this.router.getCurrentNavigation()?.extras.state;
     this.registerId = routerData.registerId;
@@ -161,7 +160,7 @@ export class OperacionesComponent
 
   // AutoComplete Functions
   ngAfterViewInit(): void {
-    console.log("Hola!")
+    console.log('Hola!');
     // Include pullrequest to get dropdown data
     const data = this.repoSvc.getSocialReasons().subscribe((res) => {
       this.autoCompleteData = res.data;
@@ -279,7 +278,7 @@ export class OperacionesComponent
       (state) => {
         this.isSidebarCollapsed = state;
         this.onSideMenuStateChange();
-      }
+      },
     );
     // Subscripcion al evento de resize
     this.eventSubs = this.navbarService.resizeEvent$.subscribe(() => {
@@ -308,10 +307,10 @@ export class OperacionesComponent
 
   async pullData(): Promise<void> {
     this.registerData = await firstValueFrom(
-      this.repoSvc.findOne('registers', this.registerId)
+      this.repoSvc.findOne('registers', this.registerId),
     );
     this.vesselData = await firstValueFrom(
-      this.repoSvc.findOne('vessels', this.registerData.vesselId)
+      this.repoSvc.findOne('vessels', this.registerData.vesselId),
     );
   }
 
@@ -376,7 +375,7 @@ export class OperacionesComponent
           weight: new FormControl('0'),
           scale: new FormControl('0'),
           diff: new FormControl('0'),
-        })
+        }),
       );
     }
     // set if existe
@@ -428,7 +427,7 @@ export class OperacionesComponent
       return '0';
     }
     const allIds = this.receiversControls.value.map((item: Recibidor) =>
-      parseInt(item.id)
+      parseInt(item.id),
     ); // () equivale a { return: value }
     const lastId = Math.max(...allIds);
     return (lastId + 1).toLocaleString('en-US');
@@ -563,7 +562,7 @@ export class OperacionesComponent
       // Logica de la diferencia
       const diff = this.cmnSvc.sumToStrings(
         control.value.scale,
-        `-${control.value.weight}`
+        `-${control.value.weight}`,
       );
       const diffControl = control.get('diff') as FormControl;
       diffControl.setValue(diff);

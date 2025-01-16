@@ -15,9 +15,10 @@
       class="list-group-item list-group-item-action"
       [disabled]="editMode"
       [ngClass]="{
-        active: selection === vessel
+        active: selection === vessel,
       }"
-      *ngFor="let vessel of filtrarLista()">
+      *ngFor="let vessel of filtrarLista()"
+    >
       {{ vessel.shipParticulars.name }}, ID: {{ vessel.id }}
     </button>
   </ul>

@@ -3,15 +3,15 @@
 }
 
 .drop-zone {
-    border: 2px dashed #ccc;
-    border-radius: 4px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    height: 120px;
-  }
-  
-  .drop-zone.dragover {
-    border-color: #666;
-    background-color: #f0f0f0;
-  }
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  height: 120px;
+}
+
+.drop-zone.dragover {
+  border-color: #666;
+  background-color: #f0f0f0;
+}

@@ -7,7 +7,7 @@ import { Vessel } from 'src/app/interfaces/vessel';
   selector: 'app-vessel-card',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './vessel-card.component.html'
+  templateUrl: './vessel-card.component.html',
 })
 export class VesselCardComponent {
   @Input() vesselList!: Vessel[];
@@ -26,7 +26,7 @@ export class VesselCardComponent {
         vessel.shipParticulars.name
           .trim()
           .toLowerCase()
-          .includes(this.busqueda.trim().toLowerCase())
+          .includes(this.busqueda.trim().toLowerCase()),
       );
     } else {
       // 3. Si no hay busqueda, se devuelve la lista completa

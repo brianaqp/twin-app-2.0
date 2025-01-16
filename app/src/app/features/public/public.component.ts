@@ -15,12 +15,12 @@ export default class PublicComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private mongoBucketSvc: MongoBucketService,
-    private cmnSvc: CommonFunctionsService
+    private cmnSvc: CommonFunctionsService,
   ) {}
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       const id = params.get('id')!;
-      this.pullDocsData(id).then(docs => {
+      this.pullDocsData(id).then((docs) => {
         if (docs.length >= 1) {
           this.pullImageWithId(docs, id);
         } else {
@@ -39,7 +39,7 @@ export default class PublicComponent implements OnInit {
     // Retorna una imagen usando de parametro objectId
     for (let doc of docs) {
       const arraybuff = await firstValueFrom(
-        this.mongoBucketSvc.getImageWithObjectId(id, doc._id)
+        this.mongoBucketSvc.getImageWithObjectId(id, doc._id),
       );
       const file = new File([arraybuff], doc.filename, {
         type: doc.metadata.mimetype,
@@ -51,12 +51,13 @@ export default class PublicComponent implements OnInit {
   convertFilesToLocalGallery(
     file: File,
     dst: LocalGallery[],
-    _id?: string
+    _id?: string,
   ): void {
     // Que esta funcion trabaje con un solo documento
     // Es decir, que el forEach este fuera.
-    this.cmnSvc.convertFileToBase64Url(file)
-      .then(imgBase64 => {
+    this.cmnSvc
+      .convertFileToBase64Url(file)
+      .then((imgBase64) => {
         const obj: LocalGallery = {
           fileObject: file,
           base64url: imgBase64,
@@ -66,6 +67,6 @@ export default class PublicComponent implements OnInit {
         }
         dst.push(obj);
       })
-      .catch(e => console.log(e));
+      .catch((e) => console.log(e));
   }
 }

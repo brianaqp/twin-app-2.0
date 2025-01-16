@@ -1,50 +1,75 @@
-import { HttpClient } from "@angular/common/http";
-import { effect, inject, Injectable, OnInit, signal } from "@angular/core";
-import { environment } from "../environments/environment"
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable, signal } from '@angular/core';
+import { initializeApp } from 'firebase/app';
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  User,
+} from 'firebase/auth';
+
+export enum LoginStatus {
+  INIT,
+  TRUE,
+  FALSE,
+}
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
-export class AuthService implements OnInit {
-    private readonly status = signal(false);
+export class AuthService {
+  // --- Auth variables
+  private readonly status = signal(LoginStatus.INIT);
+  authToken: null | string = null;
+  // Setter for the signal
+  set userAuthStatus(status: LoginStatus) {
+    this.status.set(status);
+  }
 
-    // Dependencies
-    private http = inject(HttpClient);
-    
-    constructor() {
-        // Logger effect
-        effect(() => {
-            console.log('status changed to', this.status());
-        });
-    }
+  // Readonly version for other components
+  public loginStatus = this.status.asReadonly();
 
-    get userAuthStatus()  {
-        return this.status();
-    }
+  // Dependencies
+  private http = inject(HttpClient);
 
-    set userAuthStatus(status: boolean) {
-        this.status.set(status);
-    }
+  // Firebase
+  private firebaseApp = initializeApp({
+    apiKey: 'AIzaSyA6Y44g84TqfI7i17U4tcDSjOS9rgtJiF4',
+    authDomain: 'twin-47464.firebaseapp.com',
+    projectId: 'twin-47464',
+    storageBucket: 'twin-47464.firebasestorage.app',
+    messagingSenderId: '883986157924',
+    appId: '1:883986157924:web:a8d142792e6b68028e2a71',
+    measurementId: 'G-5HMN9EPHW7',
+  });
+  private auth = getAuth(this.firebaseApp);
 
-    ngOnInit(): void {
-        // [ ] Check if is sign in
-    }
+  constructor() {
+    console.log('AUTH SERVICE INITIALIZED');
+    onAuthStateChanged(this.auth, (user) => {
+      if (user) {
+        this.userAuthStatus = LoginStatus.TRUE;
+        user
+          .getIdToken()
+          .then((value) => {
+            this.authToken = value;
+          })
+          .catch((error) => {
+            console.error('Something happend with Firebase Token.', error);
+          });
+      } else {
+        this.userAuthStatus = LoginStatus.FALSE;
+        this.authToken = null;
+      }
+    });
+  }
 
-    // [ ] Implement login and logout methods
-    login(email: string, password: string) {
-        this.http.post(`${environment.apiUrl}/login`, { email, password }).subscribe({
-            next: (response) => {
-                console.log(response);
-                this.userAuthStatus = true;
-            },
-            error: (error) => {
-                console.error(error);
-                this.userAuthStatus = false;
-            }
-        });
-    }
+  // Functions
+  login(email: string, password: string) {
+    return signInWithEmailAndPassword(this.auth, email, password);
+  }
 
-    logout() {
-        this.userAuthStatus = false;
-    }
+  logout() {
+    this.auth.signOut();
+  }
 }

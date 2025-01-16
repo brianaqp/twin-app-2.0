@@ -27,17 +27,17 @@ export class LiquidacionEmbarqueComponent implements OnInit {
   // styles
   st = {
     title: {
-      'font-size': '18.5px'
+      'font-size': '18.5px',
     },
     table: {
-      'font-size': '13px'
-    }
-  }
+      'font-size': '13px',
+    },
+  };
 
   constructor(
     private readonly router: Router,
     private readonly repoSvc: RepositoriesService,
-    private readonly cmnSvc: CommonFunctionsService
+    private readonly cmnSvc: CommonFunctionsService,
   ) {
     this.routerData = router.getCurrentNavigation()?.extras.state;
   }
@@ -62,7 +62,7 @@ export class LiquidacionEmbarqueComponent implements OnInit {
 
   setTable(): void {
     this.recData = Object.entries(
-      this.data.reports[this.port].data.receiversData.receivers
+      this.data.reports[this.port].data.receiversData.receivers,
     );
     this.blData = this.data.reports[this.port].data.blData.data;
     this.ttl = this.data.reports[this.port].data.blData.ttl;
@@ -70,7 +70,7 @@ export class LiquidacionEmbarqueComponent implements OnInit {
 
   async pullData(): Promise<void> {
     this.data = await firstValueFrom(
-      this.repoSvc.findOne('registers', this.registerId)
+      this.repoSvc.findOne('registers', this.registerId),
     );
     console.log(this.data);
   }

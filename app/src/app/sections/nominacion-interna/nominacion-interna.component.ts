@@ -1,5 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbAlert, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { firstValueFrom } from 'rxjs';
@@ -52,7 +57,7 @@ export class NominacionInternaComponent implements OnInit {
   constructor(
     private readonly repoSvc: RepositoriesService,
     private readonly router: Router,
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
   ) {
     this.routerData = this.router.getCurrentNavigation()?.extras.state;
   }
@@ -99,10 +104,10 @@ export class NominacionInternaComponent implements OnInit {
       flow: 1,
     };
     this.registerData = await firstValueFrom(
-      this.repoSvc.findOne('registers', this.registerId, projection)
+      this.repoSvc.findOne('registers', this.registerId, projection),
     );
     this.vesselData = await firstValueFrom(
-      this.repoSvc.findOne('vessels', this.vesselId)
+      this.repoSvc.findOne('vessels', this.vesselId),
     );
     console.log(this.vesselData);
   }
@@ -163,7 +168,7 @@ export class NominacionInternaComponent implements OnInit {
       setTimeout(() => {
         callback();
         resolve();
-      }, ms)
+      }, ms),
     );
   }
 

@@ -1,7 +1,7 @@
-<section *ngIf="isDataLoaded" style="
-font-family: Tahoma, sans-serif;
-font-size: 13px;
-">
+<section
+  *ngIf="isDataLoaded"
+  style="font-family: Tahoma, sans-serif; font-size: 13px"
+>
   <div class="row d-print-none user-box">
     <p class="h3 d-print-none">Vista previa</p>
     <div class="col-8 col-md-6 mb-4">
@@ -9,7 +9,8 @@ font-size: 13px;
         class="form-select"
         aria-label="Default select example"
         [(ngModel)]="receiverIdSelected"
-        (change)="receiverSelectedChange()">
+        (change)="receiverSelectedChange()"
+      >
         <option value="default">Seleccione el recibidor para el nor</option>
         <ng-container *ngFor="let item of receivers">
           <option value="{{ item.id }}">
@@ -21,7 +22,8 @@ font-size: 13px;
     <div class="col-4">
       <button
         class="btn btn-outline-secondary d-print-none"
-        (click)="printPDF()">
+        (click)="printPDF()"
+      >
         Visualizar PDF
       </button>
     </div>
@@ -34,7 +36,8 @@ font-size: 13px;
         </a>
       </div>
       <div
-        class="col-6 d-flex align-items-center justify-content-center border-success">
+        class="col-6 d-flex align-items-center justify-content-center border-success"
+      >
         <p class="h3 text-uppercase">Notice of Readiness</p>
       </div>
     </div>

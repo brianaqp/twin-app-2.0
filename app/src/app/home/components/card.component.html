@@ -2,20 +2,23 @@
   <button
     class="btn btn-outline-secondary dropdown-toggle"
     type="button"
-    ngbDropdownToggle>
+    ngbDropdownToggle
+  >
     Search by {{ searchType }}
   </button>
   <div class="dropdown-menu" ngbDropdownMenu>
     <button
       class="dropdown-item"
       ngbDropdownItem
-      (click)="onSearchTypeChange('id')">
+      (click)="onSearchTypeChange('id')"
+    >
       ID
     </button>
     <button
       class="dropdown-item"
       ngbDropdownItem
-      (click)="onSearchTypeChange('name')">
+      (click)="onSearchTypeChange('name')"
+    >
       Name
     </button>
   </div>
@@ -24,22 +27,22 @@
     class="form-control"
     #input
     (input)="onSearch($event)"
-    (keydown.enter)="input.blur()" />
+    (keydown.enter)="input.blur()"
+  />
 </div>
 <hr />
 <div class="card border border-0">
   <ul class="list-group">
-    @for (item of displayedList(); track $index)
-    {
-      <a
-      class="list-group-item list-group-item-action fs-6"
-      [routerLink]="'/repositorio'"
-      [state]="{ id: item.id, type: collection() }">
-      {{ item.id }} | {{ item.name }}
-    </a>
-    } @empty {
+    @for (item of displayedList(); track $index) {
       <a
         class="list-group-item list-group-item-action fs-6"
+        [routerLink]="'/repositorio'"
+        [state]="{ id: item.id, type: collection() }"
+      >
+        {{ item.id }} | {{ item.name }}
+      </a>
+    } @empty {
+      <a class="list-group-item list-group-item-action fs-6"
         >No hay datos que mostrar
       </a>
     }

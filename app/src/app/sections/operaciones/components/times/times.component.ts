@@ -23,7 +23,13 @@ import { NgbAlertModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-times-cmp',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgbAlertModule, NgbDropdownModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbAlertModule,
+    NgbDropdownModule,
+  ],
   templateUrl: './times.component.html',
   styleUrls: ['./times.component.scss'],
 })
@@ -76,11 +82,11 @@ export class TimesComponent implements OnInit, OnChanges {
   async loadDropdownData(): Promise<void> {
     const allTimesSet: Set<string> = new Set();
 
-    this.workingDates.forEach(date => {
+    this.workingDates.forEach((date) => {
       const times = this.localTimes[date];
 
       ['arrivalTimes', 'stopTimes', 'operationalTimes', 'sailingTimes'].forEach(
-        category => {
+        (category) => {
           times[category].forEach((attribute: any) => {
             const value = attribute.description;
 
@@ -88,7 +94,7 @@ export class TimesComponent implements OnInit, OnChanges {
               allTimesSet.add(value.trim());
             }
           });
-        }
+        },
       );
     });
 
@@ -149,7 +155,7 @@ export class TimesComponent implements OnInit, OnChanges {
           endTime: [this.endTime.slice(0, 5)],
           description: [this.description.toLocaleUpperCase()],
           category: [this.category],
-        })
+        }),
       );
       // Se agrega la descripcion al arreglo de descripciones, si no existe
       if (this.autoCompleteData.indexOf(this.description) === -1) {
@@ -210,7 +216,7 @@ export class TimesComponent implements OnInit, OnChanges {
             endTime: [time.endTime],
             description: [time.description],
             category: [time.category],
-          })
+          }),
         );
       }
     }

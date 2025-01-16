@@ -1,6 +1,6 @@
-<div class="container mt-2" *ngIf="isDataLoaded" >
+<div class="container mt-2" *ngIf="isDataLoaded">
   <p class="h3">{{ getTitle() }} HRS. REPORT</p>
-  <p>{{ formattedDate | date: 'dd/MM/yyyy' }}</p>
+  <p>{{ formattedDate | date: "dd/MM/yyyy" }}</p>
   <div class="row d-print-none flex-nowrap mb-4">
     <div class="col-4 col-md-3 col-lg-2">
       <button class="btn btn-outline-primary w-100" (click)="set24Report()">
@@ -25,10 +25,11 @@
         class="form-control"
         [(ngModel)]="date"
         [ngModelOptions]="{ standalone: true }"
-        (change)="onDateChange()">
+        (change)="onDateChange()"
+      >
         <option [ngValue]="'0'">Seleccione una fecha</option>
         <option *ngFor="let date of orderedDates" [ngValue]="date">
-          {{ formattedDate | date: 'dd/MM/yyyy' }}
+          {{ formattedDate | date: "dd/MM/yyyy" }}
         </option>
       </select>
     </div>
@@ -37,29 +38,41 @@
     <table [ngStyle]="st.general.table">
       <tbody>
         <tr>
-          <th colspan="2" [ngStyle]="st.general.header">Quantities {{ flowName }}</th>
+          <th colspan="2" [ngStyle]="st.general.header">
+            Quantities {{ flowName }}
+          </th>
         </tr>
       </tbody>
       <tbody>
         <tr>
           <th [ngStyle]="st.general.body.th">Total Parcel to {{ flowName }}</th>
-          <td [ngStyle]="st.general.body.td">{{ manualTable.initialTon | tonFormat}}</td>
+          <td [ngStyle]="st.general.body.td">
+            {{ manualTable.initialTon | tonFormat }}
+          </td>
         </tr>
         <tr>
           <th [ngStyle]="st.general.body.th">Previous {{ flowName }}</th>
-          <td [ngStyle]="st.general.body.td">{{ manualTable.previous | tonFormat }}</td>
+          <td [ngStyle]="st.general.body.td">
+            {{ manualTable.previous | tonFormat }}
+          </td>
         </tr>
         <tr>
           <th [ngStyle]="st.general.body.th">Discharged {{ flowName }}</th>
-          <td [ngStyle]="st.general.body.td">{{ manualTable.perDay | tonFormat }}</td>
+          <td [ngStyle]="st.general.body.td">
+            {{ manualTable.perDay | tonFormat }}
+          </td>
         </tr>
         <tr>
           <th [ngStyle]="st.general.body.th">Total {{ flowName }}</th>
-          <td [ngStyle]="st.general.body.td">{{ manualTable.ttl | tonFormat}}</td>
+          <td [ngStyle]="st.general.body.td">
+            {{ manualTable.ttl | tonFormat }}
+          </td>
         </tr>
         <tr>
           <th [ngStyle]="st.general.body.th">To be {{ flowName }}</th>
-          <td [ngStyle]="st.general.body.td">{{ manualTable.toBeDischarge | tonFormat}}</td>
+          <td [ngStyle]="st.general.body.td">
+            {{ manualTable.toBeDischarge | tonFormat }}
+          </td>
         </tr>
       </tbody>
     </table>
@@ -67,15 +80,16 @@
 
   <div class="times-per-category mt-2">
     <ng-container *ngFor="let category of ['operationalTimes', 'stopTimes']">
-      <p class="mt-4 mb-0" [ngStyle]="st.titles">{{ getCategoryFormatted(category) }}</p>
+      <p class="mt-4 mb-0" [ngStyle]="st.titles">
+        {{ getCategoryFormatted(category) }}
+      </p>
       <ng-container *ngIf="timesPerDate">
         <table [ngStyle]="st.times.table">
           <ng-container *ngFor="let date of getDatesOfTimes">
-            <tbody
-              *ngIf="checkIfTimesShow(timesPerDate[date][category])">
+            <tbody *ngIf="checkIfTimesShow(timesPerDate[date][category])">
               <tr>
                 <th colspan="2" [ngStyle]="st.times.header">
-                  <span>{{ formattedDate | date: 'dd/MM/yyyy' }}</span>
+                  <span>{{ formattedDate | date: "dd/MM/yyyy" }}</span>
                 </th>
               </tr>
             </tbody>
@@ -99,10 +113,15 @@
         <p class="mt-3 mt-sm-2 mb-0" [ngStyle]="st.titles">
           {{ getFlowType(category) }}
         </p>
-        <table *ngIf="checkIfCategoryShow(category)" [ngStyle]="st.quantities.table">
+        <table
+          *ngIf="checkIfCategoryShow(category)"
+          [ngStyle]="st.quantities.table"
+        >
           <tbody>
             <tr>
-              <th [ngStyle]="st.quantities.header">{{ getFlowType(category) }}</th>
+              <th [ngStyle]="st.quantities.header">
+                {{ getFlowType(category) }}
+              </th>
               <th [ngStyle]="st.quantities.header">Initial Tonnage</th>
               <th [ngStyle]="st.quantities.header">Previous {{ flowName }}</th>
               <th [ngStyle]="st.quantities.header">Day {{ flowName }}</th>
@@ -113,21 +132,41 @@
           <tbody *ngIf="showTables">
             <tr *ngFor="let item of localQuantities[date][category].data">
               <th [ngStyle]="st.quantities.body.th">{{ item.name }}</th>
-              <td [ngStyle]="st.quantities.body.td">{{ item.initialTon | tonFormat }}</td>
-              <td [ngStyle]="st.quantities.body.td">{{ item.previous | tonFormat }}</td>
-              <td [ngStyle]="st.quantities.body.td">{{ item.perDay | tonFormat }}</td>
-              <td [ngStyle]="st.quantities.body.td">{{ item.ttl | tonFormat }}</td>
-              <td [ngStyle]="st.quantities.body.td">{{ item.toBeDischarge | tonFormat }}</td>
+              <td [ngStyle]="st.quantities.body.td">
+                {{ item.initialTon | tonFormat }}
+              </td>
+              <td [ngStyle]="st.quantities.body.td">
+                {{ item.previous | tonFormat }}
+              </td>
+              <td [ngStyle]="st.quantities.body.td">
+                {{ item.perDay | tonFormat }}
+              </td>
+              <td [ngStyle]="st.quantities.body.td">
+                {{ item.ttl | tonFormat }}
+              </td>
+              <td [ngStyle]="st.quantities.body.td">
+                {{ item.toBeDischarge | tonFormat }}
+              </td>
             </tr>
           </tbody>
           <tbody class="footer" *ngIf="showTables">
             <tr>
               <th [ngStyle]="st.quantities.footer.th">Totales</th>
-              <td [ngStyle]="st.quantities.footer.td">{{ localQuantities[date][category].ttl.initialTon }}</td>
-              <td [ngStyle]="st.quantities.footer.td">{{ localQuantities[date][category].ttl.previous }}</td>
-              <td [ngStyle]="st.quantities.footer.td">{{ localQuantities[date][category].ttl.perDay }}</td>
-              <td [ngStyle]="st.quantities.footer.td">{{ localQuantities[date][category].ttl.ttl }}</td>
-              <td [ngStyle]="st.quantities.footer.td">{{ localQuantities[date][category].ttl.toBeDischarge }}</td>
+              <td [ngStyle]="st.quantities.footer.td">
+                {{ localQuantities[date][category].ttl.initialTon }}
+              </td>
+              <td [ngStyle]="st.quantities.footer.td">
+                {{ localQuantities[date][category].ttl.previous }}
+              </td>
+              <td [ngStyle]="st.quantities.footer.td">
+                {{ localQuantities[date][category].ttl.perDay }}
+              </td>
+              <td [ngStyle]="st.quantities.footer.td">
+                {{ localQuantities[date][category].ttl.ttl }}
+              </td>
+              <td [ngStyle]="st.quantities.footer.td">
+                {{ localQuantities[date][category].ttl.toBeDischarge }}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -139,10 +178,15 @@
         <p class="mt-3 mt-sm-2 mb-0" [ngStyle]="st.titles">
           {{ getFlowType(category) }}
         </p>
-        <table *ngIf="checkIfCategoryShow(category)" [ngStyle]="st.quantities.table">
+        <table
+          *ngIf="checkIfCategoryShow(category)"
+          [ngStyle]="st.quantities.table"
+        >
           <tbody>
             <tr>
-              <th [ngStyle]="st.quantities.header">{{ getFlowType(category) }}</th>
+              <th [ngStyle]="st.quantities.header">
+                {{ getFlowType(category) }}
+              </th>
               <th [ngStyle]="st.quantities.header">Cargo</th>
               <th [ngStyle]="st.quantities.header">Initial Tonnage</th>
               <th [ngStyle]="st.quantities.header">Previous {{ flowName }}</th>
@@ -152,25 +196,52 @@
             </tr>
           </tbody>
           <tbody class="body" *ngIf="showTables">
-            <tr *ngFor="let item of localQuantities[date][category].data; let i = index">
+            <tr
+              *ngFor="
+                let item of localQuantities[date][category].data;
+                let i = index
+              "
+            >
               <th [ngStyle]="st.quantities.utils.hold">{{ item.name }}</th>
-              <td [ngStyle]="st.quantities.utils.cargo">{{ holdCargos[i] ? holdCargos[i].cargo : '' }}</td>
-              <td [ngStyle]="st.quantities.body.td">{{ item.initialTon | tonFormat }}</td>
-              <td [ngStyle]="st.quantities.body.td">{{ item.previous | tonFormat }}</td>
-              <td [ngStyle]="st.quantities.body.td">{{ item.perDay | tonFormat }}</td>
-              <td [ngStyle]="st.quantities.body.td">{{ item.ttl | tonFormat }}</td>
-              <td [ngStyle]="st.quantities.body.td">{{ item.toBeDischarge | tonFormat }}</td>
+              <td [ngStyle]="st.quantities.utils.cargo">
+                {{ holdCargos[i] ? holdCargos[i].cargo : "" }}
+              </td>
+              <td [ngStyle]="st.quantities.body.td">
+                {{ item.initialTon | tonFormat }}
+              </td>
+              <td [ngStyle]="st.quantities.body.td">
+                {{ item.previous | tonFormat }}
+              </td>
+              <td [ngStyle]="st.quantities.body.td">
+                {{ item.perDay | tonFormat }}
+              </td>
+              <td [ngStyle]="st.quantities.body.td">
+                {{ item.ttl | tonFormat }}
+              </td>
+              <td [ngStyle]="st.quantities.body.td">
+                {{ item.toBeDischarge | tonFormat }}
+              </td>
             </tr>
           </tbody>
           <tbody class="footer" *ngIf="showTables">
             <tr>
               <th [ngStyle]="st.quantities.footer.th">Totales</th>
               <th [ngStyle]="st.quantities.footer.th"></th>
-              <td [ngStyle]="st.quantities.footer.td">{{ localQuantities[date][category].ttl.initialTon }}</td>
-              <td [ngStyle]="st.quantities.footer.td">{{ localQuantities[date][category].ttl.previous }}</td>
-              <td [ngStyle]="st.quantities.footer.td">{{ localQuantities[date][category].ttl.perDay }}</td>
-              <td [ngStyle]="st.quantities.footer.td">{{ localQuantities[date][category].ttl.ttl }}</td>
-              <td [ngStyle]="st.quantities.footer.td">{{ localQuantities[date][category].ttl.toBeDischarge }}</td>
+              <td [ngStyle]="st.quantities.footer.td">
+                {{ localQuantities[date][category].ttl.initialTon }}
+              </td>
+              <td [ngStyle]="st.quantities.footer.td">
+                {{ localQuantities[date][category].ttl.previous }}
+              </td>
+              <td [ngStyle]="st.quantities.footer.td">
+                {{ localQuantities[date][category].ttl.perDay }}
+              </td>
+              <td [ngStyle]="st.quantities.footer.td">
+                {{ localQuantities[date][category].ttl.ttl }}
+              </td>
+              <td [ngStyle]="st.quantities.footer.td">
+                {{ localQuantities[date][category].ttl.toBeDischarge }}
+              </td>
             </tr>
           </tbody>
         </table>

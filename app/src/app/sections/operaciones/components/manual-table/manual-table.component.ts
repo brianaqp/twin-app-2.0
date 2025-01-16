@@ -8,7 +8,13 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Quantities } from 'src/app/interfaces/register';
 import { CommonFunctionsService } from 'src/app/services/common-functions.service';
 
@@ -28,7 +34,7 @@ export class ManualTableComponent implements OnInit, OnChanges {
   @Output() generalPerDayChange = new EventEmitter<any>();
   constructor(
     private readonly fb: FormBuilder,
-    private cmnSvc: CommonFunctionsService
+    private cmnSvc: CommonFunctionsService,
   ) {}
   ngOnInit(): void {
     this.initForm();

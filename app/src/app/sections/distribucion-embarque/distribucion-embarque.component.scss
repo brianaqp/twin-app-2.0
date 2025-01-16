@@ -1,25 +1,24 @@
 @media (min-width: 576px) {
-    .container {
-        margin-left: 25%;
-    }
+  .container {
+    margin-left: 25%;
+  }
 }
 
 @media print {
-    @page {
-        size: letter
-    }
-    
-    .container {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        margin: 0;
-        padding: 0;
-    }
+  @page {
+    size: letter;
+  }
 
-    table {
-        tr {
-            page-break-inside: avoid;
-        }
-    }
+  .container {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    margin: 0;
+    padding: 0;
+  }
 
+  table {
+    tr {
+      page-break-inside: avoid;
+    }
+  }
 }

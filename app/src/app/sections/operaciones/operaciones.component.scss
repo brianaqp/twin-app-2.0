@@ -1,69 +1,67 @@
 .total-input {
-    background-color: rgba(242, 237, 237, 0.585);
-    border: 1px solid rgb(197, 194, 194);
+  background-color: rgba(242, 237, 237, 0.585);
+  border: 1px solid rgb(197, 194, 194);
 }
 
 .disabled-input {
-    background-color: rgba(242, 237, 237, 0.585);
-    border: 1px solid rgb(197, 194, 194);
+  background-color: rgba(242, 237, 237, 0.585);
+  border: 1px solid rgb(197, 194, 194);
 }
 
-
 .btn-routerlink {
-    margin-right: 10px;
-    border-color: rgb(95, 201, 169);
+  margin-right: 10px;
+  border-color: rgb(95, 201, 169);
 }
 
 .btn-routerlink:hover {
-    background-color:  rgb(95, 201, 169);
+  background-color: rgb(95, 201, 169);
 }
 
 .special-text {
-    color: var(--custom-stronger);
+  color: var(--custom-stronger);
 }
 
-
 .bl-table {
-    thead {
-        .title {
-            background-color: var(--custom-middle);
-            color: white;
-        }
-
-        th {
-            background-color: var(--custom-softer);
-            font-weight: 600;
-        }
+  thead {
+    .title {
+      background-color: var(--custom-middle);
+      color: white;
     }
 
-    tfoot {
-        th, td {
-            background-color: var(--custom-softer);
-            font-weight: 600;
-        }
+    th {
+      background-color: var(--custom-softer);
+      font-weight: 600;
     }
+  }
+
+  tfoot {
+    th,
+    td {
+      background-color: var(--custom-softer);
+      font-weight: 600;
+    }
+  }
 }
 
 .btn-success {
-    color: white;
+  color: white;
 }
 
 table {
-    input {
-        width: 100px;
-    }
+  input {
+    width: 100px;
+  }
 }
 
 footer {
-    width: 100%;
-    height: 40px;
+  width: 100%;
+  height: 40px;
 }
 
 $xl: 1200px;
 @media (min-width: $xl) {
-    .container {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-
+  .container {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
 }

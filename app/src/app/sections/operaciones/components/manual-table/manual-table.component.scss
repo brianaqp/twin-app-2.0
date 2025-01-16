@@ -1,38 +1,39 @@
 table {
-    border-color: black;
-    width: 250px;
-    
-    thead {
-        th {
-            background-color: var(--custom-middle);
-            color: white;
-            text-transform: capitalize;
-        }
+  border-color: black;
+  width: 250px;
+
+  thead {
+    th {
+      background-color: var(--custom-middle);
+      color: white;
+      text-transform: capitalize;
+    }
+  }
+
+  tbody {
+    th,
+    td {
+      max-width: 140px !important;
+      min-width: 140px !important;
+      width: 150px !important;
+      min-height: 50px !important;
+      max-height: 50px !important;
+      height: 50px !important;
+      margin: 1px;
+      padding: 3px;
+      padding: 3px;
     }
 
-    tbody {
-        th,td {
-            max-width: 140px !important;
-            min-width: 140px !important;
-            width: 150px !important;
-            min-height: 50px !important;
-            max-height: 50px !important;
-            height: 50px !important;
-            margin: 1px;
-            padding: 3px;
-            padding: 3px;
-          }
-
-        th {
-            background-color: var(--custom-soft);
-            color: #000;
-            font-size: 13px;
-            width: 125px;
-            text-align: center;
-        }
-
-        td {
-            width: 125px; 
-        }
+    th {
+      background-color: var(--custom-soft);
+      color: #000;
+      font-size: 13px;
+      width: 125px;
+      text-align: center;
     }
+
+    td {
+      width: 125px;
+    }
+  }
 }

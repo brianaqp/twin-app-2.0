@@ -2,7 +2,12 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Register } from '../../interfaces/register';
 import { RepositoriesService } from '../../services/repositories.service';
 import { CommonFunctionsService } from '../../services/common-functions.service';
@@ -12,12 +17,7 @@ import { TonFormatPipe } from 'src/app/pipes/ton-format.pipe';
 @Component({
   selector: 'app-distribucion-embarque',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    TonFormatPipe
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TonFormatPipe],
   templateUrl: './distribucion-embarque.component.html',
   styleUrls: ['./distribucion-embarque.component.scss'],
 })
@@ -44,7 +44,7 @@ export class DistribucionEmbarqueComponent implements OnInit {
     private readonly router: Router,
     private readonly repoSvc: RepositoriesService,
     private readonly fb: FormBuilder,
-    private cmnSvc: CommonFunctionsService
+    private cmnSvc: CommonFunctionsService,
   ) {
     this.routerData = router.getCurrentNavigation()?.extras.state;
   }
@@ -70,7 +70,7 @@ export class DistribucionEmbarqueComponent implements OnInit {
       stowagePlan: 1,
     };
     this.data = await firstValueFrom(
-      this.repoSvc.findOne('registers', id, projection)
+      this.repoSvc.findOne('registers', id, projection),
     );
   }
 

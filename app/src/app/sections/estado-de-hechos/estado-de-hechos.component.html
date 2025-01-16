@@ -1,15 +1,17 @@
-<div [ngClass]="{ 'print-preview': showPrintPreview }" >
-  <div class="container" *ngIf="isDataLoaded" style="
-  font-family: Tahoma, sans-serif;
-  font-size: 10;
-">
+<div [ngClass]="{ 'print-preview': showPrintPreview }">
+  <div
+    class="container"
+    *ngIf="isDataLoaded"
+    style="font-family: Tahoma, sans-serif; font-size: 10"
+  >
     <p class="h3" id="main-nav">Vista previa</p>
     <div class="row">
       <div class="col-6 col-md-5 col-lg-4">
         <button
           class="btn btn-outline-secondary mb-5 w-100"
           id="main-nav"
-          (click)="pdf()">
+          (click)="pdf()"
+        >
           PDF
         </button>
       </div>
@@ -17,8 +19,9 @@
         <button
           class="btn btn-outline-secondary mb-5 w-100"
           id="main-nav"
-          (click)="changePreview()">
-          Visualizar {{ showPrintPreview ? 'normal' : 'copy-paste' }}
+          (click)="changePreview()"
+        >
+          Visualizar {{ showPrintPreview ? "normal" : "copy-paste" }}
         </button>
       </div>
     </div>
@@ -27,7 +30,8 @@
       cellspacing="0"
       cellpadding="0"
       width="21cm"
-      [ngStyle]="st.gms(st.fullWidth, st.title)">
+      [ngStyle]="st.gms(st.fullWidth, st.title)"
+    >
       <tr border="0">
         <td style="width: 50%; height: 100px !important">
           <a>
@@ -46,35 +50,49 @@
       <tbody>
         <tr>
           <th [ngStyle]="st.gms(st.cell, st.sp.th)">Vessel</th>
-          <td [ngStyle]="st.gms(st.cell, st.sp.td)">{{ vessel.shipParticulars.name }}</td>
+          <td [ngStyle]="st.gms(st.cell, st.sp.td)">
+            {{ vessel.shipParticulars.name }}
+          </td>
           <th [ngStyle]="st.gms(st.cell, st.sp.th)">Flag</th>
-          <td [ngStyle]="st.gms(st.cell, st.sp.td)">{{ vessel.shipParticulars.flag }}</td>
+          <td [ngStyle]="st.gms(st.cell, st.sp.td)">
+            {{ vessel.shipParticulars.flag }}
+          </td>
         </tr>
         <tr>
           <th [ngStyle]="st.gms(st.cell, st.sp.th)">Loading Port</th>
-          <td [ngStyle]="st.gms(st.cell, st.sp.td)">{{ register.loadingPort }}</td>
+          <td [ngStyle]="st.gms(st.cell, st.sp.td)">
+            {{ register.loadingPort }}
+          </td>
           <th [ngStyle]="st.gms(st.cell, st.sp.th)">Discharging Port</th>
           <td [ngStyle]="st.gms(st.cell, st.sp.td)">{{ workingPort }}</td>
         </tr>
         <tr>
-          <th  [ngStyle]="st.gms(st.cell, st.sp.th)">Cargo</th>
+          <th [ngStyle]="st.gms(st.cell, st.sp.th)">Cargo</th>
           <td [ngStyle]="st.gms(st.cell, st.sp.td)">{{ register.cargo }}</td>
-          <th  [ngStyle]="st.gms(st.cell, st.sp.th)">Agency</th>
-          <td [ngStyle]="st.gms(st.cell, st.sp.td)">TWIN MARINE DE MEXICO, S.A. DE C.V.</td>
+          <th [ngStyle]="st.gms(st.cell, st.sp.th)">Agency</th>
+          <td [ngStyle]="st.gms(st.cell, st.sp.td)">
+            TWIN MARINE DE MEXICO, S.A. DE C.V.
+          </td>
         </tr>
       </tbody>
     </table>
 
-    <table [ngStyle]="st.gms(st.fullWidth, st.table, {'margin-top': '10px'})">
+    <table [ngStyle]="st.gms(st.fullWidth, st.table, { 'margin-top': '10px' })">
       <thead>
         <tr>
-          <th colspan="2" [ngStyle]="st.gms(st.rec.header.th, st.cell)">{{ flowType }}</th>
+          <th colspan="2" [ngStyle]="st.gms(st.rec.header.th, st.cell)">
+            {{ flowType }}
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let rec of receiversInfo">
-          <th [ngStyle]="st.gms(st.rec.body.th, st.cell)" scope="row">{{ rec.razonSocial }}</th>
-          <td [ngStyle]="st.gms(st.rec.body.td, st.cell)">{{ rec.tonelaje }}</td>
+          <th [ngStyle]="st.gms(st.rec.body.th, st.cell)" scope="row">
+            {{ rec.razonSocial }}
+          </th>
+          <td [ngStyle]="st.gms(st.rec.body.td, st.cell)">
+            {{ rec.tonelaje }}
+          </td>
         </tr>
       </tbody>
       <tfoot>
@@ -85,20 +103,25 @@
       </tfoot>
     </table>
 
-    <hr [ngStyle]="{ 'width': st.maxWidth }"/>
+    <hr [ngStyle]="{ width: st.maxWidth }" />
 
     <table [ngStyle]="st.gms(st.fullWidth, st.table)" class="table-times">
-      <tbody> <!-- Header -->
+      <tbody>
+        <!-- Header -->
         <tr>
           <th [ngStyle]="st.gms(st.cell, st.times.header.th)">Init Time</th>
           <th [ngStyle]="st.gms(st.cell, st.times.header.th)">End Time</th>
           <th [ngStyle]="st.gms(st.cell, st.times.header.th)">Facts</th>
         </tr>
       </tbody>
-      <tbody> <!-- Body -->
+      <tbody>
+        <!-- Body -->
         <ng-container *ngFor="let date of filteredDates">
-          <tr> <!-- Date Subtitle -->
-            <td [ngStyle]="st.gms(st.cell, st.times.header.date)" colspan="3">{{ date | date: 'MMM d/y EEEE' }}</td>
+          <tr>
+            <!-- Date Subtitle -->
+            <td [ngStyle]="st.gms(st.cell, st.times.header.date)" colspan="3">
+              {{ date | date: "MMM d/y EEEE" }}
+            </td>
           </tr>
           <ng-container
             *ngFor="
@@ -106,42 +129,56 @@
                 'arrivalTimes',
                 'operationalTimes',
                 'stopTimes',
-                'sailingTimes'
+                'sailingTimes',
               ]
-            ">
+            "
+          >
             <ng-container *ngIf="checkIfCategoryExist(date, category)">
-              <tr> <!-- Category Subtitle -->
-                <td colspan="3" [ngStyle]="st.gms(st.cell, st.times.header.category)">{{ getCategoryFormatted(category) }}</td>
+              <tr>
+                <!-- Category Subtitle -->
+                <td
+                  colspan="3"
+                  [ngStyle]="st.gms(st.cell, st.times.header.category)"
+                >
+                  {{ getCategoryFormatted(category) }}
+                </td>
               </tr>
               <tr *ngFor="let item of localTimes[date][category]">
                 <td [ngStyle]="st.cell">{{ item.startTime }}</td>
                 <td [ngStyle]="st.cell">{{ item.endTime }}</td>
-                <td [ngStyle]="st.gms(st.cell, {'text-transform': 'uppercase'})">
+                <td
+                  [ngStyle]="st.gms(st.cell, { 'text-transform': 'uppercase' })"
+                >
                   {{ item.description }}
                 </td>
               </tr>
             </ng-container>
           </ng-container>
         </ng-container>
-        <tr> <!-- Footer -->
-          <td colspan="3" [ngStyle]="st.gms(st.cell, st.times.header.date)">End of times</td>
+        <tr>
+          <!-- Footer -->
+          <td colspan="3" [ngStyle]="st.gms(st.cell, st.times.header.date)">
+            End of times
+          </td>
         </tr>
       </tbody>
     </table>
 
-    <div [ngStyle]="{
-      'width': st.maxWidth,
-      'max-width': st.maxWidth,
-      'min-width': st.maxWidth,
-      'background-color': st.colorStyles.middle,
-      'color': 'white',
-      'border-radius': '5px',
-      'border-color': '#000',
-      'padding': '10px',
-      'margin-bottom': '20px',
-      'margin-top': '20px',
-      'text-align': 'center'
-    }">
+    <div
+      [ngStyle]="{
+        width: st.maxWidth,
+        'max-width': st.maxWidth,
+        'min-width': st.maxWidth,
+        'background-color': st.colorStyles.middle,
+        color: 'white',
+        'border-radius': '5px',
+        'border-color': '#000',
+        padding: '10px',
+        'margin-bottom': '20px',
+        'margin-top': '20px',
+        'text-align': 'center',
+      }"
+    >
       <span
         >THE PRESENT SOF IS SIGNED AS PER CHARTER PARTY AND OR ANY ADDENDA
         THERETO</span
@@ -149,10 +186,17 @@
     </div>
 
     <table [ngStyle]="st.gms(st.fullWidth, st.border.none)">
-      <tr> <!-- maybe border: none -->
+      <tr>
+        <!-- maybe border: none -->
         <!-- first table -->
         <td [ngStyle]="st.sign.box">
-          <table width="100%" cellspacing="0" cellpadding="10" style="border-collapse: collapse;" class="sign-box">
+          <table
+            width="100%"
+            cellspacing="0"
+            cellpadding="10"
+            style="border-collapse: collapse"
+            class="sign-box"
+          >
             <tr>
               <th [ngStyle]="st.sign.header">
                 {{ vessel.shipParticulars.name }}
@@ -171,7 +215,13 @@
 
         <!-- second table -->
         <td [ngStyle]="st.sign.box">
-          <table width="100%" cellspacing="0" cellpadding="10" style="border-collapse: collapse;"  class="sign-box">
+          <table
+            width="100%"
+            cellspacing="0"
+            cellpadding="10"
+            style="border-collapse: collapse"
+            class="sign-box"
+          >
             <tr>
               <th [ngStyle]="st.sign.header">
                 TWIN MARINE DE MEXICO, S.A. DE C.V.
@@ -189,57 +239,98 @@
     </table>
 
     <table [ngStyle]="st.gms(st.fullWidth, st.border.none)" class="remarks">
-      <tr style="height: 40px;">
-        <th style="border: none; border-bottom: 1px solid black;">Master remarks</th>
+      <tr style="height: 40px">
+        <th style="border: none; border-bottom: 1px solid black">
+          Master remarks
+        </th>
       </tr>
-      <tr style="height: 40px;">
-        <td style="border: none;">
-          <pre style="
-            white-space: pre-wrap;
-            font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;"
-            >{{ hechosData.masterRemarks }}</pre>
+      <tr style="height: 40px">
+        <td style="border: none">
+          <pre
+            style="
+              white-space: pre-wrap;
+              font-family:
+                Segoe UI,
+                Tahoma,
+                Geneva,
+                Verdana,
+                sans-serif;
+            "
+            >{{ hechosData.masterRemarks }}</pre
+          >
         </td>
       </tr>
     </table>
 
     <table [ngStyle]="st.gms(st.fullWidth, st.border.none)" class="remarks">
-      <tr style="height: 40px;">
-        <th style="border: none; border-bottom: 1px solid black;">General remarks</th>
+      <tr style="height: 40px">
+        <th style="border: none; border-bottom: 1px solid black">
+          General remarks
+        </th>
       </tr>
-      <tr style="height: 40px;">
-        <td style="border: none;">
-          <pre style="
-            white-space: pre-wrap;
-            font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;"
-            >{{ hechosData.generalRemarks }}</pre>
+      <tr style="height: 40px">
+        <td style="border: none">
+          <pre
+            style="
+              white-space: pre-wrap;
+              font-family:
+                Segoe UI,
+                Tahoma,
+                Geneva,
+                Verdana,
+                sans-serif;
+            "
+            >{{ hechosData.generalRemarks }}</pre
+          >
         </td>
       </tr>
     </table>
 
-
-    <table *ngIf="hechosData.showTable" [ngStyle]="st.gms(st.fullWidth, st.table)"  class="table-receivers-cargos">
+    <table
+      *ngIf="hechosData.showTable"
+      [ngStyle]="st.gms(st.fullWidth, st.table)"
+      class="table-receivers-cargos"
+    >
       <tbody>
         <tr>
-          <th [ngStyle]="st.gms(st.cell, st.bl.header.th, {'width': '27%'})">{{ flowType }}</th>
-          <th [ngStyle]="st.gms(st.cell, st.bl.header.th, {'width': '27%'})">Cargo</th>
-          <th [ngStyle]="st.gms(st.cell, st.bl.header.th, {'width': '10%'})">BL</th>
-          <th [ngStyle]="st.gms(st.cell, st.bl.header.th, {'width': '12%'})">BL Weight</th>
-          <th [ngStyle]="st.gms(st.cell, st.bl.header.th, {'width': '12%'})">S.Scale Weight</th>
-          <th [ngStyle]="st.gms(st.cell, st.bl.header.th, {'width': '12%'})">Diff</th>
+          <th [ngStyle]="st.gms(st.cell, st.bl.header.th, { width: '27%' })">
+            {{ flowType }}
+          </th>
+          <th [ngStyle]="st.gms(st.cell, st.bl.header.th, { width: '27%' })">
+            Cargo
+          </th>
+          <th [ngStyle]="st.gms(st.cell, st.bl.header.th, { width: '10%' })">
+            BL
+          </th>
+          <th [ngStyle]="st.gms(st.cell, st.bl.header.th, { width: '12%' })">
+            BL Weight
+          </th>
+          <th [ngStyle]="st.gms(st.cell, st.bl.header.th, { width: '12%' })">
+            S.Scale Weight
+          </th>
+          <th [ngStyle]="st.gms(st.cell, st.bl.header.th, { width: '12%' })">
+            Diff
+          </th>
         </tr>
       </tbody>
       <tbody>
         <tr *ngFor="let rec of hechosData.receiversData.receivers">
-          <td [ngStyle]="st.gms(st.cell, { 'width': '27%'})">{{ rec.name }}</td>
-          <td [ngStyle]="st.gms(st.cell, { 'width': '27%'})">{{ rec.producto }}</td>
-          <td [ngStyle]="st.gms(st.cell, { 'width': '10%'})">{{ getBlData(rec.id, 'bl') }}</td>
-          <td [ngStyle]="st.gms(st.cell, { 'width': '12%'})">
-            {{ getBlData(rec.id, 'weight') | tonFormat }}
+          <td [ngStyle]="st.gms(st.cell, { width: '27%' })">{{ rec.name }}</td>
+          <td [ngStyle]="st.gms(st.cell, { width: '27%' })">
+            {{ rec.producto }}
           </td>
-          <td [ngStyle]="st.gms(st.cell, { 'width': '12%'})">
-            {{ getBlData(rec.id, 'scale') | tonFormat }}
+          <td [ngStyle]="st.gms(st.cell, { width: '10%' })">
+            {{ getBlData(rec.id, "bl") }}
           </td>
-          <td [ngStyle]="st.gms(st.cell, { 'width': '12%'})">{{ getBlData(rec.id, 'diff') }}</td>
+          <td [ngStyle]="st.gms(st.cell, { width: '12%' })">
+            {{ getBlData(rec.id, "weight") | tonFormat }}
+          </td>
+          <td [ngStyle]="st.gms(st.cell, { width: '12%' })">
+            {{ getBlData(rec.id, "scale") | tonFormat }}
+          </td>
+          <td [ngStyle]="st.gms(st.cell, { width: '12%' })">
+            {{ getBlData(rec.id, "diff") }}
+          </td>
         </tr>
       </tbody>
       <tfoot>
@@ -247,9 +338,15 @@
           <td [ngStyle]="st.gms(st.bl.emptyCell, st.cell)"></td>
           <td [ngStyle]="st.gms(st.bl.emptyCell, st.cell)"></td>
           <td [ngStyle]="st.gms(st.cell, st.bl.footer.td)">TTL</td>
-          <td [ngStyle]="st.gms(st.cell, st.bl.footer.td)">{{ hechosData.blData.ttl.weight }}</td>
-          <td [ngStyle]="st.gms(st.cell, st.bl.footer.td)">{{ hechosData.blData.ttl.scale }}</td>
-          <td [ngStyle]="st.gms(st.cell, st.bl.footer.td)">{{ hechosData.blData.ttl.diff }}</td>
+          <td [ngStyle]="st.gms(st.cell, st.bl.footer.td)">
+            {{ hechosData.blData.ttl.weight }}
+          </td>
+          <td [ngStyle]="st.gms(st.cell, st.bl.footer.td)">
+            {{ hechosData.blData.ttl.scale }}
+          </td>
+          <td [ngStyle]="st.gms(st.cell, st.bl.footer.td)">
+            {{ hechosData.blData.ttl.diff }}
+          </td>
         </tr>
       </tfoot>
     </table>
@@ -272,20 +369,24 @@
           #copy_popover="ngbPopover"
           triggers="manual"
           class="btn btn-outline-success w-100"
-          (click)="onSubmit()">
+          (click)="onSubmit()"
+        >
           Save boxes
         </button>
       </div>
     </div>
 
     <!-- Edit version -->
-    <table [ngStyle]="st.gms(st.fullWidth, st.border.none)" class="d-print-none">
+    <table
+      [ngStyle]="st.gms(st.fullWidth, st.border.none)"
+      class="d-print-none"
+    >
       <tr class="d-flex flex-wrap justify-content-between">
         <!-- first tables -->
         <td [ngStyle]="st.sign.box" *ngFor="let item of receiversInfo">
-          <table width="100%" cellspacing="0" cellpadding="10"  class="sign-box">
+          <table width="100%" cellspacing="0" cellpadding="10" class="sign-box">
             <tr>
-              <th [ngStyle]="st.sign.header">{{ item['name'] }}</th>
+              <th [ngStyle]="st.sign.header">{{ item["name"] }}</th>
             </tr>
             <tr>
               <td [ngStyle]="st.sign.body"></td>
@@ -301,14 +402,21 @@
             <td
               [ngStyle]="st.sign.box"
               *ngFor="let item of signatureBoxes.controls; let i = index"
-              formArrayName="{{ i }}">
-              <table width="100%" cellspacing="0" cellpadding="10"  class="sign-box">
+              formArrayName="{{ i }}"
+            >
+              <table
+                width="100%"
+                cellspacing="0"
+                cellpadding="10"
+                class="sign-box"
+              >
                 <tr>
                   <th [ngStyle]="st.sign.header">
                     <input
                       type="text"
                       class="box-input-header d-print-none"
-                      formControlName="name" />
+                      formControlName="name"
+                    />
                   </th>
                 </tr>
                 <tr>
@@ -319,7 +427,8 @@
                     <input
                       type="text"
                       class="box-input-footer d-print-none"
-                      formControlName="role" />
+                      formControlName="role"
+                    />
                   </td>
                 </tr>
               </table>
@@ -333,11 +442,12 @@
     <table
       [ngStyle]="st.gms(st.fullWidth, st.border.none)"
       class="mt-3 d-none d-print-inline-block"
-      *ngFor="let items of allBoxes">
+      *ngFor="let items of allBoxes"
+    >
       <tr class="d-flex">
         <!-- first table -->
-        <td [ngStyle]="st.sign.box" >
-          <table width="100%" cellspacing="0" cellpadding="10"  class="sign-box">
+        <td [ngStyle]="st.sign.box">
+          <table width="100%" cellspacing="0" cellpadding="10" class="sign-box">
             <tr>
               <th [ngStyle]="st.sign.header">{{ items[0].name }}</th>
             </tr>
@@ -353,8 +463,8 @@
         <td style="width: 5%; border: none" valign="top"></td>
 
         <!-- second table -->
-        <td [ngStyle]="st.sign.box"  *ngIf="items[1]">
-          <table width="100%" cellspacing="0" cellpadding="10"  class="sign-box">
+        <td [ngStyle]="st.sign.box" *ngIf="items[1]">
+          <table width="100%" cellspacing="0" cellpadding="10" class="sign-box">
             <tr>
               <th [ngStyle]="st.sign.header">{{ items[1].name }}</th>
             </tr>

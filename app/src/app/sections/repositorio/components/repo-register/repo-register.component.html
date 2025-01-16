@@ -3,7 +3,7 @@
     <p class="display-6">Registro del barco</p>
     <p class="fs-5">
       {{ vessel.shipParticulars.name }}, from:
-      {{ register.id.split('-').slice(0, 2).join('-') }}
+      {{ register.id.split("-").slice(0, 2).join("-") }}
     </p>
     <hr />
   </div>
@@ -12,7 +12,8 @@
       <button
         routerLink="/reporte-de-llegada"
         [state]="{ data: register, vesselData: vessel }"
-        class="btn btn-outline-dark btn-outline-secondary w-100">
+        class="btn btn-outline-dark btn-outline-secondary w-100"
+      >
         Reporte de llegada
       </button>
     </div>
@@ -22,7 +23,8 @@
       <button
         routerLink="/nuevo-registro"
         [state]="{ editMode: true, registerId: register.id }"
-        class="btn btn-outline-dark btn-outline-secondary w-100">
+        class="btn btn-outline-dark btn-outline-secondary w-100"
+      >
         Editar registro
       </button>
     </div>
@@ -31,13 +33,15 @@
   <hr />
   <div
     class="row justify-content-center mb-2"
-    *ngFor="let port of register.workingPorts">
+    *ngFor="let port of register.workingPorts"
+  >
     <div class="col-8 col-md-5 mb-2">
       <button
         class="btn btn-outline-dark w-100"
         [ngStyle]="{ 'background-color': getPortColor(port) }"
         routerLink="/reporte-de-operaciones"
-        [state]="{ registerId: register.id, workingPort: port }">
+        [state]="{ registerId: register.id, workingPort: port }"
+      >
         {{ port }}
       </button>
     </div>
@@ -49,7 +53,8 @@
       <button
         class="btn btn-outline-dark btn-outline-secondary w-100 mb-2"
         routerLink="/distribucion-embarque"
-        [state]="{ registerId: register.id }">
+        [state]="{ registerId: register.id }"
+      >
         Distribución de Embarque
       </button>
     </div>
@@ -59,7 +64,8 @@
       <button
         class="btn btn-outline-dark btn-outline-secondary w-100 mb-2"
         routerLink="/nominacion-interna"
-        [state]="{ registerId: register.id, vesselId: vessel.id }">
+        [state]="{ registerId: register.id, vesselId: vessel.id }"
+      >
         Nominación interna
       </button>
     </div>
@@ -71,7 +77,8 @@
       <button
         class="btn btn-outline-dark btn-outline-secondary w-100"
         routerLink="/galeria"
-        [state]="{ registerId: register.id }">
+        [state]="{ registerId: register.id }"
+      >
         Galeria de imagenes
       </button>
     </div>

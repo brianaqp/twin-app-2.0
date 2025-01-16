@@ -1,79 +1,77 @@
 $max-width: 215mm;
 
 .container {
-    margin-left: 20%;
+  margin-left: 20%;
 }
 
-
 .box-input {
-    border: 0;
-    border-bottom: 1px solid #484848;
-    height: 25px;
-} 
+  border: 0;
+  border-bottom: 1px solid #484848;
+  height: 25px;
+}
 
 .box-input-header {
-    @extend .box-input;
-    background-color: var(--custom-middle);
-    color: white;
+  @extend .box-input;
+  background-color: var(--custom-middle);
+  color: white;
 }
 
 .box-input-footer {
-    @extend .box-input;
-    background-color: var(--custom-softer);
-    color: black;
+  @extend .box-input;
+  background-color: var(--custom-softer);
+  color: black;
 }
 
 footer {
-    height: 25px;
+  height: 25px;
 }
 
 .print-preview {
-    .container {
-        margin: 0;
-    }
-    .d-print-none {
-        display: none !important;
-    }
+  .container {
+    margin: 0;
+  }
+  .d-print-none {
+    display: none !important;
+  }
 
-    .d-print-inline-block {
-        display: inline-block !important;
-    }
+  .d-print-inline-block {
+    display: inline-block !important;
+  }
 }
 
 // ONly when printing
 @media print {
+  @page {
+    size: letter;
+    margin: 10mm;
+  }
 
-    @page {
-        size: letter;
-        margin: 10mm;
-    }
+  .container {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    margin: 0%;
+  }
 
-    .container {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        margin: 0%;
+  .table-times {
+    page-break-after: always;
+    tr {
+      page-break-inside: avoid !important;
     }
+  }
 
-    .table-times {
-        page-break-after: always;
-        tr {
-            page-break-inside: avoid !important;
-        }
-    }
+  .table-receivers-cargos {
+    page-break-inside: avoid !important;
+  }
 
-    .table-receivers-cargos {
-        page-break-inside: avoid !important;
-    }
+  .sign-box {
+    page-break-inside: avoid !important;
+  }
 
-    .sign-box {
-        page-break-inside: avoid !important;
-    }
+  .remarks {
+    page-break-inside: avoid !important;
+  }
 
-    .remarks {
-        page-break-inside: avoid !important;
-    }
-
-    #main-nav {
-        display: none !important;
-    }
+  #main-nav {
+    display: none !important;
+  }
 }

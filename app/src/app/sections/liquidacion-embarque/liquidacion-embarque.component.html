@@ -1,11 +1,15 @@
 <section
   *ngIf="isDataLoaded"
-  class="d-flex flex-column justify-content-center mt-1" style="
-  font-family: Tahoma, sans-serif;
-">
+  class="d-flex flex-column justify-content-center mt-1"
+  style="font-family: Tahoma, sans-serif"
+>
   <p class="h3 mb-3" [ngStyle]="st.title">Liquidacion de embarque</p>
   <tr></tr>
-  <table border="1px solid black" class="table-receivers-cargos" [ngStyle]="st.table">
+  <table
+    border="1px solid black"
+    class="table-receivers-cargos"
+    [ngStyle]="st.table"
+  >
     <tbody>
       <tr>
         <th colspan="6" class="title">

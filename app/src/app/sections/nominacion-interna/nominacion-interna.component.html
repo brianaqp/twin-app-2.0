@@ -14,8 +14,9 @@
     <div class="col-8 col-md-4">
       <button
         class="btn btn-outline-secondary w-100"
-        (click)="changePreviewState()">
-        Visualizar formato {{ showPreview ? 'formulario' : 'copy-paste' }}
+        (click)="changePreviewState()"
+      >
+        Visualizar formato {{ showPreview ? "formulario" : "copy-paste" }}
       </button>
     </div>
     <div *ngIf="saveAlertMessage" class="col-12 mt-2">
@@ -31,7 +32,8 @@
   <div
     class="page-border d-flex flex-column flex-nowrap mt-5"
     *ngIf="isDataLoaded"
-    [formGroup]="form">
+    [formGroup]="form"
+  >
     <!-- Header section -->
     <!-- 2 tables inside td tags -->
     <table style="margin: 0">
@@ -40,7 +42,8 @@
           <table style="margin: 0">
             <a
               class="img-container"
-              style="display: inline-block; width: 250px">
+              style="display: inline-block; width: 250px"
+            >
               <img src="assets/logo_with_name.jpeg" alt="logo" width="100%" />
             </a>
           </table>
@@ -55,7 +58,7 @@
             <tr>
               <td class="h5 text-end">
                 {{ vesselData.shipParticulars.name }} /
-                {{ registerData.stowagePlan.totales['general'] }} MT
+                {{ registerData.stowagePlan.totales["general"] }} MT
               </td>
             </tr>
           </table>
@@ -87,13 +90,19 @@
       <strong>{{ form.value.cliente }}</strong> como agentes de puerto del buque
       <strong>{{ vesselData.shipParticulars.name }}</strong> de referencia para
       {{ flowName }} un total de
-      <strong>{{ registerData.stowagePlan.totales['general'] }}</strong> MT de
+      <strong>{{ registerData.stowagePlan.totales["general"] }}</strong> MT de
       <input
         type="text"
         placeholder="Cargo"
         formControlName="cargo"
-        style="display: inline-block; width: 150px; margin-left: 5px; margin-right: 3px;"
-        class="form-control d-print-none" />
+        style="
+          display: inline-block;
+          width: 150px;
+          margin-left: 5px;
+          margin-right: 3px;
+        "
+        class="form-control d-print-none"
+      />
       <strong class="d-none d-print-inline">{{ form.value.cargo }}</strong
       >.
     </p>
@@ -109,7 +118,8 @@
               formControlName="cliente"
               placeholder="Cliente"
               type="text"
-              class="form-control d-print-none" />
+              class="form-control d-print-none"
+            />
           </td>
         </tr>
         <tr>
@@ -120,7 +130,8 @@
               formControlName="direccion"
               placeholder="Direccion"
               type="text"
-              class="form-control d-print-none" />
+              class="form-control d-print-none"
+            />
           </td>
         </tr>
         <tr>
@@ -133,7 +144,8 @@
               formControlName="direccionCuenta"
               placeholder="Direccion Cuenta"
               type="text"
-              class="form-control d-print-none" />
+              class="form-control d-print-none"
+            />
           </td>
         </tr>
       </tbody>
@@ -171,12 +183,14 @@
         type="text"
         class="form-control"
         formControlName="instruccionesEspeciales"
-        style="height: 6em"></textarea>
+        style="height: 6em"
+      ></textarea>
     </div>
     <div class="col-3 mt-2 d-print-none">
       <button
         class="btn btn-outline-secondary"
-        (click)="resetInstructionsMessage()">
+        (click)="resetInstructionsMessage()"
+      >
         Reset Message
       </button>
     </div>

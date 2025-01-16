@@ -5,7 +5,8 @@
       type="button"
       class="btn-close"
       aria-label="Close"
-      (click)="offcanvas.dismiss('Cross click')"></button>
+      (click)="offcanvas.dismiss('Cross click')"
+    ></button>
   </div>
   <hr />
   <div class="offcanvas-body">
@@ -18,8 +19,9 @@
           [state]="{
             vesselId: vesselData.id,
             registerId: registerData.id,
-            workingPort: workingPort
-          }">
+            workingPort: workingPort,
+          }"
+        >
           Nor</a
         >
       </li>
@@ -28,7 +30,8 @@
           class="nav-link"
           (click)="offcanvas.close('navigation-out')"
           routerLink="/reporte-por-horas"
-          [state]="{ registerId: registerId, port: workingPort, date: date }">
+          [state]="{ registerId: registerId, port: workingPort, date: date }"
+        >
           Reporte por horas</a
         >
       </li>
@@ -37,7 +40,8 @@
           class="nav-link"
           routerLink="/estado-de-hechos"
           (click)="offcanvas.close('navigation-out')"
-          [state]="{ registerId: registerData.id, workingPort: workingPort }">
+          [state]="{ registerId: registerData.id, workingPort: workingPort }"
+        >
           Estado de hechos</a
         >
       </li>
@@ -46,21 +50,23 @@
           class="nav-link"
           (click)="offcanvas.close('navigation-out')"
           routerLink="/liquidacion-embarque"
-          [state]="{ registerId: registerId, port: workingPort }">
+          [state]="{ registerId: registerId, port: workingPort }"
+        >
           Liquidacion de Embarque</a
         >
       </li>
     </div>
     <hr />
     <p class="fs-5">Tiempos</p>
-    <p>Fecha actual seleccionada: {{ date | date: 'dd/MM' }}</p>
+    <p>Fecha actual seleccionada: {{ date | date: "dd/MM" }}</p>
     <div class="row flex-wrap">
       <div class="col-4 mb-3" *ngFor="let localDate of filterDates()">
         <button
           (click)="onDateChanged(localDate)"
           [ngClass]="{ 'btn-success': localDate === date }"
-          class="btn btn-outline-success w-100">
-          {{ localDate | date: 'dd/MM' }}
+          class="btn btn-outline-success w-100"
+        >
+          {{ localDate | date: "dd/MM" }}
         </button>
       </div>
     </div>
@@ -87,8 +93,9 @@
             [state]="{
               vesselId: vesselData.id,
               registerId: registerData.id,
-              workingPort: workingPort
-            }">
+              workingPort: workingPort,
+            }"
+          >
             Nor
           </button>
         </div>
@@ -96,7 +103,8 @@
           <button
             class="btn btn-outline-secondary w-100"
             routerLink="/reporte-por-horas"
-            [state]="{ registerId: registerId, port: workingPort, date: date }">
+            [state]="{ registerId: registerId, port: workingPort, date: date }"
+          >
             Reporte por horas
           </button>
         </div>
@@ -104,7 +112,8 @@
           <button
             routerLink="/estado-de-hechos"
             [state]="{ registerId: registerData.id, workingPort: workingPort }"
-            class="btn btn-outline-secondary w-100">
+            class="btn btn-outline-secondary w-100"
+          >
             Estado de hechos
           </button>
         </div>
@@ -112,7 +121,8 @@
           <button
             class="btn btn-outline-secondary w-100"
             routerLink="/liquidacion-embarque"
-            [state]="{ registerId: registerId, port: workingPort }">
+            [state]="{ registerId: registerId, port: workingPort }"
+          >
             Liquidacion de embarque
           </button>
         </div>
@@ -128,12 +138,14 @@
               type="text"
               [(ngModel)]="productInput"
               [ngModelOptions]="{ standalone: true }"
-              placeholder="Ejemplo: UREA" />
+              placeholder="Ejemplo: UREA"
+            />
           </div>
           <div class="col-4 col-md-2 col-lg-2">
             <button
               class="btn btn-outline-primary w-100"
-              (click)="addProduct()">
+              (click)="addProduct()"
+            >
               Añadir
             </button>
           </div>
@@ -142,18 +154,21 @@
         <ng-container formArrayName="products">
           <div
             class="row mt-2"
-            *ngFor="let product of productsControls.controls; let i = index">
+            *ngFor="let product of productsControls.controls; let i = index"
+          >
             <div class="col-8 col-md-6 col-lg-3">
               <input
                 readonly
                 class="form-control"
                 type="text"
-                formControlName="{{ i }}" />
+                formControlName="{{ i }}"
+              />
             </div>
             <div class="col-3 col-md-2">
               <button
                 class="btn btn-outline-danger w-100"
-                (click)="deleteProduct(i)">
+                (click)="deleteProduct(i)"
+              >
                 X
               </button>
             </div>
@@ -171,7 +186,8 @@
                 [(ngModel)]="recName"
                 [ngModelOptions]="{ standalone: true }"
                 type="text"
-                placeholder="Name" />
+                placeholder="Name"
+              />
               <!-- <button
                 class="btn btn-outline-secondary dropdown-toggle"
                 ngbDropdownAnchor></button>
@@ -184,32 +200,39 @@
             </div>
           </div>
           <div class="col-8 col-sm-6 col-md-4 col-lg-2 mt-2 gx-1">
-            <div class="input-group" ngbDropdown #receiversDropdown="ngbDropdown">
+            <div
+              class="input-group"
+              ngbDropdown
+              #receiversDropdown="ngbDropdown"
+            >
               <input
-              class="form-control"
-              [(ngModel)]="recRazonSocial"
-              [ngModelOptions]="{ standalone: true }"
-              type="text"
-              placeholder="Razon Social" 
-              ngbDropdownAnchor
-              (input)="receiversDropdownHandler($event)"/>
+                class="form-control"
+                [(ngModel)]="recRazonSocial"
+                [ngModelOptions]="{ standalone: true }"
+                type="text"
+                placeholder="Razon Social"
+                ngbDropdownAnchor
+                (input)="receiversDropdownHandler($event)"
+              />
               <div ngbDropdownMenu>
                 <button
                   *ngFor="let item of autoCompleteDataFiltered"
                   ngbDropdownItem
-                  (click)="recRazonSocial = item">
+                  (click)="recRazonSocial = item"
+                >
                   {{ item }}
                 </button>
               </div>
-          </div>
             </div>
+          </div>
           <div class="col-8 col-sm-6 col-md-4 col-lg-2 mt-2 gx-1">
             <input
               class="form-control"
               [(ngModel)]="recAa"
               [ngModelOptions]="{ standalone: true }"
               type="text"
-              placeholder="Agente Aduanal" />
+              placeholder="Agente Aduanal"
+            />
           </div>
           <div class="col-8 col-sm-6 col-md-4 col-lg-2 mt-2 gx-1">
             <input
@@ -217,7 +240,8 @@
               [(ngModel)]="recTonelaje"
               [ngModelOptions]="{ standalone: true }"
               type="text"
-              placeholder="Tonelaje" />
+              placeholder="Tonelaje"
+            />
           </div>
           <div class="col-8 col-sm-6 col-md-4 col-lg-2 mt-2 gx-1">
             <input
@@ -225,17 +249,20 @@
               [(ngModel)]="recTerminal"
               [ngModelOptions]="{ standalone: true }"
               type="text"
-              placeholder="Terminal" />
+              placeholder="Terminal"
+            />
           </div>
           <div class="mt-2 col-8 col-sm-6 col-md-4 col-lg-2 gx-1">
             <select
               [(ngModel)]="recProducto"
               class="form-select"
-              [ngModelOptions]="{ standalone: true }">
+              [ngModelOptions]="{ standalone: true }"
+            >
               <option value="0" selected>Producto</option>
               <option
                 *ngFor="let product of productsControls.controls"
-                value="{{ product.value }}">
+                value="{{ product.value }}"
+              >
                 {{ product.value }}
               </option>
             </select>
@@ -244,7 +271,8 @@
           <div class="mt-2 col-4 col-sm-2">
             <button
               class="btn btn-outline-primary w-100"
-              (click)="addReceiver()">
+              (click)="addReceiver()"
+            >
               Añadir
             </button>
           </div>
@@ -254,7 +282,8 @@
           <div
             class="form-group row flex-wrap flex-xl-nowrap mt-2"
             *ngFor="let control of receiversControls.controls; let i = index"
-            [formGroupName]="i">
+            [formGroupName]="i"
+          >
             <p class="fs-4 d-lg-none lead mt-2">{{ i + 1 }} receiver</p>
             <hr class="d-lg-none" />
             <div class="col-8 mt-2 col-sm-6 col-md-4 col-lg-2 gx-1">
@@ -263,21 +292,24 @@
                 readonly
                 class="form-control disabled-input"
                 type="text"
-                formControlName="name" />
+                formControlName="name"
+              />
             </div>
             <div class="col-8 mt-2 col-sm-6 col-md-4 col-lg-2 gx-1">
               <label class="form-label d-lg-none">Razon Social</label>
               <input
                 class="form-control"
                 type="text"
-                formControlName="razonSocial" />
+                formControlName="razonSocial"
+              />
             </div>
             <div class="col-8 mt-2 col-sm-6 col-md-4 col-lg-2 gx-1">
               <label class="form-label d-lg-none">Razon Social</label>
               <input
                 class="form-control"
                 type="text"
-                formControlName="agenteAduanal" />
+                formControlName="agenteAduanal"
+              />
             </div>
             <div class="col-8 mt-2 col-sm-6 col-md-4 col-lg-2 gx-1">
               <label class="form-label d-lg-none">Tonelaje</label>
@@ -285,14 +317,16 @@
                 class="form-control"
                 type="text"
                 formControlName="tonelaje"
-                (input)="recTonInputHandler(control)" />
+                (input)="recTonInputHandler(control)"
+              />
             </div>
             <div class="col-8 mt-2 col-sm-6 col-md-4 col-lg-2 gx-1">
               <label class="form-label d-lg-none">Terminal</label>
               <input
                 class="form-control"
                 type="text"
-                formControlName="terminal" />
+                formControlName="terminal"
+              />
             </div>
             <div class="col-8 mt-2 col-sm-6 col-md-4 col-lg-2 gx-1">
               <label class="form-label d-lg-none">Producto</label>
@@ -300,21 +334,25 @@
                 class="form-select"
                 aria-label="form-select custom-select"
                 formControlName="producto"
-                (change)="onReceiverProductChange()">
+                (change)="onReceiverProductChange()"
+              >
                 <option value="0" selected>Producto</option>
                 <option
                   *ngFor="let product of productsControls.controls"
-                  value="{{ product.value }}">
+                  value="{{ product.value }}"
+                >
                   {{ product.value }}
                 </option>
               </select>
             </div>
             <div class="w-100 d-none d-sm-block d-lg-none"></div>
             <div
-              class="col-4 col-sm-2 mt-2 col-lg-1 d-flex align-items-end d-sm-block">
+              class="col-4 col-sm-2 mt-2 col-lg-1 d-flex align-items-end d-sm-block"
+            >
               <button
                 class="btn btn-outline-danger w-100"
-                (click)="deleteReceiver(control)">
+                (click)="deleteReceiver(control)"
+              >
                 X
               </button>
             </div>
@@ -328,7 +366,8 @@
               readonly
               class="form-control total-input"
               type="text"
-              formControlName="total" />
+              formControlName="total"
+            />
           </div>
         </div>
       </div>
@@ -345,7 +384,8 @@
             [ngModelOptions]="{ standalone: true }"
             type="text"
             class="form-control"
-            (input)="autoSavingFunc('norTendered-input')" />
+            (input)="autoSavingFunc('norTendered-input')"
+          />
         </div>
       </div>
       <div class="row mt-2">
@@ -356,7 +396,8 @@
             [ngModelOptions]="{ standalone: true }"
             type="text"
             class="form-control"
-            (input)="autoSavingFunc('norPresented-input')" />
+            (input)="autoSavingFunc('norPresented-input')"
+          />
         </div>
       </div>
 
@@ -367,7 +408,8 @@
             class="form-select"
             [(ngModel)]="showTable"
             (change)="autoSavingFunc('showTable-change')"
-            [ngModelOptions]="{ standalone: true }">
+            [ngModelOptions]="{ standalone: true }"
+          >
             <option [ngValue]="true">Mostrar Tabla</option>
             <option [ngValue]="false">No Mostrar</option>
           </select>
@@ -377,7 +419,8 @@
         <div class="col-12 table-responsive-lg">
           <table
             class="table table-bordered bl-table border-secondary"
-            [formGroup]="blForm">
+            [formGroup]="blForm"
+          >
             <thead>
               <tr>
                 <th colspan="7" class="title">Cargo, BLS y recibidores</th>
@@ -385,9 +428,9 @@
               <tr>
                 <th>
                   {{
-                    registerData.flow === 'Importacion'
-                      ? 'Receivers'
-                      : 'Shippers'
+                    registerData.flow === "Importacion"
+                      ? "Receivers"
+                      : "Shippers"
                   }}
                 </th>
                 <th>Cargo</th>
@@ -400,7 +443,8 @@
             <tbody formGroupName="data">
               <tr
                 *ngFor="let rec of receiversControls.controls; let i = index"
-                [formArrayName]="i">
+                [formArrayName]="i"
+              >
                 <td>{{ rec.value.name }}</td>
                 <td>{{ rec.value.producto }}</td>
                 <td><input type="text" formControlName="bl" /></td>
@@ -409,14 +453,16 @@
                     type="text"
                     readonly
                     (change)="onBlChange('weight')"
-                    formControlName="weight" />
+                    formControlName="weight"
+                  />
                 </td>
                 <td>
                   <input
                     type="text"
                     id="scale-input"
                     (input)="onBlChange('scale')"
-                    formControlName="scale" />
+                    formControlName="scale"
+                  />
                 </td>
                 <td><input type="text" formControlName="diff" readonly /></td>
               </tr>
@@ -426,9 +472,9 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <th>{{ blForm.get('ttl')?.value.weight }}</th>
-                <th>{{ blForm.get('ttl')?.value.scale }}</th>
-                <th>{{ blForm.get('ttl')?.value.diff }}</th>
+                <th>{{ blForm.get("ttl")?.value.weight }}</th>
+                <th>{{ blForm.get("ttl")?.value.scale }}</th>
+                <th>{{ blForm.get("ttl")?.value.diff }}</th>
               </tr>
             </tfoot>
           </table>
@@ -444,7 +490,8 @@
               [(ngModel)]="date"
               [ngModelOptions]="{ standalone: true }"
               type="date"
-              class="form-control" />
+              class="form-control"
+            />
           </div>
           <!-- <input
         class="form-control"
@@ -473,16 +520,18 @@
       </div>
       <hr class="mt-4" />
       <p class="fs-5">Fechas</p>
-      <p>Actual seleccionada: {{ date | date: 'dd/MM' }}</p>
+      <p>Actual seleccionada: {{ date | date: "dd/MM" }}</p>
       <div class="row mt-2">
         <div
           class="col-4 col-md-3 mt-2"
-          *ngFor="let localDate of filterDates()">
+          *ngFor="let localDate of filterDates()"
+        >
           <button
             (click)="onDateChanged(localDate)"
             [ngClass]="{ 'btn-success': localDate === date }"
-            class="btn btn-outline-success w-100">
-            {{ localDate | date: 'dd/MM' }}
+            class="btn btn-outline-success w-100"
+          >
+            {{ localDate | date: "dd/MM" }}
           </button>
         </div>
       </div>
@@ -500,7 +549,8 @@
             (timeChangeEvent)="saveDate($event)"
             [localTimes]="localTimes"
             [isDataLoaded]="isDataLoaded"
-            category="arrivalTimes"></app-times-cmp>
+            category="arrivalTimes"
+          ></app-times-cmp>
         </div>
         <div class="row mt-3">
           <app-times-cmp
@@ -513,7 +563,8 @@
             (timeChangeEvent)="saveDate($event)"
             [localTimes]="localTimes"
             [isDataLoaded]="isDataLoaded"
-            category="operationalTimes"></app-times-cmp>
+            category="operationalTimes"
+          ></app-times-cmp>
         </div>
         <div class="row mt-3">
           <app-times-cmp
@@ -526,7 +577,8 @@
             (timeChangeEvent)="saveDate($event)"
             [localTimes]="localTimes"
             [isDataLoaded]="isDataLoaded"
-            category="stopTimes"></app-times-cmp>
+            category="stopTimes"
+          ></app-times-cmp>
         </div>
         <div class="row mt-3">
           <app-times-cmp
@@ -539,16 +591,17 @@
             (timeChangeEvent)="saveDate($event)"
             [localTimes]="localTimes"
             [isDataLoaded]="isDataLoaded"
-            category="sailingTimes"></app-times-cmp>
+            category="sailingTimes"
+          ></app-times-cmp>
         </div>
       </section>
       <hr />
 
-      <app-operaciones-cantidades 
+      <app-operaciones-cantidades
         #quantitiesCmp
-        [date]="date"  
-        [flow]="registerData.flow" 
-        [receiversForm]="receiversForm" 
+        [date]="date"
+        [flow]="registerData.flow"
+        [receiversForm]="receiversForm"
         [stowagePlan]="registerData.stowagePlan"
         [workingPort]="workingPort"
         [workingDates]="workingDates"
@@ -556,7 +609,8 @@
         [showQttTables]="showQttTables"
         [manualTable]="registerData.reports[workingPort].data.manualTable"
         [holdCargos]="registerData.reports[workingPort].holdCargos"
-        (quantitieChangeEvent)="onQttEvent($event)"></app-operaciones-cantidades>
+        (quantitieChangeEvent)="onQttEvent($event)"
+      ></app-operaciones-cantidades>
 
       <p class="h4">Remarcas</p>
       <form>
@@ -568,7 +622,8 @@
               rows="10"
               [(ngModel)]="masterRemarks"
               [ngModelOptions]="{ standalone: true }"
-              (input)="autoSavingFunc('masterRemarks-input')"></textarea>
+              (input)="autoSavingFunc('masterRemarks-input')"
+            ></textarea>
           </div>
         </div>
         <div class="form-group row mt-3">
@@ -579,7 +634,8 @@
               rows="10"
               [(ngModel)]="generalRemarks"
               [ngModelOptions]="{ standalone: true }"
-              (input)="autoSavingFunc('generalRemarks-input')"></textarea>
+              (input)="autoSavingFunc('generalRemarks-input')"
+            ></textarea>
           </div>
         </div>
       </form>

@@ -6,13 +6,13 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class FilesService {
-    private readonly http = inject(HttpClient)
-    readonly api = environment.apiUrl;
+  private readonly http = inject(HttpClient);
+  readonly api = environment.apiUrl;
 
-    // Returns excel file
-    getVesselsServed(year: string) {
-        return this.http.get(`${this.api}/files/excel/vessels-served/${year}`, {
-          responseType: 'blob'
-        })
-    }
+  // Returns excel file
+  getVesselsServed(year: string) {
+    return this.http.get(`${this.api}/files/excel/vessels-served/${year}`, {
+      responseType: 'blob',
+    });
+  }
 }

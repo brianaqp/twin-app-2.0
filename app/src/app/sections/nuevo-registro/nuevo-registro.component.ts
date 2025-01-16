@@ -88,7 +88,7 @@ export class NuevoRegistroComponent implements OnInit {
     private readonly fb: FormBuilder,
     private readonly repoSvc: RepositoriesService,
     private router: Router,
-    private cmnSvc: CommonFunctionsService
+    private cmnSvc: CommonFunctionsService,
   ) {
     this.routerData = router.getCurrentNavigation()?.extras.state;
   }
@@ -127,7 +127,7 @@ export class NuevoRegistroComponent implements OnInit {
       _id: 0,
     };
     this.localRegister = await firstValueFrom(
-      this.repoSvc.findOne('registers', this.registerId)
+      this.repoSvc.findOne('registers', this.registerId),
     );
   }
 
@@ -175,7 +175,7 @@ export class NuevoRegistroComponent implements OnInit {
       registers: 1,
     };
     this.vesselsList = await firstValueFrom(
-      this.repoSvc.find(collection, projection)
+      this.repoSvc.find(collection, projection),
     );
     this.getRegistersCount();
   }
@@ -183,7 +183,7 @@ export class NuevoRegistroComponent implements OnInit {
   async getRegistersCount(): Promise<void> {
     // Funcion que retorna un conteo de los registros
     const data = await firstValueFrom(
-      this.repoSvc.getLatestRegisterCount('registers')
+      this.repoSvc.getLatestRegisterCount('registers'),
     );
     if (data !== null) {
       // use a 001 format
@@ -237,7 +237,7 @@ export class NuevoRegistroComponent implements OnInit {
         this.fb.group({
           port: [portSelected],
           cantidad: [''],
-        })
+        }),
       );
       // 3. Se agrega a stowagePlan
       if (this.stowagePlan.controls.length > 0) {
@@ -248,7 +248,7 @@ export class NuevoRegistroComponent implements OnInit {
       // 4. Se agrega a los totales de stowagePlan
       (this.registerForm.get('stowagePlan.totales') as FormGroup).addControl(
         portSelected,
-        new FormControl('')
+        new FormControl(''),
       );
       // 5. Se agrega a calados
       this.calados.push(
@@ -256,7 +256,7 @@ export class NuevoRegistroComponent implements OnInit {
           port: [portSelected],
           foreward: [''],
           afterward: [''],
-        })
+        }),
       );
     }
   }
@@ -276,7 +276,7 @@ export class NuevoRegistroComponent implements OnInit {
         (control as FormGroup).removeControl(port);
       }
       const totalescontrol = this.registerForm.get(
-        'stowagePlan.totales'
+        'stowagePlan.totales',
       ) as FormGroup;
       totalescontrol.removeControl(port);
     }
@@ -288,7 +288,7 @@ export class NuevoRegistroComponent implements OnInit {
         companie: [this.companie],
         names: [this.names],
         role: [this.role.nativeElement.value],
-      })
+      }),
     );
     // Anadir companie a la lista de autocompletado si no lo incluye, si companie no es undefined o en su defecto vacio.
     if (
@@ -339,7 +339,7 @@ export class NuevoRegistroComponent implements OnInit {
 
     // Stowage Controls
     const stowageControls = this.registerForm.get(
-      'stowagePlan.data'
+      'stowagePlan.data',
     ) as FormArray;
 
     // Suma de los valores
@@ -350,7 +350,7 @@ export class NuevoRegistroComponent implements OnInit {
 
     // Total Control
     const totalesControl = this.registerForm.get(
-      'stowagePlan.totales'
+      'stowagePlan.totales',
     ) as FormGroup;
 
     // Formateo de los totales
@@ -495,7 +495,7 @@ export class NuevoRegistroComponent implements OnInit {
       if (this.registerInserted) {
         this.showSaveAlert(
           'secondary',
-          'Registro insertado. Favor de regresar a la lista de registros.'
+          'Registro insertado. Favor de regresar a la lista de registros.',
         );
         return;
       }
@@ -554,7 +554,7 @@ export class NuevoRegistroComponent implements OnInit {
       setTimeout(() => {
         callback();
         resolve();
-      }, ms)
+      }, ms),
     );
   }
 

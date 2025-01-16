@@ -1,4 +1,3 @@
-
 $lg: 992px;
 @media (min-width: $lg) {
   .container {
@@ -6,7 +5,7 @@ $lg: 992px;
     padding-right: 15%;
 
     .row {
-        justify-content: left !important;
-      }
+      justify-content: left !important;
+    }
   }
 }

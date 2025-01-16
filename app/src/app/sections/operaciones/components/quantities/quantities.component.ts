@@ -225,7 +225,7 @@ export class QuantitiesComponent implements OnInit {
             const objetoOriginal = this.quantities[date][category].data.find(
               (original) => {
                 return original.name === item.name;
-              }
+              },
             );
             if (objetoOriginal) {
               // Si hay un registro anterior, se actualizaran
@@ -234,7 +234,7 @@ export class QuantitiesComponent implements OnInit {
               objetoOriginal.initialTon = item.tonelaje;
               objetoOriginal.toBeDischarge = this.sumToStrings(
                 objetoOriginal.initialTon,
-                `-${objetoOriginal.ttl}`
+                `-${objetoOriginal.ttl}`,
               );
             }
           });
@@ -251,10 +251,10 @@ export class QuantitiesComponent implements OnInit {
         ].data.map((item) => item['name']);
         // 3. Se comparan los nombres para obtener las cantidades a agregar y eliminar
         const quantitiesToAdd = newQuantities.filter(
-          (item) => !oldNames.includes(item['name'])
+          (item) => !oldNames.includes(item['name']),
         );
         const quantitiesToDelete = oldNames.filter(
-          (name) => !newNames.includes(name)
+          (name) => !newNames.includes(name),
         );
         // 4. Se cicla por fechas;
         // Dependiendo el comando, se agregan o eliminan las cantidades
@@ -266,7 +266,7 @@ export class QuantitiesComponent implements OnInit {
           }
           if (cmd === 'delete') {
             quantitiesToDelete.forEach((name) =>
-              this.deleteQuantitie(name, date, category)
+              this.deleteQuantitie(name, date, category),
             );
           }
         });
@@ -353,7 +353,7 @@ export class QuantitiesComponent implements OnInit {
   getDataForQuantities(
     rawValues: Record<string, any>,
     nameKey: string,
-    quantityKey: string
+    quantityKey: string,
   ): InitialQuantitie[] {
     // Desglosa el objeto y retorna un arreglo de objetos InitialQuantities[], ejemplo:
     // rawValues: [{ name: 'name', tonelaje: 'tonelaje'}]
@@ -372,7 +372,7 @@ export class QuantitiesComponent implements OnInit {
       rawData = this.getDataForQuantities(
         Object.values(this.receiversForm.value.receivers),
         'name',
-        'tonelaje'
+        'tonelaje',
       );
     }
     if (category === 'holds') {
@@ -380,14 +380,14 @@ export class QuantitiesComponent implements OnInit {
       rawData = this.getDataForQuantities(
         Object.values(this.stowagePlan.data),
         'hold',
-        port
+        port,
       );
     }
     if (category === 'products') {
       rawData = this.getDataForQuantities(
         Object.values(this.receiversForm.value.receivers),
         'producto',
-        'tonelaje'
+        'tonelaje',
       );
     }
     // 3. Con un conjunto de cantidades iniciales, se agrupan por nombre para sumar su tonelaje.
@@ -455,7 +455,7 @@ export class QuantitiesComponent implements OnInit {
   // Metodo que recalcula las cantidades
   private recalculateQuantitiesProcess(
     dates: string[],
-    categories: string[]
+    categories: string[],
   ): void {
     try {
       let previousDate = '';
@@ -470,7 +470,7 @@ export class QuantitiesComponent implements OnInit {
               item.ttl = item.perDay;
               item.toBeDischarge = this.sumToStrings(
                 item.initialTon,
-                `-${item.ttl}`
+                `-${item.ttl}`,
               );
             });
           } else {
@@ -486,7 +486,7 @@ export class QuantitiesComponent implements OnInit {
               item.ttl = this.sumToStrings(item.perDay, item.previous);
               item.toBeDischarge = this.sumToStrings(
                 item.initialTon,
-                `-${item.ttl}`
+                `-${item.ttl}`,
               );
             });
           }
@@ -517,17 +517,17 @@ export class QuantitiesComponent implements OnInit {
         this.quantities[date][category].data.forEach((item) => {
           newTotals.initialTon = this.sumToStrings(
             newTotals.initialTon,
-            item.initialTon
+            item.initialTon,
           );
           newTotals.previous = this.sumToStrings(
             newTotals.previous,
-            item.previous
+            item.previous,
           );
           newTotals.perDay = this.sumToStrings(newTotals.perDay, item.perDay);
           newTotals.ttl = this.sumToStrings(newTotals.ttl, item.ttl);
           newTotals.toBeDischarge = this.sumToStrings(
             newTotals.toBeDischarge,
-            item.toBeDischarge
+            item.toBeDischarge,
           );
         });
         this.quantities[date][category].ttl = newTotals;

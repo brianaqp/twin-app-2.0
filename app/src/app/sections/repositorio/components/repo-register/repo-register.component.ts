@@ -22,7 +22,7 @@ export class RepoRegisterComponent implements OnInit {
   constructor(
     private readonly repoSvc: RepositoriesService,
     private readonly mongoBucketSvc: MongoBucketService,
-    private location: Location
+    private location: Location,
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class RepoRegisterComponent implements OnInit {
   onDeleteRegister(): void {
     // Resultado del dialogo de informacion
     const result = window.confirm(
-      '¿Estás seguro de que deseas eliminar este elemento?'
+      '¿Estás seguro de que deseas eliminar este elemento?',
     );
     if (result) {
       this.repoSvc.deleteOne('registers', this.register.id).subscribe((res) => {

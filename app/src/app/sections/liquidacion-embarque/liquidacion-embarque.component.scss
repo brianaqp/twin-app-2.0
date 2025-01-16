@@ -1,46 +1,47 @@
-section {    
-    margin-left: 1em;
-    max-width: 8.2677in;    
-    min-width: 5.2in;
-        
-    .table-receivers-cargos {  
-        .subtitle {
-            font-weight: 600;
-        }
+section {
+  margin-left: 1em;
+  max-width: 8.2677in;
+  min-width: 5.2in;
 
-        th, td {
-            border: 1px solid black;
-            font-size: 13px;
-        }
-        
-        th {
-            background-color: var(--custom-middle);
-            font-weight:lighter;
-            color: white;
-            font-weight:normal;
-        }
-
-        .empty-cell {
-            background-color: var(--custom-middle);
-        }
-
-        .total-cell {
-            background-color: var(--custom-soft);
-            font-weight: bold;
-        }
+  .table-receivers-cargos {
+    .subtitle {
+      font-weight: 600;
     }
+
+    th,
+    td {
+      border: 1px solid black;
+      font-size: 13px;
+    }
+
+    th {
+      background-color: var(--custom-middle);
+      font-weight: lighter;
+      color: white;
+      font-weight: normal;
+    }
+
+    .empty-cell {
+      background-color: var(--custom-middle);
+    }
+
+    .total-cell {
+      background-color: var(--custom-soft);
+      font-weight: bold;
+    }
+  }
 }
 
 @media print {
-    @page {
-        size: letter;
-    }
+  @page {
+    size: letter;
+  }
 
-    section {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        width: 8.2677in; // Exact A4 print width in inches
-        width: 100%;
-        margin: 0%;
-    }
+  section {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    width: 8.2677in; // Exact A4 print width in inches
+    width: 100%;
+    margin: 0%;
+  }
 }

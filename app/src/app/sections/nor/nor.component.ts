@@ -38,7 +38,7 @@ export class NorComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly repoSvc: RepositoriesService,
-    private cmnSvc: CommonFunctionsService
+    private cmnSvc: CommonFunctionsService,
   ) {
     this.routerData = router.getCurrentNavigation()?.extras.state;
   }
@@ -64,10 +64,10 @@ export class NorComponent implements OnInit {
       shipParticulars: 1,
     };
     this.vessel = await firstValueFrom(
-      this.repoSvc.findOne('vessels', this.routerData.vesselId)
+      this.repoSvc.findOne('vessels', this.routerData.vesselId),
     );
     this.register = await firstValueFrom(
-      this.repoSvc.findOne('registers', this.routerData.registerId)
+      this.repoSvc.findOne('registers', this.routerData.registerId),
     );
 
     if (this.vessel && this.register) {
@@ -103,7 +103,7 @@ export class NorComponent implements OnInit {
       }
 
       const existingProduct = recGrouped[rec.name].find(
-        (item) => item.producto === producto
+        (item) => item.producto === producto,
       );
 
       if (existingProduct) {

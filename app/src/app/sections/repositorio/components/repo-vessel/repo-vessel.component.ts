@@ -14,18 +14,18 @@ export class RepoVesselComponent {
   @Input() vesselData!: Vessel;
   constructor(
     private readonly repoSvc: RepositoriesService,
-    private location: Location
+    private location: Location,
   ) {}
 
   onDeleteVessel(): void {
     if (this.vesselData.registers.length >= 1) {
       alert(
-        `Borrar un Vessel equivale a borrar la base de un registro. Primero debes borrar los siguientes Registros para borrar el Vessel: ${this.vesselData.registers}`
+        `Borrar un Vessel equivale a borrar la base de un registro. Primero debes borrar los siguientes Registros para borrar el Vessel: ${this.vesselData.registers}`,
       );
       return;
     }
     const result = window.confirm(
-      '¿Estás seguro de que deseas eliminar este elemento?'
+      '¿Estás seguro de que deseas eliminar este elemento?',
     );
     if (result) {
       // Si confirmo, se borrara

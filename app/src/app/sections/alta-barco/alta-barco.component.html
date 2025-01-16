@@ -30,16 +30,18 @@
             { grt: 'GRT' },
             { nrt: 'NRT' },
             { hH: 'H/H' },
-            { cranes: 'Cranes' }
+            { cranes: 'Cranes' },
           ];
           let i = index
-        ">
+        "
+      >
         <label class="col-form-label">{{ getEntries(property).at(1) }}</label>
         <div class="col">
           <input
             type="text"
             class="form-control"
-            formControlName="{{ getEntries(property).at(0) }}" />
+            formControlName="{{ getEntries(property).at(0) }}"
+          />
         </div>
       </div>
     </ng-container>
@@ -49,7 +51,8 @@
       <button
         (mousedown)="onSubmit()"
         type="button"
-        class="btn btn-primary w-100">
+        class="btn btn-primary w-100"
+      >
         Guardar barco
       </button>
     </div>

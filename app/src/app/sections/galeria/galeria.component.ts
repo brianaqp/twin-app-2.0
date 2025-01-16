@@ -10,7 +10,13 @@ import { Subscription, firstValueFrom } from 'rxjs';
 import { LocalGallery } from 'src/app/interfaces/gallery';
 import { MongoBucketService } from 'src/app/services/mongo-bucket.service';
 import { environment } from 'src/app/environments/environment';
-import { NgbAlert, NgbAlertModule, NgbModal, NgbPopover, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbAlert,
+  NgbAlertModule,
+  NgbModal,
+  NgbPopover,
+  NgbPopoverModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { Ports } from 'src/app/environments/globals';
 import { CatService } from 'src/app/test/cat.service';
 import { UpdateResult } from 'mongodb';
@@ -20,12 +26,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-galeria',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    NgbPopoverModule,
-    NgbAlertModule,
-  ],
+  imports: [CommonModule, FormsModule, NgbPopoverModule, NgbAlertModule],
   templateUrl: './galeria.component.html',
   styleUrls: ['./galeria.component.scss'],
 })
@@ -58,7 +59,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     private readonly mongoBucketSvc: MongoBucketService,
     private router: Router,
     private modalService: NgbModal,
-    private catService: CatService
+    private catService: CatService,
   ) {
     const data: any = router.getCurrentNavigation()?.extras.state;
     this.registerId = data.registerId;
@@ -75,18 +76,18 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     //
     console.log('On Init');
     this.pullDocsData()
-      .then(docs => {
+      .then((docs) => {
         this.pullImageWithId(docs);
         this.initVariables();
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   }
 
   // 1. Init Data
   async pullDocsData(): Promise<any> {
     // Retorna un arreglo con la información de cada foto en el repositorio
     return await firstValueFrom(
-      this.mongoBucketSvc.getBucketFilesData(this.registerId)
+      this.mongoBucketSvc.getBucketFilesData(this.registerId),
     );
   }
 
@@ -95,7 +96,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     for (let doc of docs) {
       console.log('pullImageWithId ->', doc);
       const arraybuff = await firstValueFrom(
-        this.mongoBucketSvc.getImageWithObjectId(this.registerId, doc._id)
+        this.mongoBucketSvc.getImageWithObjectId(this.registerId, doc._id),
       );
       const file = new File([arraybuff], doc.filename, {
         type: doc.metadata.mimetype,
@@ -105,7 +106,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
         this.localFiles,
         doc.metadata.caption || '',
         doc.metadata.port || 'General',
-        doc._id
+        doc._id,
       );
     }
   }
@@ -124,7 +125,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     const filesArray = Object.values(selectedFiles); // Comprobar si si funciona la comprobacion
     const filteredArray = this.filterImages(filesArray);
     if (filteredArray.length >= 1) {
-      filesArray.forEach(file => {
+      filesArray.forEach((file) => {
         this.convertFileToLocalGallery(file, this.preUploadFiles, '');
       });
     }
@@ -151,7 +152,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     console.log('onDeleteImage ->');
     this.mongoBucketSvc
       .deleteImage(this.registerId, this.fileSelected._id!)
-      .subscribe(success => {
+      .subscribe((success) => {
         if (success) {
           // Mensaje de borrado con exito
           this.deleteSelectedFile(this.fileSelected, this.localFiles);
@@ -169,24 +170,26 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     const body = {
       port: this.fileSelected.port,
       caption: this.fileSelected.caption,
-      _id: this.fileSelected._id
-    }
+      _id: this.fileSelected._id,
+    };
 
-    this.mongoBucketSvc.editProperties(this.registerId, body)
-      .subscribe({
-        next: (res: UpdateResult) => {
-          switch(res.modifiedCount) {
-          case 0: 
-            this.showSaveAlert('El documento no se actualizo', "secondary");
+    this.mongoBucketSvc.editProperties(this.registerId, body).subscribe({
+      next: (res: UpdateResult) => {
+        switch (res.modifiedCount) {
+          case 0:
+            this.showSaveAlert('El documento no se actualizo', 'secondary');
             break;
           case 1:
-            this.showSaveAlert('El documento se actualizo con exito', "success");
+            this.showSaveAlert(
+              'El documento se actualizo con exito',
+              'success',
+            );
             break;
         }
       },
-      error: err => {
-        this.showSaveAlert('Hubo un error al guardar el documento.', "warning");
-      }
+      error: (err) => {
+        this.showSaveAlert('Hubo un error al guardar el documento.', 'warning');
+      },
     });
   }
 
@@ -194,7 +197,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
   filterImages(files: File[]): File[] {
     // Funcion que retorna un arreglo de files que solo sean imagenes.
     const imageRegex = /^image\/.*$/;
-    return files.filter(file => imageRegex.test(file.type));
+    return files.filter((file) => imageRegex.test(file.type));
   }
 
   convertFileToLocalGallery(
@@ -202,11 +205,11 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     dst: LocalGallery[],
     caption: string,
     port?: string,
-    _id?: string
+    _id?: string,
   ): void {
     // Funcion que convierte un file recibido de un input en un objeto localGallery
     this.convertFileToBase64Url(file)
-      .then(imgBase64 => {
+      .then((imgBase64) => {
         const obj: LocalGallery = {
           fileObject: file,
           base64url: imgBase64,
@@ -216,7 +219,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
         };
         dst.push(obj);
       })
-      .catch(e => console.log(e));
+      .catch((e) => console.log(e));
   }
 
   convertFileToBase64Url(file: File): Promise<string> {
@@ -276,14 +279,14 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     this.preUploadFiles.forEach((file: LocalGallery) => {
       // Revisa si el archivo ya existe en la base de datos
       const { name: fileName } = file.fileObject;
-      const doc = uploadedFilesDocs.find(doc => doc.filename === fileName);
+      const doc = uploadedFilesDocs.find((doc) => doc.filename === fileName);
       // Añade el _id al objeto file
       this.convertFileToLocalGallery(
         file.fileObject,
         this.localFiles,
         doc ? doc.metadata.caption : '',
         doc ? doc.metadata.port : 'General',
-        doc ? doc._id : undefined
+        doc ? doc._id : undefined,
       );
     });
   }
@@ -309,7 +312,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
       centered: true,
     });
     modalRef.result.then(
-      result => {
+      (result) => {
         if (result === 'confirm') {
           // Borrar la imagen
           this.deleteImage();
@@ -317,46 +320,44 @@ export class GaleriaComponent implements OnInit, OnDestroy {
           this.modalService.dismissAll();
         }
       },
-      reason => {
+      (reason) => {
         // No hacer nada
-      }
+      },
     );
   }
 
   /**
-   * Metodo que abre un modal capaz de modificar las 
+   * Metodo que abre un modal capaz de modificar las
    * propiedades editables de la imagen.
    */
   onEditImg() {
     const modalRef = this.modalService.open(this.editModal, {
-      centered: true
-    }); 
-    
+      centered: true,
+    });
 
     modalRef.result.then(
-      result => {
+      (result) => {
         if (result === 'confirm') {
           // Edit img
           this.editImageProperties();
           // Close modal
-          this.modalService.dismissAll();     
+          this.modalService.dismissAll();
         }
       },
-      reason => {
+      (reason) => {
         // pass
-      }
+      },
     );
   }
 
-   /**
+  /**
    * Convierte un archivo en una cadena base64url.
    * Si `this.checkbox` es `true`, se dibuja una marca de agua.
-   * 
+   *
    * @param {File} file - Tipo File.
    * @returns {Promise<string>} - Promesa que se resuelve con la cadena base64url.
    */
-  addWaterFontToImg(): void {
-  }
+  addWaterFontToImg(): void {}
 
   // -------- Metodos del alert de guardado
   // Metodo que muesta un mensaje de exito o error
@@ -375,21 +376,21 @@ export class GaleriaComponent implements OnInit, OnDestroy {
 
   // async timeout que recibe un callback
   async delay(ms: number, callback: () => void): Promise<void> {
-    return new Promise(resolve =>
+    return new Promise((resolve) =>
       setTimeout(() => {
         callback();
         resolve();
-      }, ms)
+      }, ms),
     );
   }
 
   // DOM Methods
   checkIfSectionShow(category: string): boolean {
-    return this.localFiles.some(file => file.port === category);
+    return this.localFiles.some((file) => file.port === category);
   }
 
   getFilesByCategory(category: string): LocalGallery[] {
-    return this.localFiles.filter(file => file.port === category);
+    return this.localFiles.filter((file) => file.port === category);
   }
 
   ngOnDestroy(): void {

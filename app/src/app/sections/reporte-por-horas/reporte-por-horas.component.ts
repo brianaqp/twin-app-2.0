@@ -24,7 +24,7 @@ import { TonFormatPipe } from 'src/app/pipes/ton-format.pipe';
     FormsModule,
     ReactiveFormsModule,
     TonFormatPipe,
-    DatePipe
+    DatePipe,
   ],
   templateUrl: './reporte-por-horas.component.html',
   styleUrls: ['./reporte-por-horas.component.scss'],
@@ -56,7 +56,7 @@ export class ReportePorHorasComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly repoSvc: RepositoriesService,
-    private readonly cmnSvc: CommonFunctionsService
+    private readonly cmnSvc: CommonFunctionsService,
   ) {
     const routerData: any = this.router.getCurrentNavigation()?.extras.state;
     this.registerId = routerData.registerId;
@@ -85,14 +85,14 @@ export class ReportePorHorasComponent implements OnInit {
       'shipParticulars.name': 1,
     };
     this.registerData = await firstValueFrom(
-      this.repoSvc.findOne('registers', this.registerId, registerProjection)
+      this.repoSvc.findOne('registers', this.registerId, registerProjection),
     );
     this.vesselData = await firstValueFrom(
       this.repoSvc.findOne(
         'vessels',
         this.registerData.vesselId,
-        vesselProjection
-      )
+        vesselProjection,
+      ),
     );
   }
 
@@ -192,7 +192,7 @@ export class ReportePorHorasComponent implements OnInit {
           category,
           '08:00',
           '16:00',
-          this.date
+          this.date,
         );
       }
       if (this.hoursLimit === '24:00') {
@@ -209,7 +209,7 @@ export class ReportePorHorasComponent implements OnInit {
               category,
               '08:00',
               '24:00',
-              previousDate
+              previousDate,
             );
           }
         }
@@ -218,7 +218,7 @@ export class ReportePorHorasComponent implements OnInit {
           category,
           '00:00',
           '08:00',
-          this.date
+          this.date,
         );
       }
     }
@@ -228,7 +228,7 @@ export class ReportePorHorasComponent implements OnInit {
     category: string,
     minHour: string,
     maxHour: string,
-    date: string
+    date: string,
   ): any {
     // Funcion que ordena los tiempos cronologimente desde las 08:00 hasta la hora limite.
     const rawData: TimesObject[] = this.localTimes[date][category];

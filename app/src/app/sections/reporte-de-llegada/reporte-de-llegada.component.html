@@ -1,14 +1,19 @@
-<div class="container mt-2" style="font-size: 10px; font-family: Tahoma, sans-serif;">
+<div
+  class="container mt-2"
+  style="font-size: 10px; font-family: Tahoma, sans-serif"
+>
   <p style="font-size: 24px; font-weight: 500">Arrival Report</p>
   <table
     class="destinatarios-table"
     width="720"
-    style="border-collapse: collapse">
+    style="border-collapse: collapse"
+  >
     <tbody>
       <tr
         style="display: flex; flex-direction: column nowrap; margin-top: 5px"
         *ngFor="let row of this.destinatariosRows"
-        scope="row">
+        scope="row"
+      >
         <td
           *ngFor="let item of row"
           style="
@@ -16,7 +21,8 @@
             padding-right: 10px;
             border: 0;
             border-bottom: 1px solid #328a92;
-          ">
+          "
+        >
           <!-- Header -->
           <div style="width: 100%; top: 0">
             <p
@@ -25,7 +31,8 @@
                 font-size: 16px;
                 font-weight: 600;
                 color: #185477;
-              ">
+              "
+            >
               {{ item.companie }}
             </p>
           </div>
@@ -53,7 +60,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           {{ vessel.shipParticulars.name }}
         </th>
       </tr>
@@ -67,7 +75,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           Loading port
         </th>
         <td width="180" style="border: 1px solid #185477; padding-left: 5px">
@@ -82,7 +91,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           Total shipment
         </th>
         <td width="180" style="border: 1px solid #185477; padding-left: 5px">
@@ -105,7 +115,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           Port
         </th>
         <th
@@ -114,7 +125,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           Total Shipment
         </th>
       </tr>
@@ -128,7 +140,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           {{ data.port }}
         </th>
         <td width="180" style="border: 1px solid #185477; padding-left: 5px">
@@ -152,7 +165,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           Port
         </th>
         <th
@@ -161,7 +175,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           FWD / AFT
         </th>
       </tr>
@@ -175,7 +190,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           {{ data.port }}
         </th>
         <td width="180" style="border: 1px solid #185477; padding-left: 5px">
@@ -200,7 +216,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           Name
         </th>
         <th width="180" style="border: 1px solid #185477; padding-left: 5px">
@@ -215,7 +232,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           LOA
         </th>
         <th width="180" style="border: 1px solid #185477; padding-left: 5px">
@@ -230,7 +248,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           CRANES
         </th>
         <th width="180" style="border: 1px solid #185477; padding-left: 5px">
@@ -245,7 +264,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           H/H
         </th>
         <th width="180" style="border: 1px solid #185477; padding-left: 5px">
@@ -270,7 +290,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           Hold
         </th>
         <th
@@ -280,7 +301,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           Cargo
         </th>
         <!-- Primero los puertos, luegi ek geberak -->
@@ -292,7 +314,8 @@
               background-color: #328a92;
               color: white;
               padding-left: 5px;
-            ">
+            "
+          >
             {{ port }}
           </th>
         </ng-container>
@@ -303,7 +326,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           General
         </th>
       </tr>
@@ -317,7 +341,8 @@
             background-color: #328a92;
             color: white;
             padding-left: 5px;
-          ">
+          "
+        >
           {{ data.hold }}
         </th>
         <td width="180" style="border: 1px solid #185477; padding-left: 5px">
@@ -345,7 +370,8 @@
             background-color: #e8f2f3;
             padding-right: 8px;
             text-align: end;
-          ">
+          "
+        >
           Totals
         </th>
         <ng-container *ngFor="let port of register.workingPorts">
@@ -355,7 +381,8 @@
               border: 1px solid #185477;
               padding-left: 5px;
               background-color: #e8f2f3;
-            ">
+            "
+          >
             {{ register.stowagePlan.totales[port] | tonFormat }}
           </td>
         </ng-container>
@@ -365,7 +392,8 @@
             border: 1px solid #185477;
             padding-left: 5px;
             background-color: #e8f2f3;
-          ">
+          "
+        >
           {{ register.stowagePlan.totales.general | tonFormat }}
         </td>
       </tr>

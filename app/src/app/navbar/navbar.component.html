@@ -5,7 +5,8 @@
       (click)="toggleSideMenu()"
       id="side-menu-toggler"
       class="d-inline btn"
-      type="button">
+      type="button"
+    >
       <i class="bi bi-three-dots-vertical"></i>
     </button>
     <!-- Primera seccion -->
@@ -16,20 +17,23 @@
           src="/assets/logo.png"
           alt="logo"
           width="30"
-          height="24" />
+          height="24"
+        />
         Twin Marine
       </a>
     </div>
     <button
       (click)="isNavCollapsed = !isNavCollapsed"
       class="navbar-toggler"
-      type="button">
+      type="button"
+    >
       <i class="bi bi-list"></i>
     </button>
     <!-- Collapsed items -->
     <div
       [ngbCollapse]="isNavCollapsed"
-      class="collapse navbar-collapse justify-content-between">
+      class="collapse navbar-collapse justify-content-between"
+    >
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" (click)="toggleNavCollapse()" routerLink="/"
@@ -60,17 +64,17 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/utilities" (click)="toggleNavCollapse()"
-          >Utilidades</a>
+          <a
+            class="nav-link"
+            routerLink="/utilities"
+            (click)="toggleNavCollapse()"
+            >Utilidades</a
+          >
         </li>
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a
-            class="nav-link"
-            (click)="logout()"
-            >Cerrar Sesion</a
-          >
+          <a class="nav-link" (click)="logout()">Cerrar Sesion</a>
         </li>
       </ul>
     </div>

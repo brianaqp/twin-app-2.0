@@ -1,6 +1,12 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbPopover, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { HechosInlineStyles } from './hechosInline';
@@ -19,7 +25,7 @@ import { TonFormatPipe } from 'src/app/pipes/ton-format.pipe';
     ReactiveFormsModule,
     NgbPopoverModule,
     DatePipe,
-    TonFormatPipe
+    TonFormatPipe,
   ],
   templateUrl: './estado-de-hechos.component.html',
   styleUrls: ['./estado-de-hechos.component.scss'],
@@ -49,7 +55,7 @@ export class EstadoDeHechosComponent implements OnInit {
     private router: Router,
     private readonly repoSvc: RepositoriesService,
     private readonly fb: FormBuilder,
-    private readonly cmnSvc: CommonFunctionsService
+    private readonly cmnSvc: CommonFunctionsService,
   ) {
     const routerData: any = router.getCurrentNavigation()?.extras.state;
     this.registerId = routerData.registerId;
@@ -101,7 +107,7 @@ export class EstadoDeHechosComponent implements OnInit {
     //
     this.hechosData = this.register.reports[this.workingPort].data;
     this.blInfo = Object.entries(
-      this.register.reports[this.workingPort].data.blData.data
+      this.register.reports[this.workingPort].data.blData.data,
     );
     // boxes
     const boxes = this.register.reports[this.workingPort].data.signatures;
@@ -135,11 +141,11 @@ export class EstadoDeHechosComponent implements OnInit {
     data.forEach((item: any) => {
       if (tonelajePorNombre[item.name]) {
         tonelajePorNombre[item.name] += this.cmnSvc.convertStringToFloat(
-          item.tonelaje
+          item.tonelaje,
         );
       } else {
         tonelajePorNombre[item.name] = this.cmnSvc.convertStringToFloat(
-          item.tonelaje
+          item.tonelaje,
         );
       }
     });
@@ -148,7 +154,7 @@ export class EstadoDeHechosComponent implements OnInit {
       const sameObj = this.hechosData.receiversData.receivers.find(
         (item: any) => {
           return item.name === name;
-        }
+        },
       );
       return {
         name,
@@ -222,7 +228,7 @@ export class EstadoDeHechosComponent implements OnInit {
       this.fb.group({
         name: '',
         role: '',
-      })
+      }),
     );
   }
 

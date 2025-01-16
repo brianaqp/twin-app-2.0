@@ -4,7 +4,8 @@
     <hr />
     <app-vessel-card
       [vesselList]="vesselsList"
-      [editMode]="editMode"></app-vessel-card>
+      [editMode]="editMode"
+    ></app-vessel-card>
     <div class="mb-2 mt-2">
       <label for="formSelectGroup"
         >Seleccione si es importación o exportación</label
@@ -27,7 +28,8 @@
         type="text"
         ngClass="form-control"
         formControlName="loadingPort"
-        #loadingInput />
+        #loadingInput
+      />
     </div>
     <div class="form-group mb-2">
       <label for="form-label">TOTAL SHIPMENT</label>
@@ -53,7 +55,8 @@
         <button
           (click)="addPort(portSelection.value)"
           type="button"
-          class="btn btn-sm btn-primary w-100">
+          class="btn btn-sm btn-primary w-100"
+        >
           Add
         </button>
       </div>
@@ -61,7 +64,8 @@
         <button
           type="button"
           class="btn btn-sm btn-danger w-100"
-          (click)="onDeletePort(portSelection.value)">
+          (click)="onDeletePort(portSelection.value)"
+        >
           Delete
         </button>
       </div>
@@ -71,7 +75,8 @@
       <a
         (click)="portSelection.value = port"
         class="list-group-item list-group-item port-item"
-        [class.selected]="portSelection.value === port">
+        [class.selected]="portSelection.value === port"
+      >
         {{ port }}</a
       >
     </div>
@@ -88,13 +93,15 @@
       <tbody formArrayName="portCalls">
         <tr
           *ngFor="let port of portCalls.controls; let i = index"
-          [formGroupName]="i">
+          [formGroupName]="i"
+        >
           <td>{{ port.value.port }}</td>
           <td>
             <input
               type="text"
               formControlName="cantidad"
-              class="form-control" />
+              class="form-control"
+            />
           </td>
         </tr>
       </tbody>
@@ -119,7 +126,8 @@
     <div class="table-responsive">
       <table
         class="table table-striped general-table mt-2"
-        formGroupName="stowagePlan">
+        formGroupName="stowagePlan"
+      >
         <thead>
           <th class="text-center small-col">Hold</th>
           <th class="text-center bigger-col">Cargo</th>
@@ -131,13 +139,15 @@
         <tbody formArrayName="data">
           <tr
             *ngFor="let port of stowagePlan.controls; let i = index"
-            [formGroupName]="i">
+            [formGroupName]="i"
+          >
             <th class="small-col">
               <input
                 type="text"
                 class="form-control"
                 formControlName="hold"
-                readonly />
+                readonly
+              />
             </th>
             <td class="bigger-col">
               <input type="text" class="form-control" formControlName="cargo" />
@@ -147,7 +157,8 @@
                 type="text"
                 class="form-control"
                 (input)="updateTotals('general')"
-                formControlName="general" />
+                formControlName="general"
+              />
             </td>
             <ng-container *ngFor="let port of workingPorts">
               <td class="middle-col">
@@ -155,7 +166,8 @@
                   type="text"
                   class="form-control"
                   (input)="updateTotals(port)"
-                  formControlName="{{ port }}" />
+                  formControlName="{{ port }}"
+                />
               </td>
             </ng-container>
           </tr>
@@ -169,7 +181,8 @@
                 type="text"
                 readonly
                 class="form-control"
-                formControlName="general" />
+                formControlName="general"
+              />
             </td>
             <ng-container *ngFor="let port of workingPorts">
               <td class="middle-col">
@@ -177,7 +190,8 @@
                   type="text"
                   class="form-control"
                   readonly
-                  formControlName="{{ port }}" />
+                  formControlName="{{ port }}"
+                />
               </td>
             </ng-container>
           </tr>
@@ -198,19 +212,22 @@
       <tbody formArrayName="calados">
         <tr
           *ngFor="let port of calados.controls; let i = index"
-          [formGroupName]="i">
+          [formGroupName]="i"
+        >
           <td>{{ port.value.port }}</td>
           <td>
             <input
               type="text"
               formControlName="foreward"
-              class="form-control" />
+              class="form-control"
+            />
           </td>
           <td>
             <input
               type="text"
               formControlName="afterward"
-              class="form-control" />
+              class="form-control"
+            />
           </td>
         </tr>
       </tbody>
@@ -229,12 +246,14 @@
             placeholder="Companie"
             ngbDropdownAnchor
             #companieInput
-            (input)="companieDropdownHandler($event)" />
+            (input)="companieDropdownHandler($event)"
+          />
           <div ngbDropdownMenu>
             <button
               *ngFor="let item of autoCompleteDataFiltered"
               ngbDropdownItem
-              (click)="companie = item">
+              (click)="companie = item"
+            >
               {{ item }}
             </button>
           </div>
@@ -246,7 +265,8 @@
           [(ngModel)]="names"
           [ngModelOptions]="{ standalone: true }"
           type="text"
-          placeholder="Names" />
+          placeholder="Names"
+        />
       </div>
       <div class="col-12 col-md-3">
         <select #role class="form-control custom-select">
@@ -259,7 +279,8 @@
       <div class="col-12 col-sm-3">
         <button
           (click)="addDestinatario(); companieInput.focus()"
-          class="btn btn-primary w-100">
+          class="btn btn-primary w-100"
+        >
           Añadir
         </button>
       </div>
@@ -277,12 +298,14 @@
         <tbody formArrayName="destinatarios">
           <tr
             *ngFor="let destinatario of destinatarios.controls; let i = index"
-            [formGroupName]="i">
+            [formGroupName]="i"
+          >
             <td class="bigger-col">
               <input
                 type="text"
                 formControlName="companie"
-                class="form-control" />
+                class="form-control"
+              />
             </td>
             <td class="bigger-col">
               <textarea
@@ -291,7 +314,8 @@
                 formControlName="names"
                 #textArea
                 class="form-control"
-                (input)="onTextAreaResize(textArea)"></textarea>
+                (input)="onTextAreaResize(textArea)"
+              ></textarea>
             </td>
             <td class="bigger-col">
               <select formControlName="role" class="form-control custom-select">
@@ -303,7 +327,8 @@
             <td>
               <button
                 (click)="onDeleteDestinatario(destinatario)"
-                class="btn btn-danger">
+                class="btn btn-danger"
+              >
                 X
               </button>
             </td>
@@ -319,7 +344,8 @@
           (mousedown)="onSubmit()"
           type="button"
           #submitButton
-          class="btn btn-primary w-100">
+          class="btn btn-primary w-100"
+        >
           Guardar
         </button>
       </div>

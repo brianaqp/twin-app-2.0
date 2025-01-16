@@ -10,10 +10,10 @@ import { CommonModule } from '@angular/common';
   imports: [RepoRegisterComponent, RepoVesselComponent, CommonModule],
   template: `
     <section class="main" *ngIf="isDataLoaded">
-      @if (type === "registers") {
-      <app-repo-register [register]="data"></app-repo-register>
+      @if (type === 'registers') {
+        <app-repo-register [register]="data"></app-repo-register>
       } @else {
-      <app-repo-vessel [vesselData]="data"></app-repo-vessel>
+        <app-repo-vessel [vesselData]="data"></app-repo-vessel>
       }
     </section>
   `,
@@ -28,7 +28,7 @@ export class RepositorioComponent implements OnInit {
   data!: any;
   constructor(
     private readonly repoSvc: RepositoriesService,
-    private router: Router
+    private router: Router,
   ) {
     const routerData: any = this.router.getCurrentNavigation()?.extras.state;
     this.itemId = routerData.id;

@@ -42,6 +42,24 @@ app.get("/", (req, res) => {
   res.send("Server running...");
 });
 
+app.use(async (req, res, next) => {
+  try {
+    const token = req.headers['x-authentication-token'] || req.headers['X-Authentication-Token'];
+
+    if (!token || typeof token !== "string") { 
+      throw new Error('Token must be provided!');
+    }
+
+    const decodedIdToken = await auth.verifyIdToken(token);
+
+    // @ts-ignore
+    req.user = decodedIdToken.uid;
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+})
 
 // routes
 app.use(publicRouter);

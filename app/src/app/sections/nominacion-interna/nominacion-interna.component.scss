@@ -1,80 +1,78 @@
 section {
-    max-width: 8.2677in;
+  max-width: 8.2677in;
 }
 
 .page-border {
-    border: 1px dotted black;
-    padding: 2em;
-    border-radius: 10px;
+  border: 1px dotted black;
+  padding: 2em;
+  border-radius: 10px;
 }
 
-
 footer {
-    height: 60px;
+  height: 60px;
 }
 
 // preview
 .preview-styles {
-    .page-border {
-        border: none !important;
-        padding: 0em !important;
-    }
+  .page-border {
+    border: none !important;
+    padding: 0em !important;
+  }
 
-    .col-print {
-        display: inline-block;
-        width: 50%;
-    }
+  .col-print {
+    display: inline-block;
+    width: 50%;
+  }
 
-    .d-print-none {
-        display: none !important;
-    }
+  .d-print-none {
+    display: none !important;
+  }
 
-    .d-print-inline {
-        display: inline-block !important;
-    }
+  .d-print-inline {
+    display: inline-block !important;
+  }
 }
 
 @media print {
-    @page {
-        size: Letter;
-    }
+  @page {
+    size: Letter;
+  }
 
-    section {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        width: 8.2677in; // Exact A4 print width in inches
-        margin: 0%;
-    }
+  section {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    width: 8.2677in; // Exact A4 print width in inches
+    margin: 0%;
+  }
 
-    .page-border {
-        border: none !important;
-        padding: 0em !important;
-        margin-top: 0 !important ;
-    }
+  .page-border {
+    border: none !important;
+    padding: 0em !important;
+    margin-top: 0 !important ;
+  }
 
-    .col-print {
-        display: inline-block;
-        width: 50%;
-    }
+  .col-print {
+    display: inline-block;
+    width: 50%;
+  }
 
-    #main-nav {
-        display: none;
-    }
+  #main-nav {
+    display: none;
+  }
 }
-
 
 $md: 768px;
 $lg: 992px;
 @media (min-width: $lg) {
-    section {
-        margin: auto;
-    }
+  section {
+    margin: auto;
+  }
 }
 
 @media (max-width: $md) {
-    table {
-        th {
-            width: 100px;
-        }
+  table {
+    th {
+      width: 100px;
     }
+  }
 }

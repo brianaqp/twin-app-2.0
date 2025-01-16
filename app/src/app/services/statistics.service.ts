@@ -21,7 +21,7 @@ export class StatisticsService {
   findOne(
     collection: string,
     id: string,
-    projection?: object
+    projection?: object,
   ): Observable<any> {
     // Funcion que devuelve un registro de una coleccion
     return this.http.get<any>(`${this.apiBaseUrl}/${collection}/${id}`, {
@@ -40,7 +40,7 @@ export class StatisticsService {
     };
     return this.http.put<any>(
       `${this.apiBaseUrl}/${collection}/${body.item.id}`,
-      body
+      body,
     );
   }
 
@@ -51,7 +51,7 @@ export class StatisticsService {
   getMaxId(collection: string): Observable<any> {
     return this.http.post<any>(
       `${this.apiBaseUrl}/${collection}/max-id/`,
-      null
+      null,
     );
   }
 
@@ -70,8 +70,8 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<chartData>>(
           `${this.apiBaseUrl}/statistics/reports/cargo/month`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error('Error al obtener los datos de tonelaje de carga:', error);
@@ -84,13 +84,13 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<chartData>>(
           `${this.apiBaseUrl}/statistics/reports/importer/month`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error(
         'Error al obtener los datos de tonelaje de importadores:',
-        error
+        error,
       );
       return []; // Retorna un arreglo vacío en caso de error
     }
@@ -101,13 +101,13 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<chartData>>(
           `${this.apiBaseUrl}/statistics/reports/trader/month`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error(
         'Error al obtener los datos de tonelaje de Traders:',
-        error
+        error,
       );
       return []; // Retorna un arreglo vacío en caso de error
     }
@@ -118,8 +118,8 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<chartData>>(
           `${this.apiBaseUrl}/statistics/reports/dischargingPort/month`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error('Error al obtener los datos de tonelaje de Ports:', error);
@@ -132,13 +132,13 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<chartData>>(
           `${this.apiBaseUrl}/statistics/reports/country/month`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error(
         'Error al obtener los datos de tonelaje de country:',
-        error
+        error,
       );
       return []; // Retorna un arreglo vacío en caso de error
     }
@@ -151,13 +151,13 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<any>>(
           `${this.apiBaseUrl}/statistics/reports/table/cargo/month`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error(
         'Error al obtener los datos de tonelaje de country:',
-        error
+        error,
       );
       return []; // Retorna un arreglo vacío en caso de error
     }
@@ -168,13 +168,13 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<any>>(
           `${this.apiBaseUrl}/statistics/reports/table/importer/month`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error(
         'Error al obtener los datos de tonelaje de country:',
-        error
+        error,
       );
       return []; // Retorna un arreglo vacío en caso de error
     }
@@ -185,13 +185,13 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<any>>(
           `${this.apiBaseUrl}/statistics/reports/table/trader/month`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error(
         'Error al obtener los datos de tonelaje de country:',
-        error
+        error,
       );
       return []; // Retorna un arreglo vacío en caso de error
     }
@@ -202,13 +202,13 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<any>>(
           `${this.apiBaseUrl}/statistics/reports/table/dischargingPort/month`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error(
         'Error al obtener los datos de tonelaje de country:',
-        error
+        error,
       );
       return []; // Retorna un arreglo vacío en caso de error
     }
@@ -219,13 +219,13 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<any>>(
           `${this.apiBaseUrl}/statistics/reports/table/country/month`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error(
         'Error al obtener los datos de tonelaje de country:',
-        error
+        error,
       );
       return []; // Retorna un arreglo vacío en caso de error
     }
@@ -238,13 +238,13 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<any>>(
           `${this.apiBaseUrl}/statistics/reports/table/cargo/trim`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error(
         'Error al obtener los datos de tonelaje de country:',
-        error
+        error,
       );
       return []; // Retorna un arreglo vacío en caso de error
     }
@@ -255,13 +255,13 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<any>>(
           `${this.apiBaseUrl}/statistics/reports/table/importer/trim`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error(
         'Error al obtener los datos de tonelaje de country:',
-        error
+        error,
       );
       return []; // Retorna un arreglo vacío en caso de error
     }
@@ -272,13 +272,13 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<any>>(
           `${this.apiBaseUrl}/statistics/reports/table/trader/trim`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error(
         'Error al obtener los datos de tonelaje de country:',
-        error
+        error,
       );
       return []; // Retorna un arreglo vacío en caso de error
     }
@@ -289,13 +289,13 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<any>>(
           `${this.apiBaseUrl}/statistics/reports/table/dischargingPort/trim`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error(
         'Error al obtener los datos de tonelaje de country:',
-        error
+        error,
       );
       return []; // Retorna un arreglo vacío en caso de error
     }
@@ -306,13 +306,13 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<any>>(
           `${this.apiBaseUrl}/statistics/reports/table/country/trim`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error(
         'Error al obtener los datos de tonelaje de country:',
-        error
+        error,
       );
       return []; // Retorna un arreglo vacío en caso de error
     }
@@ -323,13 +323,13 @@ export class StatisticsService {
       return await firstValueFrom(
         this.http.post<Array<any>>(
           `${this.apiBaseUrl}/statistics/reports/table/cargo/month`,
-          body
-        )
+          body,
+        ),
       );
     } catch (error) {
       console.error(
         'Error al obtener los datos de tonelaje de country:',
-        error
+        error,
       );
       return []; // Retorna un arreglo vacío en caso de error
     }

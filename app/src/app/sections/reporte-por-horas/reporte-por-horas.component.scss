@@ -1,29 +1,30 @@
 footer {
-    height: 30px;
+  height: 30px;
 }
 
 @media print {
-    @page {
-        size: letter;
-        margin: 10mm;
-    }
+  @page {
+    size: letter;
+    margin: 10mm;
+  }
 
-    .container {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        width: 8.2677in; // Exact A4 print width in inches
-        margin: 0%;
-    }
+  .container {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    width: 8.2677in; // Exact A4 print width in inches
+    margin: 0%;
+  }
 
-    .times-per-category {
-       table {
-        tr {
-            page-break-inside: avoid;
-        }
-       }
+  .times-per-category {
+    table {
+      tr {
+        page-break-inside: avoid;
+      }
     }
+  }
 
-    .times-per-category, .total-quantities-box {
-        align-items: baseline !important;
-    }
+  .times-per-category,
+  .total-quantities-box {
+    align-items: baseline !important;
+  }
 }

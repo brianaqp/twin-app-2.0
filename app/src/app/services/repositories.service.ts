@@ -24,7 +24,7 @@ export class RepositoriesService {
   findOne(
     collection: string,
     id: string,
-    projection?: object
+    projection?: object,
   ): Observable<any> {
     // Funcion que devuelve un registro de una coleccion
     return this.http.get<any>(`${this.baseUrl}/${collection}/findOne/${id}`, {
@@ -37,7 +37,7 @@ export class RepositoriesService {
   getLatestRegisterCount(collection: string): Observable<any> {
     // Funcion que devuelve el ultimo registro de una coleccion
     return this.http.get<any>(
-      `${this.baseUrl}/${collection}/getLastRegisterCount`
+      `${this.baseUrl}/${collection}/getLastRegisterCount`,
     );
   }
 
@@ -45,7 +45,7 @@ export class RepositoriesService {
   getDistinctField(collection: string, field: string): Observable<any> {
     // Field necesita enviarse como string y usando _ para separar palabras.
     return this.http.get<any>(
-      `${this.baseUrl}/${collection}/getField/${field}`
+      `${this.baseUrl}/${collection}/getField/${field}`,
     );
   }
 
@@ -56,7 +56,7 @@ export class RepositoriesService {
 
   getDocsByYear(collection: string, year: string): Observable<any> {
     return this.http.get<any>(
-      `${this.baseUrl}/${collection}/getDocsByYear/${year}`
+      `${this.baseUrl}/${collection}/getDocsByYear/${year}`,
     );
   }
 
@@ -75,7 +75,7 @@ export class RepositoriesService {
   updateOne(
     collection: string,
     item: any,
-    upsert?: boolean
+    upsert?: boolean,
   ): Observable<UpdateResult> {
     // Funcion que actualiza un registro de una coleccion
     if (upsert == undefined) upsert = false;
@@ -85,7 +85,7 @@ export class RepositoriesService {
     };
     return this.http.put<any>(
       `${this.baseUrl}/${collection}/${body.item.id}`,
-      body
+      body,
     );
   }
 
@@ -93,7 +93,7 @@ export class RepositoriesService {
     const body = { id: registerId };
     return this.http.put<UpdateResult>(
       `${this.baseUrl}/vessels/${id}/registers`,
-      body
+      body,
     );
   }
 
@@ -101,7 +101,7 @@ export class RepositoriesService {
     const body = item;
     return this.http.put<any>(
       `${this.baseUrl}/${collection}/updateTimes/${body.id}`,
-      body
+      body,
     );
   }
 

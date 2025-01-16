@@ -17,7 +17,16 @@ import { ReportePorHorasComponent } from './sections/reporte-por-horas/reporte-p
 import { LoginComponent } from './sections/login/login.component';
 import { NotAuthComponent } from './sections/not-auth/not-auth.component';
 
-const AuthRoutes: Routes = [
+
+export const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'not-auth',
+    component: NotAuthComponent,
+  },
   {
     path: '',
     component: HomeComponent,
@@ -38,7 +47,6 @@ const AuthRoutes: Routes = [
     path: 'nuevo-registro',
     component: NuevoRegistroComponent,
   },
-  // Documents inside RepoVessel
   {
     path: 'distribucion-embarque',
     component: DistribucionEmbarqueComponent,
@@ -79,21 +87,4 @@ const AuthRoutes: Routes = [
     path: 'reporte-por-horas',
     component: ReportePorHorasComponent,
   },
-];
-
-const NotAuthRoutes: Routes = [
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: 'not-auth',
-    component: NotAuthComponent,
-  },
-];
-
-export const routes: Routes = [
-  // Auth routes
-  ...AuthRoutes,
-  ...NotAuthRoutes,
 ];

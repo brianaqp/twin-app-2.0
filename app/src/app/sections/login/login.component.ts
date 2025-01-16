@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -42,7 +42,7 @@ import { AuthService } from 'src/app/services/auth.service';
     </div>
   `,
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
   auth$ = inject(AuthService);
   router = inject(Router);
 
@@ -57,11 +57,12 @@ export class LoginComponent {
   onLogin() {
     this.auth$
       .login(this.email.value, this.password.value)
-      .then(() => {
-        this.router.navigate(['/']);
-      })
       .catch((error) => {
-        console.error(error);
+        console.error('Error in onLoginc()', error);
       });
+  }
+
+  ngOnDestroy(): void {
+    console.log("Login comp destroyed")
   }
 }

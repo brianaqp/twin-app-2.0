@@ -1,42 +1,30 @@
 import {
   Component,
-  computed,
-  effect,
   inject,
-  OnInit,
-  signal,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AuthService, LoginStatus } from './services/auth.service';
+import { AuthService } from './services/auth.service';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './sections/login/login.component';
+import { SpinnerComponent } from './widgets/spinner.component';
+import { AuthStatus } from './interfaces/auth';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterModule, NavbarComponent, LoginComponent],
+  imports: [CommonModule, RouterModule, NavbarComponent, LoginComponent, SpinnerComponent],
   template: `
-    @switch (authService.loginStatus()) {
-      @case (LoginStatus.TRUE) {
+  <!-- React to the auth state -->
+    @switch (authStatus()) {
+      @case (AuthStatus.ALLOWED) {
         <app-navbar />
         <router-outlet />
       }
-      @case (LoginStatus.FALSE) {
+      @case (AuthStatus.NOT_ALLOWED) {
         <app-login />
       }
-      @case (LoginStatus.INIT) {
-        <div class="d-flex justify-content-center align-items-center vh-100">
-          <div class="text-center">
-            <div
-              class="spinner-border text-primary"
-              role="status"
-              style="width: 3rem; height: 3rem;"
-            >
-              <span class="visually-hidden">Loading...</span>
-            </div>
-            <p class="mt-3 text-muted">Please wait...</p>
-          </div>
-        </div>
+      @case (AuthStatus.NULL) {
+       <app-spinner />
       }
     }
   `,
@@ -48,11 +36,10 @@ import { LoginComponent } from './sections/login/login.component';
     }
   `,
 })
-export class AppComponent implements OnInit {
-  authService = inject(AuthService);
+export class AppComponent {
+  // Auth Status
+  authStatus = inject(AuthService).authStatus;
 
   // Enum
-  LoginStatus = LoginStatus;
-
-  ngOnInit(): void {}
+  AuthStatus = AuthStatus;
 }

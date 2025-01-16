@@ -5,29 +5,21 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  User,
 } from 'firebase/auth';
-
-export enum LoginStatus {
-  INIT,
-  TRUE,
-  FALSE,
-}
+import { AuthStatus } from '../interfaces/auth';
 
 @Injectable({
   providedIn: 'root',
 })
+
+/**
+ * Service who manage the auth state and works as a layer of communication between the app
+ * and firebase.
+ */
 export class AuthService {
   // --- Auth variables
-  private readonly status = signal(LoginStatus.INIT);
-  authToken: null | string = null;
-  // Setter for the signal
-  set userAuthStatus(status: LoginStatus) {
-    this.status.set(status);
-  }
-
-  // Readonly version for other components
-  public loginStatus = this.status.asReadonly();
+  private readonly _authStatus = signal(AuthStatus.NULL);
+  private _currentAuthToken: null | string = null;
 
   // Dependencies
   private http = inject(HttpClient);
@@ -45,24 +37,33 @@ export class AuthService {
   private auth = getAuth(this.firebaseApp);
 
   constructor() {
-    console.log('AUTH SERVICE INITIALIZED');
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
-        this.userAuthStatus = LoginStatus.TRUE;
+        this._authStatus.set(AuthStatus.ALLOWED);
         user
           .getIdToken()
           .then((value) => {
-            this.authToken = value;
+            this._currentAuthToken = value;
           })
           .catch((error) => {
             console.error('Something happend with Firebase Token.', error);
           });
       } else {
-        this.userAuthStatus = LoginStatus.FALSE;
-        this.authToken = null;
+        this._authStatus.set(AuthStatus.NOT_ALLOWED);
+        this._currentAuthToken = null;
       }
     });
   }
+
+  // Public getters
+  public get authStatus() {
+    return this._authStatus.asReadonly();
+  }
+
+  public get authToken() {
+    return this._currentAuthToken;
+  }
+
 
   // Functions
   login(email: string, password: string) {

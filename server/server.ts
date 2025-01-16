@@ -14,6 +14,7 @@ import filesRouter from "./routes/files";
 // Auth
 import { initializeApp } from "firebase-admin/app"
 import { getAuth } from "firebase-admin/auth"
+import { getDistPath } from "./functions/utils";
 
 const app = express();
 const PORT = 3200;
@@ -38,11 +39,9 @@ app.use(morgan("dev"));
 app.use(express.json({ limit: "100mb" }));
 app.use(bodyParser.raw({ type: "application/octet-stream" }));
 
-app.get("/", (req, res) => {
-  res.send("Server running...");
-});
+app.use(express.static('dist'));
 
-app.use(async (req, res, next) => {
+app.use("/api", async (req, res, next) => {
   try {
     const token = req.headers['x-authentication-token'] || req.headers['X-Authentication-Token'];
 
@@ -57,7 +56,7 @@ app.use(async (req, res, next) => {
 
     next();
   } catch (error) {
-    next(error);
+    next(res.status(401).send({ message: "Not auth"}));
   }
 })
 

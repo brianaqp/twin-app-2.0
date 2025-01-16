@@ -1,0 +1,18 @@
+{
+  "name": "twin-app-2.0",
+  "version": "1.0.0",
+
+  "main": "server.ts",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "start": "cd server && npx tsx server.ts",
+    "build": "npm run frontend && npm run backend",
+    "frontend": "cd app && npm run build",
+    "backend": "cd server "
+  },
+  "author": "brianqp",
+  "license": "ISC",
+  "description": ""
+}

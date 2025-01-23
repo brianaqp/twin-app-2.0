@@ -7,10 +7,10 @@
     "node": "22.x"
   },
   "scripts": {
-    "start": "cd server && npx tsx server.ts",
-    "build": "npm run frontend && npm run backend",
-    "frontend": "cd app && npm run build",
-    "backend": "cd server "
+    "build": "npm run build-front && npm run build-back",
+    "build-front": "cd app && npm run build",
+    "build-back": "cd server && tsc"
+
   },
   "author": "brianqp",
   "license": "ISC",

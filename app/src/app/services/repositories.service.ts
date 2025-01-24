@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { InsertOneResult, UpdateResult } from 'mongodb';
 
@@ -9,11 +9,14 @@ import { InsertOneResult, UpdateResult } from 'mongodb';
 })
 export class RepositoriesService {
   private baseUrl = `${environment.apiUrl}/repositories`;
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {
+    console.log('repo-svc-contructor', this.baseUrl)
+  }
 
   // ------------------- GET METHODS -------------------
   find(collection: string, projection?: object): Observable<any> {
     // Funcion que devuelve todos los registros de una coleccion
+    console.log('repo-svc-contructor', this.baseUrl)
     return this.http.get<any>(`${this.baseUrl}/${collection}`, {
       params: {
         ...projection,

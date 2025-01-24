@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { Subscription, firstValueFrom } from 'rxjs';
 import { LocalGallery } from 'src/app/interfaces/gallery';
 import { MongoBucketService } from 'src/app/services/mongo-bucket.service';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/environments/environment';
 import {
   NgbAlert,
   NgbAlertModule,
@@ -17,8 +17,7 @@ import {
   NgbPopover,
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap';
-import { Ports } from 'src/app/environments/globals';
-import { CatService } from 'src/app/test/cat.service';
+import { Ports } from 'src/environments/globals';
 import { UpdateResult } from 'mongodb';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -59,7 +58,6 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     private readonly mongoBucketSvc: MongoBucketService,
     private router: Router,
     private modalService: NgbModal,
-    private catService: CatService,
   ) {
     const data: any = router.getCurrentNavigation()?.extras.state;
     this.registerId = data.registerId;

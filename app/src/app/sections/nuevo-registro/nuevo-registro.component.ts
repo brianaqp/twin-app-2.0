@@ -18,7 +18,7 @@ import {
   NgbDropdownModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { InsertOneResult, UpdateResult } from 'mongodb';
-import { Ports } from '../../environments/globals';
+import { Ports } from '../../../environments/globals';
 import { Register } from '../../interfaces/register';
 import { RepositoriesService } from '../../services/repositories.service';
 import { CommonFunctionsService } from '../../services/common-functions.service';

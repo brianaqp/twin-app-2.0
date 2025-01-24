@@ -1,6 +1,4 @@
-'use strict';
-
-export const Ports = [
+const Ports = [
   'Veracruz',
   'Tuxpan',
   'Manzanillo',
@@ -14,7 +12,7 @@ export const Ports = [
   'Lázaro Cárdenas',
 ];
 
-export const PortColors: any = {
+const PortColors = {
   tampico: '#A8D08D',
   veracruz: '#FFD966',
   coatzacoalcos: '#9CC2E5',
@@ -27,3 +25,5 @@ export const PortColors: any = {
   guaymas: '#FFC7CE',
   lazaroCardenas: '#2D080A',
 };
+
+export {  Ports, PortColors }

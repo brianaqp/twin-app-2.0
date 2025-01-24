@@ -26,4 +26,4 @@ const PortColors = {
   lazaroCardenas: '#2D080A',
 };
 
-export {  Ports, PortColors }
+export { Ports, PortColors };

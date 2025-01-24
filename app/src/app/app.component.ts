@@ -1,7 +1,4 @@
-import {
-  Component,
-  inject,
-} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { CommonModule } from '@angular/common';
@@ -12,9 +9,15 @@ import { AuthStatus } from './interfaces/auth';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterModule, NavbarComponent, LoginComponent, SpinnerComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    NavbarComponent,
+    LoginComponent,
+    SpinnerComponent,
+  ],
   template: `
-  <!-- React to the auth state -->
+    <!-- React to the auth state -->
     @switch (authStatus()) {
       @case (AuthStatus.ALLOWED) {
         <app-navbar />
@@ -24,7 +27,7 @@ import { AuthStatus } from './interfaces/auth';
         <app-login />
       }
       @case (AuthStatus.NULL) {
-       <app-spinner />
+        <app-spinner />
       }
     }
   `,

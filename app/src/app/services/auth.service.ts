@@ -64,7 +64,6 @@ export class AuthService {
     return this._currentAuthToken;
   }
 
-
   // Functions
   login(email: string, password: string) {
     return signInWithEmailAndPassword(this.auth, email, password);

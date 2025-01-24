@@ -17,7 +17,6 @@ import { ReportePorHorasComponent } from './sections/reporte-por-horas/reporte-p
 import { LoginComponent } from './sections/login/login.component';
 import { NotAuthComponent } from './sections/not-auth/not-auth.component';
 
-
 export const routes: Routes = [
   {
     path: 'login',

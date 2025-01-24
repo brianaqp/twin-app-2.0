@@ -10,13 +10,13 @@ import { InsertOneResult, UpdateResult } from 'mongodb';
 export class RepositoriesService {
   private baseUrl = `${environment.apiUrl}/repositories`;
   constructor(private readonly http: HttpClient) {
-    console.log('repo-svc-contructor', this.baseUrl)
+    console.log('repo-svc-contructor');
   }
 
   // ------------------- GET METHODS -------------------
   find(collection: string, projection?: object): Observable<any> {
     // Funcion que devuelve todos los registros de una coleccion
-    console.log('repo-svc-contructor', this.baseUrl)
+    console.log('repo-svc-contructor', this.baseUrl);
     return this.http.get<any>(`${this.baseUrl}/${collection}`, {
       params: {
         ...projection,

@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { RepositoriesService } from '../services/repositories.service';
 import { firstValueFrom } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { RegisterCardComponent } from './components/card.component';
+import { CardListComponent } from '../widgets/card-list.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RegisterCardComponent],
+  imports: [CommonModule, CardListComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
@@ -73,6 +73,16 @@ export class HomeComponent implements OnInit {
       registers: this.registerList,
       vessels: this.vesselList,
     };
+  }
+
+  onSearch(event: any) {
+    this.busqueda.set(event.target.value);
+  }
+
+  // Metodo que se ejecuta cuando se selecciona un elemento del dropdown, y cambiar el tipo de busqueda
+  onSearchTypeChange(newType: 'id' | 'name'): void {
+    if (this.searchType !== newType) this.searchType = newType;
+    this.input.nativeElement.focus();
   }
 
   onListChanged(collection: 'registers' | 'vessels'): void {

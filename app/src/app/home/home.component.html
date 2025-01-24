@@ -18,6 +18,38 @@
     </div>
   </div>
   <div class="row">
+    <div class="input-group mt-3" ngbDropdown>
+      <button
+        class="btn btn-outline-secondary dropdown-toggle"
+        type="button"
+        ngbDropdownToggle
+      >
+        Search by {{ selection }}
+      </button>
+      <div class="dropdown-menu" ngbDropdownMenu>
+        <button
+          class="dropdown-item"
+          ngbDropdownItem
+          (click)="onSearchTypeChange('id')"
+        >
+          ID
+        </button>
+        <button
+          class="dropdown-item"
+          ngbDropdownItem
+          (click)="onSearchTypeChange('name')"
+        >
+          Name
+        </button>
+      </div>
+      <input
+        type="text border-radius-2"
+        class="form-control"
+        #input
+        (input)="onSearch($event)"
+        (keydown.enter)="input.blur()"
+      />
+    </div>
     <ng-container *ngIf="isDataLoaded">
       <app-card [collection]="selection" [list]="listToExport"></app-card>
     </ng-container>

@@ -55,14 +55,12 @@ export class LoginComponent implements OnDestroy {
   }
 
   onLogin() {
-    this.auth$
-      .login(this.email.value, this.password.value)
-      .catch((error) => {
-        console.error('Error in onLoginc()', error);
-      });
+    this.auth$.login(this.email.value, this.password.value).catch((error) => {
+      console.error('Error in onLoginc()', error);
+    });
   }
 
   ngOnDestroy(): void {
-    console.log("Login comp destroyed")
+    console.log('Login comp destroyed');
   }
 }
